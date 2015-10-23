@@ -4,28 +4,30 @@
     var x;
     var y;
 
-    return {
-      init: function(x0, y0) {
-        setCoor(x, y);
-      },
+    var Entity = {};
 
-      setCoor: function(x0, y0) {
-        x = x0;
-        y = y0;
-      },
-
-      getCoor: function() {
-        return {
-          x: x,
-          y: y
-        };
-      },
-
-      move: function(dx, dy) {
-        x += dx;
-        y += dy;
-      }
+    Entity.init = function(x0, y0) {
+      setCoor(x, y);
     };
+
+    Entity.setCoor = function(x0, y0) {
+      x = x0;
+      y = y0;
+    };
+
+    Entity.getCoor = function() {
+      return {
+        x: x,
+        y: y
+      };
+    };
+
+    Entity.move = function(dx, dy) {
+      x += dx;
+      y += dy;
+    };
+
+    return Entity;
   };
 
   var KillableEntity = function() {
@@ -96,5 +98,6 @@
   console.log(milo.getDefense());
   milo.takeDamage(10);
   console.log(milo.getHealth());
+  console.log(milo);
 
 })();
