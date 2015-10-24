@@ -1,4 +1,4 @@
-(function() {
+(function(global) {
   'use strict';
 
   var entities = VAGABOND.ENTITIES;
@@ -8,5 +8,9 @@
 
   console.log(milo.toString(null, '\t'));
   console.log(otis.toString(null, '\t'));
+  console.log(milo);
 
-})();
+  global.milo = milo;
+  global.otis = otis;
+
+})(this);

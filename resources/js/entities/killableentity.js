@@ -9,18 +9,9 @@
 
     var KillableEntity = function(x, y, hp) {
       var mke = entities.MovableKillableEntity(x, y, hp);
+      delete mke.move;
 
-      return {
-        getX: mke.getX,
-        getY: mke.getY,
-        setX: mke.setX,
-        setY: mke.setY,
-        changeHealth: mke.changeHealth,
-        setHealth: mke.setHealth,
-        getHealth: mke.getHealth,
-        toString: mke.toString,
-        getTraits: mke.getTraits
-      };
+      return mke;
     };
 
     module.KillableEntity = KillableEntity;

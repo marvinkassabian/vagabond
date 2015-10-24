@@ -2,8 +2,7 @@
 
   var UTIL = (function() {
 
-    // retrieved from:
-    // stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+    // src: stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
     // RFC4122 version 4 compliant
     var generateUUID = function() {
       var d = Date.now();
@@ -18,7 +17,35 @@
       return uuid;
     };
 
+    var unboundSlice = Array.prototype.slice;
+    var slice = Function.prototype.call.bind(unboundSlice);
+
+    // src: raganwald.com/2014/04/10/mixins-forwarding-delegation.html
+    var mixin = function() {
+      var consumer = arguments[0];
+      var providers = slice(arguments, 1);
+      var key;
+      var i;
+      var provider;
+
+      if (typeof consumer === 'undefined') {
+        consumer = {};
+      }
+
+      for (i = 0; i < providers.length; ++i) {
+        provider = providers[i];
+        for (key in provider) {
+          if (!consumer.hasOwnProperty(key)) {
+            consumer[key] = provider[key];
+          }
+        }
+      }
+
+      return consumer;
+    };
+
     this.generateUUID = generateUUID;
+    this.mixin = mixin;
 
     return this;
   }).call(UTIL || {});

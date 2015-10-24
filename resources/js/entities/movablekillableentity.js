@@ -11,29 +11,25 @@
       var coorFuncs = traits.hasCoor(x, y);
       var healthFuncs = traits.hasHealth(hp);
 
-      return {
-        getX: coorFuncs.getX,
-        getY: coorFuncs.getY,
-        setX: coorFuncs.setX,
-        setY: coorFuncs.setY,
-        move: coorFuncs.move,
-        changeHealth: healthFuncs.changeHealth,
-        setHealth: healthFuncs.setHealth,
-        getHealth: healthFuncs.getHealth,
-        toString: function(replacer, space) {
-          return JSON.stringify(this.getTraits(), replacer, space);
-        },
+      var mke = {};
 
-        getTraits: function() {
-          return {
-            coor: {
-              x: this.getX(),
-              y: this.getY()
-            },
-            health: this.getHealth()
-          };
-        }
+      UTIL.mixin(mke, coorFuncs, healthFuncs);
+
+      mke.toString = function(replacer, space) {
+        return JSON.stringify(this.getTraits(), replacer, space);
       };
+
+      mke.getTraits = function() {
+        return {
+          coor: {
+            x: this.getX(),
+            y: this.getY()
+          },
+          health: this.getHealth()
+        };
+      }
+
+      return mke;
     };
 
     module.MovableKillableEntity = MovableKillableEntity;

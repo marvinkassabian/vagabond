@@ -6,34 +6,25 @@
   VAGABOND.ENTITIES = (function(module) {
 
     var traits = VAGABOND.TRAITS;
-    var MKE = VAGABOND.ENTITIES.MovableKillableEntity;
+    var MovableKillableEntity = VAGABOND.ENTITIES.MovableKillableEntity;
 
     var Monster = function(id, name, x, y, hp) {
       var idFuncs = traits.hasID(id);
       var nameFuncs = traits.hasName(name);
-      var mke = MKE(x, y, hp);
+      var mke = new MovableKillableEntity(x, y, hp);
 
-      return {
-        getID: idFuncs.getID,
-        setID: idFuncs.setID,
-        getName: nameFuncs.getName,
-        setName: nameFuncs.setName,
-        getX: mke.getX,
-        getY: mke.getY,
-        setX: mke.setX,
-        setY: mke.setY,
-        move: mke.move,
-        changeHealth: mke.changeHealth,
-        setHealth: mke.setHealth,
-        getHealth: mke.getHealth,
-        toString: mke.toString,
-        getTraits: function() {
-          var traits = mke.getTraits();
-          traits.id = this.getID();
-          traits.name = this.getName();
-          return traits;
-        }
+      var monster = {};
+
+      UTIL.mixin(monster, idFuncs, nameFuncs, mke);
+
+      monster.getTraits = function() {
+        var traits = mke.getTraits();
+        traits.id = this.getID();
+        traits.name = this.getName();
+        return traits;
       };
+
+      return monster;
     };
 
     module.Monster = Monster;

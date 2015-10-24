@@ -11,22 +11,7 @@
     var Goblin = function(x, y, hp) {
       var monster = new Monster(UTIL.generateUUID(), 'Goblin', x, y, hp);
 
-      return {
-        getID: monster.getID,
-        setID: monster.setID,
-        getName: monster.getName,
-        setName: monster.setName,
-        getX: monster.getX,
-        getY: monster.getY,
-        setX: monster.setX,
-        setY: monster.setY,
-        move: monster.move,
-        changeHealth: monster.changeHealth,
-        setHealth: monster.setHealth,
-        getHealth: monster.getHealth,
-        toString: monster.toString,
-        getTraits: monster.getTraits
-      };
+      return monster;
     };
 
     module.Goblin = Goblin;
