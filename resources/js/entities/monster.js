@@ -25,7 +25,16 @@
         move: mke.move,
         changeHealth: mke.changeHealth,
         setHealth: mke.setHealth,
-        getHealth: mke.getHealth
+        getHealth: mke.getHealth,
+        toString: function() {
+          return '{' +
+              '\n  id: ' + this.getID() +
+              '\n  name: ' + this.getName() +
+              '\n  x: ' + this.getX() +
+              '\n  y: ' + this.getY() +
+              '\n  health: ' + this.getHealth() +
+              '\n}';
+        }
       };
     };
 

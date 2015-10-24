@@ -18,7 +18,14 @@
         setY: coorFuncs.setY,
         changeHealth: healthFuncs.changeHealth,
         setHealth: healthFuncs.setHealth,
-        getHealth: healthFuncs.getHealth
+        getHealth: healthFuncs.getHealth,
+        toString: function() {
+          return '{' +
+              '\n  x: ' + this.getX() +
+              '\n  y: ' + this.getY() +
+              '\n  health: ' + this.getHealth() +
+              '\n}';
+        }
       };
     };
 
