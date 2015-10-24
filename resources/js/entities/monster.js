@@ -26,14 +26,12 @@
         changeHealth: mke.changeHealth,
         setHealth: mke.setHealth,
         getHealth: mke.getHealth,
-        toString: function() {
-          return '{' +
-              '\n  id: ' + this.getID() +
-              '\n  name: ' + this.getName() +
-              '\n  x: ' + this.getX() +
-              '\n  y: ' + this.getY() +
-              '\n  health: ' + this.getHealth() +
-              '\n}';
+        toString: mke.toString,
+        getTraits: function() {
+          var traits = mke.getTraits();
+          traits.id = this.getID();
+          traits.name = this.getName();
+          return traits;
         }
       };
     };

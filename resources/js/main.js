@@ -1,12 +1,12 @@
 (function() {
   'use strict';
 
-  var e = VAGABOND.ENTITIES;
+  var entities = VAGABOND.ENTITIES;
 
-  var milo = new e.Monster(0, 'Milo', 2, 4, 30);
-  var otis = new e.KillableEntity(5, 10, 50);
+  var milo = new entities.Monster(0, 'Milo', 2, 4, 30);
+  var otis = new entities.KillableEntity(5, 10, 50);
 
-  console.log(milo, milo.toString());
-  console.log(otis, otis.toString());
+  console.log(milo.toString(null, '\t'));
+  console.log(otis.toString(null, '\t'));
 
 })();

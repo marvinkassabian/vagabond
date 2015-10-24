@@ -20,12 +20,18 @@
         changeHealth: healthFuncs.changeHealth,
         setHealth: healthFuncs.setHealth,
         getHealth: healthFuncs.getHealth,
-        toString: function() {
-          return '{' +
-              '\n  x: ' + this.getX() +
-              '\n  y: ' + this.getY() +
-              '\n  health: ' + this.getHealth() +
-              '\n}';
+        toString: function(replacer, space) {
+          return JSON.stringify(this.getTraits(), replacer, space);
+        },
+
+        getTraits: function() {
+          return {
+            coor: {
+              x: this.getX(),
+              y: this.getY()
+            },
+            health: this.getHealth()
+          };
         }
       };
     };
