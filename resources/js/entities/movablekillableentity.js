@@ -27,7 +27,7 @@
           },
           health: this.getHealth()
         };
-      }
+      };
 
       return mke;
     };
