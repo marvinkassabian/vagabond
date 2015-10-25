@@ -5,31 +5,17 @@
 
   VAGABOND.ENTITIES = (function(module) {
 
-    var traits = VAGABOND.TRAITS;
+    var entities = VAGABOND.ENTITIES;
 
     var MovableKillableEntity = function(x, y, hp) {
-      var coorFuncs = traits.hasCoor(x, y);
-      var healthFuncs = traits.hasHealth(hp);
+      var movableKillableEntity = new entities.KillableEntity(x, y, hp);
 
-      var mke = {};
-
-      UTIL.mixin(mke, coorFuncs, healthFuncs);
-
-      mke.toString = function(replacer, space) {
-        return JSON.stringify(this.getTraits(), replacer, space);
+      movableKillableEntity.move = function(dx, dy) {
+        this.setX(this.getX() + dx);
+        this.setY(this.getY() + dy);
       };
 
-      mke.getTraits = function() {
-        return {
-          coor: {
-            x: this.getX(),
-            y: this.getY()
-          },
-          health: this.getHealth()
-        };
-      };
-
-      return mke;
+      return movableKillableEntity;
     };
 
     module.MovableKillableEntity = MovableKillableEntity;

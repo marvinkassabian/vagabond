@@ -9,9 +9,13 @@
     var Monster = VAGABOND.ENTITIES.Monster;
 
     var Goblin = function(x, y, hp) {
-      var monster = new Monster(UTIL.generateUUID(), 'Goblin', x, y, hp);
+      var goblin = new Monster(UTIL.generateUUID(), 'Goblin', x, y, hp);
 
-      return monster;
+      goblin.attack = function() {
+
+      };
+
+      return goblin;
     };
 
     module.Goblin = Goblin;

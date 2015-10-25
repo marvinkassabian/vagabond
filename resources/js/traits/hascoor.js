@@ -24,11 +24,6 @@
 
         setY: function(newY) {
           y = newY;
-        },
-
-        move: function(dx, dy) {
-          setX(getX + dx);
-          setY(getY + dy);
         }
       };
     };

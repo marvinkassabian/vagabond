@@ -9,10 +9,6 @@
       var health = initialHealth;
 
       return {
-        changeHealth: function(dHealth) {
-          health += dHealth;
-        },
-
         setHealth: function(newHealth) {
           health = newHealth;
         },
