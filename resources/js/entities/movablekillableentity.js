@@ -5,10 +5,10 @@
 
   VAGABOND.ENTITIES = (function(module) {
 
-    var entities = VAGABOND.ENTITIES;
+    var ENTITIES = VAGABOND.ENTITIES;
 
     var MovableKillableEntity = function(x, y, hp) {
-      var movableKillableEntity = new entities.KillableEntity(x, y, hp);
+      var movableKillableEntity = new ENTITIES.KillableEntity(x, y, hp);
 
       movableKillableEntity.move = function(dx, dy) {
         this.setX(this.getX() + dx);
