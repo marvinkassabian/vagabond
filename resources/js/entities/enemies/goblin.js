@@ -7,14 +7,17 @@
 
     var Monster = VAGABOND.ENTITIES.Monster;
 
-    var Goblin = function(x, y, hp) {
-      Monster.call(this, UTIL.generateUUID(), 'Goblin', x, y, hp);
+    var Goblin = Object.create(Monster);
+
+    var initProto = Goblin.init.bind(Goblin);
+    var getTraitsProto = Goblin.getTraits.bind(Goblin);
+
+    Goblin.init = function(x, y, hp) {
+      return initProto(UTIL.generateUUID(), 'Goblin', x, y, hp);
     };
 
-    Goblin.prototype = Object.create(Monster.prototype);
-
-    Goblin.prototype.attack = function() {
-
+    Goblin.attack = function() {
+      console.log(this.name, 'attacks!');
     };
 
     module.Goblin = Goblin;

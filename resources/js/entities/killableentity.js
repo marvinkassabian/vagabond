@@ -7,16 +7,21 @@
 
     var Entity = VAGABOND.ENTITIES.Entity;
 
-    var KillableEntity = function(x, y, hp) {
-      Entity.call(this, x, y);
+    var KillableEntity = Object.create(Entity);
+
+    var initProto = KillableEntity.init.bind(KillableEntity);
+    var getTraitsProto = KillableEntity.getTraits.bind(KillableEntity);
+
+    KillableEntity.init = function(x, y, hp) {
+      initProto(x, y);
 
       this.hp = hp;
+
+      return this;
     };
 
-    KillableEntity.prototype = Object.create(Entity.prototype);
-
-    KillableEntity.prototype.getTraits = function() {
-      var traits = Entity.prototype.getTraits.call(this);
+    KillableEntity.getTraits = function() {
+      var traits = getTraitsProto();
       traits.health = this.hp;
       return traits;
     };

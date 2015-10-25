@@ -7,17 +7,22 @@
 
     var MovableKillableEntity = VAGABOND.ENTITIES.MovableKillableEntity;
 
-    var Monster = function(id, name, x, y, hp) {
-      MovableKillableEntity.call(this, x, y, hp);
+    var Monster = Object.create(MovableKillableEntity);
+
+    var initProto = Monster.init.bind(Monster);
+    var getTraitsProto = Monster.getTraits.bind(Monster);
+
+    Monster.init = function(id, name, x, y, hp) {
+      initProto(x, y, hp);
 
       this.id = id;
       this.name = name;
+
+      return this;
     };
 
-    Monster.prototype = Object.create(MovableKillableEntity.prototype);
-
-    Monster.prototype.getTraits = function() {
-      var traits = MovableKillableEntity.prototype.getTraits.call(this);
+    Monster.getTraits = function() {
+      var traits = getTraitsProto();
       traits.id = this.id;
       traits.name = this.name;
       return traits;

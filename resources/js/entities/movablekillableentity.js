@@ -7,13 +7,9 @@
 
     var KillableEntity = VAGABOND.ENTITIES.KillableEntity;
 
-    var MovableKillableEntity = function(x, y, hp) {
-      KillableEntity.call(this, x, y, hp);
-    };
+    var MovableKillableEntity =  Object.create(KillableEntity);
 
-    MovableKillableEntity.prototype = Object.create(KillableEntity.prototype);
-
-    MovableKillableEntity.prototype.move = function(dx, dy) {
+    MovableKillableEntity.move = function(dx, dy) {
       this.x += dx;
       this.y += dy;
     };
