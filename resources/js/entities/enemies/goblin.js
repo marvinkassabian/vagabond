@@ -9,11 +9,10 @@
 
     var Goblin = Object.create(Monster);
 
-    var initProto = Goblin.init.bind(Goblin);
-    var getTraitsProto = Goblin.getTraits.bind(Goblin);
+    var initProto = Goblin.init;
 
     Goblin.init = function(x, y, hp) {
-      return initProto(UTIL.generateUUID(), 'Goblin', x, y, hp);
+      return initProto.call(this, UTIL.generateUUID(), 'Goblin', x, y, hp);
     };
 
     Goblin.attack = function() {

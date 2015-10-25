@@ -9,11 +9,11 @@
 
     var KillableEntity = Object.create(Entity);
 
-    var initProto = KillableEntity.init.bind(KillableEntity);
-    var getTraitsProto = KillableEntity.getTraits.bind(KillableEntity);
+    var initProto = KillableEntity.init;
+    var getTraitsProto = KillableEntity.getTraits;
 
     KillableEntity.init = function(x, y, hp) {
-      initProto(x, y);
+      initProto.call(this, x, y);
 
       this.hp = hp;
 
@@ -21,7 +21,7 @@
     };
 
     KillableEntity.getTraits = function() {
-      var traits = getTraitsProto();
+      var traits = getTraitsProto.call(this);
       traits.health = this.hp;
       return traits;
     };
