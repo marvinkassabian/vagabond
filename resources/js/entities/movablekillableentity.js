@@ -5,17 +5,17 @@
 
   VAGABOND.ENTITIES = (function(module) {
 
-    var ENTITIES = VAGABOND.ENTITIES;
+    var KillableEntity = VAGABOND.ENTITIES.KillableEntity;
 
     var MovableKillableEntity = function(x, y, hp) {
-      var movableKillableEntity = new ENTITIES.KillableEntity(x, y, hp);
+      KillableEntity.call(this, x, y, hp);
+    };
 
-      movableKillableEntity.move = function(dx, dy) {
-        this.setX(this.getX() + dx);
-        this.setY(this.getY() + dy);
-      };
+    MovableKillableEntity.prototype = Object.create(KillableEntity.prototype);
 
-      return movableKillableEntity;
+    MovableKillableEntity.prototype.move = function(dx, dy) {
+      this.x += dx;
+      this.y += dy;
     };
 
     module.MovableKillableEntity = MovableKillableEntity;

@@ -5,26 +5,22 @@
 
   VAGABOND.ENTITIES = (function(module) {
 
-    var TRAITS = VAGABOND.TRAITS;
-
     var Entity = function(x, y) {
-      var entity = TRAITS.hasCoor(x, y);
+      this.x = x;
+      this.y = y;
+    };
 
-      entity.toString = function(replacer, space) {
-        return JSON.stringify(this.getTraits(), replacer, space);
+    Entity.prototype.toString = function(replacer, space) {
+      return JSON.stringify(this.getTraits(), replacer, space);
+    };
+
+    Entity.prototype.getTraits = function() {
+      return {
+        coor: {
+          x: this.x,
+          y: this.y
+        }
       };
-
-      entity.getTraits = function() {
-        return {
-          coor: {
-            x: entity.getX(),
-            y: entity.getY()
-          }
-        };
-      };
-
-      return entity;
-
     };
 
     module.Entity = Entity;

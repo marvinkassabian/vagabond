@@ -5,25 +5,20 @@
 
   VAGABOND.ENTITIES = (function(module) {
 
-    var TRAITS = VAGABOND.TRAITS;
-    var ENTITIES = VAGABOND.ENTITIES;
+    var Entity = VAGABOND.ENTITIES.Entity;
 
     var KillableEntity = function(x, y, hp) {
-      var healthFuncs = TRAITS.hasHealth(hp);
+      Entity.call(this, x, y);
 
-      var killableEntity = new ENTITIES.Entity(x, y);
+      this.hp = hp;
+    };
 
-      UTIL.mixin(killableEntity, healthFuncs);
+    KillableEntity.prototype = Object.create(Entity.prototype);
 
-      var getTraits = killableEntity.getTraits;
-
-      killableEntity.getTraits = function() {
-        var traits = getTraits();
-        traits.health = killableEntity.getHealth();
-        return traits;
-      };
-
-      return killableEntity;
+    KillableEntity.prototype.getTraits = function() {
+      var traits = Entity.prototype.getTraits.call(this);
+      traits.health = this.hp;
+      return traits;
     };
 
     module.KillableEntity = KillableEntity;
