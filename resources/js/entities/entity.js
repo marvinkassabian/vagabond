@@ -7,9 +7,10 @@
 
     var Entity = {};
 
-    Entity.init = function(x, y) {
+    Entity.init = function(x, y, char) {
       this.x = x;
       this.y = y;
+      this.char = char;
 
       return this;
     };
@@ -19,7 +20,8 @@
         coor: {
           x: this.x,
           y: this.y
-        }
+        },
+        char: this.char
       };
     };
 

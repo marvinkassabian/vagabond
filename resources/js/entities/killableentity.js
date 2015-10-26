@@ -12,8 +12,8 @@
     var initProto = KillableEntity.init;
     var getTraitsProto = KillableEntity.getTraits;
 
-    KillableEntity.init = function(x, y, hp) {
-      initProto.call(this, x, y);
+    KillableEntity.init = function(x, y, char, hp) {
+      initProto.call(this, x, y, char);
 
       this.hp = hp;
 

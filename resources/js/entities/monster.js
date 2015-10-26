@@ -12,8 +12,8 @@
     var initProto = Monster.init;
     var getTraitsProto = Monster.getTraits;
 
-    Monster.init = function(id, name, x, y, hp) {
-      initProto.call(this, x, y, hp);
+    Monster.init = function(id, name, x, y, char, hp) {
+      initProto.call(this, x, y, char, hp);
 
       this.id = id;
       this.name = name;
