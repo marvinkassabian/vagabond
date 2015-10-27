@@ -19,6 +19,10 @@
       console.log(this.name, 'attacks!');
     };
 
+    Goblin.takeTurn = function(map) {
+
+    };
+
     module.Goblin = Goblin;
 
     return module;
