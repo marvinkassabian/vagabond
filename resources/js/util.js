@@ -45,13 +45,20 @@
     };
 
     var clamp = function(value, lower, upper) {
+      var temp;
+
+      if (lower > upper) {
+        temp = lower;
+        lower = upper;
+        upper = temp;
+      }
+
       return Math.max(Math.min(value, upper), lower);
     };
 
     this.generateUUID = generateUUID;
     this.extend = extend;
     this.clamp = clamp;
-    this.count = 0;
 
     return this;
   }).call(UTIL || {});

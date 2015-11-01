@@ -59,19 +59,13 @@
     Map.clampedGet = function(x, y) {
       var clampedCoor = this.clampCoor(x, y);
 
-      x = clampedCoor.x;
-      y = clampedCoor.y;
-
-      return this.get(x, y);
+      return this.get(clampedCoor.x, clampedCoor.y);
     };
 
     Map.clampedSet = function(x, y, value) {
       var clampedCoor = this.clampCoor(x, y);
 
-      x = clampedCoor.x;
-      y = clampedCoor.y;
-
-      return this.set(x, y, value);
+      return this.set(clampedCoor.x, clampedCoor.y, value);
     };
 
     Map.clampCoor = function(x, y) {
