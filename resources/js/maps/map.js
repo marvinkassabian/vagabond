@@ -48,12 +48,16 @@
       this.grid[(y * this.width) + x] = value;
     };
 
-    Map.getSample = function(x, y) {
-      return this.get(x % this.width, y % this.height);
+    Map.wrappedGet = function(x, y) {
+      var wrappedCoor = this.wrapCoor(x, y);
+
+      return this.get(wrappedCoor.x, wrappedCoor.y);
     };
 
-    Map.setSample = function(x, y, value) {
-      return this.set(x % this.width, y % this.height, value);
+    Map.wrappedSet = function(x, y, value) {
+      var wrappedCoor = this.wrapCoor(x, y);
+
+      return this.set(wrappedCoor.x, wrappedCoor.y, value);
     };
 
     Map.clampedGet = function(x, y) {
@@ -72,6 +76,13 @@
       return {
         x: UTIL.clamp(x, 0, this.width - 1),
         y: UTIL.clamp(y, 0, this.height - 1)
+      };
+    };
+
+    Map.wrapCoor = function(x, y) {
+      return {
+        x: UTIL.wrap(x, 0, this.width),
+        y: UTIL.wrap(y, 0, this.height)
       };
     };
 

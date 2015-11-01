@@ -10,9 +10,9 @@
   var otis = Object.create(Goblin).init(5, 10, 50);
   var henry = Object.create(Goblin).init(32, 15, 60);
   var tileMap = Object.create(TileMap).init(4, 10);
-  var terrainMap = Object.create(TerrainMap).init(5, {
+  var terrainMap = Object.create(TerrainMap).init(17, {
     upper: 8,
-    lower: 0
+    lower: 6
   });
 
   global.milo = milo;

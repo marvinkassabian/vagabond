@@ -44,21 +44,38 @@
       return consumer;
     };
 
-    var clamp = function(value, lower, upper) {
+    var clamp = function(value, min, max) {
       var temp;
 
-      if (lower > upper) {
+      if (min > max) {
         temp = lower;
-        lower = upper;
-        upper = temp;
+        min = max;
+        max = temp;
       }
 
-      return Math.max(Math.min(value, upper), lower);
+      return Math.max(Math.min(value, max), min);
+    };
+
+    // wraps the value in the range of [min, max)
+    var wrap = function(value, min, max) {
+      var temp;
+      var range;
+
+      if (min > max) {
+        temp = lower;
+        min = max;
+        max = temp;
+      }
+
+      range = max - min;
+
+      return ((((value - min) % range) + range) % range) + min;
     };
 
     this.generateUUID = generateUUID;
     this.extend = extend;
     this.clamp = clamp;
+    this.wrap = wrap;
 
     return this;
   }).call(UTIL || {});
