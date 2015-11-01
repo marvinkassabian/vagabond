@@ -99,23 +99,37 @@
       var comma;
       var ret = '';
 
+      options = UTIL.extend(options, {
+        formatValue: function(value) {
+          return Math.floor(value);
+        },
+        formatRet: function(ret) {
+          return ret;
+        }
+      });
+
       for (i = 0; i < this.height; i++) {
         ret += '[';
         comma = '';
         for (j = 0; j < this.width; j++) {
-          ret += comma + Math.floor(this.get(j, i));
+          ret += comma + options.formatValue.call(this, this.get(j, i), j, i);
           comma = ', ';
         }
 
         ret += ']\n';
       }
 
-      return ret;
+      return options.formatRet.call(this, ret);
     };
 
-    Map.render = function(element) {
-      element.innerHTML = this.toString().replace(/\n/g, '<br>')
-          .replace(/ |,|\[|\]/g, '');
+    Map.render = function(element, options) {
+      options = UTIL.extend(options, {
+        formatRet: function(ret) {
+          return ret.replace(/\n/g, '<br>').replace(/ |,|\[|\]/g, '');
+        }
+      });
+
+      element.innerHTML = this.toString(options);
     };
 
     module.Map = Map;

@@ -21,14 +21,7 @@
       randomScale = (randomScale !== undefined) ? randomScale : 0;
 
       initProto.call(this, size, size, function(x, y, w, h) {
-        if ((x === 0 && y === 0) ||
-            (x === 0 && y === h - 1) ||
-            (x === w - 1 && y === 0) ||
-            (x === w - 1 && y === h - 1)) {
-          return (Math.random() * (seedRange.upper - seedRange.lower)) + seedRange.lower;
-        } else {
-          return 0;
-        }
+        return (Math.random() * (seedRange.upper - seedRange.lower)) + seedRange.lower;
       });
 
       this.generate(randomScale);
