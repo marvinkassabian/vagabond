@@ -11,11 +11,17 @@
 
     var initProto = Map.init;
 
-    TerrainMap.init = function(size, seedRange) {
+    TerrainMap.init = function(size, seedRange, randomScale) {
+
+      this.isGeneratedMap = Object.create(Map);
+      this.isGeneratedMap.init(size, size);
+
       seedRange = UTIL.extend(seedRange, {
         lower: 0,
         upper: 1
       });
+
+      randomScale = (randomScale !== undefined) ? randomScale : 0;
 
       initProto.call(this, size, size, function(x, y, w, h) {
         if ((x === 0 && y === 0) ||
@@ -28,48 +34,106 @@
         }
       });
 
-      this.generate();
+      this.generate(randomScale);
 
       return this;
     };
 
-    TerrainMap.generate = function() {
+    TerrainMap.generate = function(scale) {
+      var self = this;
       var size = this.width - 1;
+      var step = size;
 
-      diamondStep(size / 2, size / 2, size, 0, this);
-
-      function diamondStep(x, y, step, scale, map) {
-        var halfStep = Math.floor(step / 2);
-
-        if (step === 0) {
-          return;
-        }
-
-        var newValue = (map.getSample(x + halfStep, y + halfStep) +
-            map.getSample(x + halfStep, y - halfStep) +
-            map.getSample(x - halfStep, y + halfStep) +
-            map.getSample(x - halfStep, y - halfStep)) / 4;
-
-        newValue += ((Math.random() * scale) - (scale / 2));
-
-        map.setSample(x, y, newValue);
+      while(step > 1) {
+        diamondSquareStep(step, scale);
+        step /= 2;
+        scale /= 2;
       }
 
-      function squareStep(x, y, step, scale, map) {
-        var halfStep = Math.floor(step / 2);
+      function diamondSquareStep(step, scale) {
+        var i, j;
+        var halfStep = step / 2;
 
-        if (step === 0) {
-          return;
+        for (i = halfStep; i <= size + halfStep; i += step) {
+          for (j = halfStep; j <= size + halfStep; j += step) {
+            if (self.isValidCoordinate(j, i)) {
+              diamondStep(j, i, step, scale);
+              //self.isGeneratedMap.render(document.body);
+              console.log('square', j, i, step);
+            }
+          }
         }
 
-        var newValue = (map.getSample(x + halfStep, y) +
-            map.getSample(x - halfStep, y) +
-            map.getSample(x, y + halfStep) +
-            map.getSample(x, y - halfStep)) / 4;
+        for (i = 0; i <= size; i += step) {
+          for (j = 0; j <= size; j += step) {
+            if (self.isValidCoordinate(j + halfStep, i)) {
+              squareStep(j + halfStep, i, step, scale);
+              //self.isGeneratedMap.render(document.body);
+              console.log('diamond', j + halfStep, i, step);
+            }
+            if (self.isValidCoordinate(j, i + halfStep)) {
+              squareStep(j, i + halfStep, step, scale);
+              //self.isGeneratedMap.render(document.body);
+              console.log('diamond', j, i + halfStep, step);
+            }
+          }
+        }
 
-        newValue += ((Math.random() * scale) - (scale / 2));
+        function diamondStep(x, y, step, scale) {
+          var possibleCoors = getDiamondCoors(x, y, step);
 
-        map.setSample(x, y, newValue);
+          self.wrappedSet(x, y, computeNewValue(possibleCoors, scale));
+          self.isGeneratedMap.wrappedSet(x, y, self.isGeneratedMap.wrappedGet(x, y) + 1);
+        }
+
+        function squareStep(x, y, step, scale) {
+          var possibleCoors = getSquareCoors(x, y, step);
+
+          self.wrappedSet(x, y, computeNewValue(possibleCoors, scale));
+          self.isGeneratedMap.wrappedSet(x, y, self.isGeneratedMap.wrappedGet(x, y) + 1);
+        }
+
+        function computeNewValue(possibleCoors, scale) {
+          var i, coor;
+          var newValue = 0;
+          var validCoorCount = 0;
+
+          for (i = 0; i < possibleCoors.length; i++) {
+            coor = possibleCoors[i];
+            //if (self.isValidCoordinate(coor.x, coor.y)) {
+              newValue += self.wrappedGet(coor.x, coor.y);
+              validCoorCount++;
+            //}
+          }
+
+          newValue /= validCoorCount;
+
+          newValue += ((Math.random() * scale) - (scale / 2));
+
+          return newValue;
+        }
+
+        function getDiamondCoors(x, y, step) {
+          var halfStep = Math.floor(step / 2);
+
+          return [
+            {x: x + halfStep, y: y + halfStep},
+            {x: x + halfStep, y: y - halfStep},
+            {x: x - halfStep, y: y + halfStep},
+            {x: x - halfStep, y: y - halfStep}
+          ];
+        }
+
+        function getSquareCoors(x, y, step) {
+          var halfStep = Math.floor(step / 2);
+
+          return [
+            {x: x + halfStep, y: y},
+            {x: x - halfStep, y: y},
+            {x: x, y: y + halfStep},
+            {x: x, y: y - halfStep}
+          ];
+        }
       }
     };
 

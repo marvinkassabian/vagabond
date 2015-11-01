@@ -93,7 +93,7 @@
           (y < this.height);
     };
 
-    Map.toString = function() {
+    Map.toString = function(options) {
       var i;
       var j;
       var comma;
