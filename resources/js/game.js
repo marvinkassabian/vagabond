@@ -7,11 +7,21 @@
 
     var Game = {};
 
-    Game.init = function() {
+    Game.init = function(map) {
       this.entityPool = [];
+      this.map = map;
 
       return this;
     };
+
+    Game.takeTurn = function() {
+      int i, entity;
+
+      for (i = 0; i < entityPool.length, i++) {
+        entity = entityPool[i];
+
+      }
+    }
 
     module.Game = Game;
 

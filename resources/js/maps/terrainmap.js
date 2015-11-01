@@ -82,10 +82,10 @@
 
           for (i = 0; i < possibleCoors.length; i++) {
             coor = possibleCoors[i];
-            //if (self.isValidCoordinate(coor.x, coor.y)) {
+            if (self.isValidCoordinate(coor.x, coor.y)) {
               newValue += self.wrappedGet(coor.x, coor.y);
               validCoorCount++;
-            //}
+            }
           }
 
           newValue /= validCoorCount;

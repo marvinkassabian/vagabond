@@ -123,13 +123,29 @@
     };
 
     Map.render = function(element, options) {
+      var i, j, map, tileElement, value;
       options = UTIL.extend(options, {
-        formatRet: function(ret) {
-          return ret.replace(/\n/g, '<br>').replace(/ |,|\[|\]/g, '');
+        formatValue: function(value) {
+          return Math.floor(value);
         }
       });
 
-      element.innerHTML = this.toString(options);
+      map = document.createElement('div');
+      map.className = 'map';
+
+      for (i = 0; i < this.height; i++) {
+        for (j = 0; j < this.width; j++) {
+          tileElement = document.createElement('span');
+          value = options.formatValue.call(this, this.get(j, i), j, i);
+
+          tileElement.className = 'tile-' + value;
+          tileElement.innerHTML = value;
+          map.appendChild(tileElement);
+        }
+        map.appendChild(document.createElement('br'));
+      }
+
+      element.appendChild(map);
     };
 
     module.Map = Map;
