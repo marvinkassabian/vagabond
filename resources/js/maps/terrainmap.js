@@ -13,9 +13,6 @@
 
     TerrainMap.init = function(size, seedRange, randomScale) {
 
-      this.isGeneratedMap = Object.create(Map);
-      this.isGeneratedMap.init(size, size);
-
       seedRange = UTIL.extend(seedRange, {
         lower: 0,
         upper: 1
@@ -58,8 +55,6 @@
           for (j = halfStep; j <= size + halfStep; j += step) {
             if (self.isValidCoordinate(j, i)) {
               diamondStep(j, i, step, scale);
-              //self.isGeneratedMap.render(document.body);
-              console.log('square', j, i, step);
             }
           }
         }
@@ -68,13 +63,9 @@
           for (j = 0; j <= size; j += step) {
             if (self.isValidCoordinate(j + halfStep, i)) {
               squareStep(j + halfStep, i, step, scale);
-              //self.isGeneratedMap.render(document.body);
-              console.log('diamond', j + halfStep, i, step);
             }
             if (self.isValidCoordinate(j, i + halfStep)) {
               squareStep(j, i + halfStep, step, scale);
-              //self.isGeneratedMap.render(document.body);
-              console.log('diamond', j, i + halfStep, step);
             }
           }
         }
@@ -83,14 +74,12 @@
           var possibleCoors = getDiamondCoors(x, y, step);
 
           self.wrappedSet(x, y, computeNewValue(possibleCoors, scale));
-          self.isGeneratedMap.wrappedSet(x, y, self.isGeneratedMap.wrappedGet(x, y) + 1);
         }
 
         function squareStep(x, y, step, scale) {
           var possibleCoors = getSquareCoors(x, y, step);
 
           self.wrappedSet(x, y, computeNewValue(possibleCoors, scale));
-          self.isGeneratedMap.wrappedSet(x, y, self.isGeneratedMap.wrappedGet(x, y) + 1);
         }
 
         function computeNewValue(possibleCoors, scale) {
