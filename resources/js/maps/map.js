@@ -127,11 +127,11 @@
       return options.formatReturn.call(this, ret);
     };
 
-    Map.renderToHTML = function(element, options) {
+    Map.toHTML = function(options) {
       var i, j, map, tileElement, value;
       options = UTIL.extend(options, {
         formatValue: function(value) {
-          return Math.floor(value);
+          return value;
         },
         formatElement: function(value) {
           var tileElement = document.createElement('span');
@@ -155,8 +155,23 @@
         map.appendChild(document.createElement('br'));
       }
 
-      element.appendChild(map);
+      return map;
     };
+
+    Map.renderTo = function(screen, formatValue, origin, size) {
+      var i, j;
+
+      formatValue = (formatValue !== undefined) ? formatValue : function(value) {
+        return Math.floor(value);
+      };
+
+      for (i = 0; i < this.height; i++) {
+        for (j = 0; j < this.width; j++) {
+          // only clamped for testing / to avoid errors
+          screen.clampedSet(j, i, formatValue(this.get(j, i)));
+        }
+      }
+    }
 
     module.Map = Map;
 

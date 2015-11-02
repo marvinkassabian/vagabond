@@ -25,9 +25,18 @@
       };
     };
 
+    Entity.takeTurn = function() {
+
+    };
+
     Entity.toString = function(replacer, space) {
       return JSON.stringify(this.getTraits(), replacer, space);
     };
+
+    Entity.renderTo = function(screen) {
+      // only clamped for testing / to avoid errors
+      screen.clampedSet(this.x, this.y, this.char);
+    }
 
     module.Entity = Entity;
 

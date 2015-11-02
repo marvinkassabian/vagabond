@@ -2,7 +2,14 @@ body {
   font-family: "Consolas", monospace;
   color: green;
   background: #000;
-  font-size: 5;
+  font-size: 0.8em;
+}
+
+.tile-m {
+  background: #FFF;
+}
+.tile-g {
+  background: #FFF;
 }
 
 .tile-0 {
