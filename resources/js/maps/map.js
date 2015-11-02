@@ -103,23 +103,28 @@
         formatValue: function(value) {
           return Math.floor(value);
         },
-        formatRet: function(ret) {
+        formatReturn: function(ret) {
           return ret;
+        },
+        formatting: {
+          OPEN: '[',
+          SEPERATOR: ', ',
+          CLOSE: ']\n'
         }
       });
 
       for (i = 0; i < this.height; i++) {
-        ret += '[';
+        ret += options.formatting.OPEN;
         comma = '';
         for (j = 0; j < this.width; j++) {
           ret += comma + options.formatValue.call(this, this.get(j, i), j, i);
-          comma = ', ';
+          comma = options.formatting.SEPERATOR;
         }
 
-        ret += ']\n';
+        ret += options.formatting.CLOSE;
       }
 
-      return options.formatRet.call(this, ret);
+      return options.formatReturn.call(this, ret);
     };
 
     Map.renderToHTML = function(element, options) {
