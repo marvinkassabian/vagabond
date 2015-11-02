@@ -72,30 +72,28 @@
       return ((((value - min) % range) + range) % range) + min;
     };
 
-    var nativeSetTimeout = window.setTimeout;
-
+    // src: developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout
     var setTimeout = function (vCallback, nDelay /*, argumentToPass1, argumentToPass2, etc. */) {
       var self = this, aArgs = Array.prototype.slice.call(arguments, 2);
 
       if (!(vCallback instanceof Function)) {
-        throw 'Eval is doubleplusnotgood.';
+        throw 'implicit \'eval\' is doubleplusnotgood.';
       }
 
-      return nativeSetTimeout(function () {
+      return window.setTimeout(function () {
         vCallback.apply(self, aArgs);
       });
     };
 
-    var nativeSetInterval = window.setInterval;
-
+    // src: developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout
     var setInterval = function (vCallback, nDelay /*, argumentToPass1, argumentToPass2, etc. */) {
       var self = this, aArgs = Array.prototype.slice.call(arguments, 2);
 
       if (!(vCallback instanceof Function)) {
-        throw 'Eval is doubleplusnotgood.';
+        throw 'implicit \'eval\' is doubleplusnotgood.';
       }
 
-      return nativeSetInterval(function () {
+      return window.setInterval(function () {
         vCallback.apply(self, aArgs);
       });
     };

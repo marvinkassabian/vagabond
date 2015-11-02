@@ -33,6 +33,7 @@
     document.body.replaceChild(screenHTML, document.body.firstChild);
 
     if (i > 0) {
+      //TODO: switch UTIL.setTimeout to window.requestAnimationFrame
       UTIL.setTimeout(func, 10);
     }
   };
