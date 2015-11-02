@@ -162,7 +162,7 @@
       var i, j;
 
       formatValue = (formatValue !== undefined) ? formatValue : function(value) {
-        return Math.floor(value);
+        return value;
       };
 
       for (i = 0; i < this.height; i++) {

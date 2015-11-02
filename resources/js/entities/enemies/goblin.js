@@ -19,7 +19,7 @@
       console.log(this.name, 'attacks!');
     };
 
-    Goblin.takeTurn = function(map) {
+    Goblin.takeTurn = function(game) {
       var possibleMove = [
         {dx: 1, dy: 0},
         {dx: 0, dy: 1},

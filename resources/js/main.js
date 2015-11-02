@@ -19,23 +19,7 @@
 
   var entityList = [milo, otis, henry];
 
-  var game = Object.create(Game).init(diamondSquareMap, [], entityList);
-
-  var formatValue = function(value) {
-    return Math.floor(Math.max(Math.min(value, 9), 0)).toString(16);
-  };
-
-  var mapHTML = diamondSquareMap.toHTML({
-    formatValue: formatValue,
-    formatElement: function(value) {
-      var tileElement = document.createElement('span');
-      tileElement.className = 'tile-' + value;
-
-      tileElement.innerHTML = (value > 3) ? 'O' : '0';
-
-      return tileElement;
-    }
-  });
+  var game = Object.create(Game).init(diamondSquareMap, entityList);
 
   var i = 1000;
 
