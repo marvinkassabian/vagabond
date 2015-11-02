@@ -3,7 +3,6 @@
 
   var Monster = VAGABOND.ENTITIES.Monster;
   var Goblin = VAGABOND.ENTITIES.ENEMIES.Goblin;
-  var TileMap = VAGABOND.MAPS.TileMap;
   var DiamondSquareMap = VAGABOND.MAPS.DiamondSquareMap;
 
   var milo = Object.create(Monster).init(0, 'Milo', 2, 4, 'M', 30);
@@ -12,7 +11,7 @@
   var diamondSquareMap = Object.create(DiamondSquareMap).init(129, {
     upper: 10,
     lower: 0
-  }, 20);
+  }).generate(20);
 
   global.milo = milo;
   global.otis = otis;

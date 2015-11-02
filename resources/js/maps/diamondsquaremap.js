@@ -11,25 +11,28 @@
 
     var initProto = Map.init;
 
-    DiamondSquareMap.init = function(size, seedRange, randomScale) {
+    DiamondSquareMap.init = function(size, seedRange) {
 
       seedRange = UTIL.extend(seedRange, {
         lower: 0,
         upper: 1
       });
 
-      randomScale = (randomScale !== undefined) ? randomScale : 0;
-
       initProto.call(this, size, size, function() {
         return (Math.random() * (seedRange.upper - seedRange.lower)) + seedRange.lower;
       });
-
-      this.generate(randomScale);
 
       return this;
     };
 
     DiamondSquareMap.generate = function(scale) {
+      scale = (scale !== undefined) ? scale : 0;
+      diamondSquare.call(this, scale);
+
+      return this;
+    };
+
+    function diamondSquare(scale) {
       var self = this;
       var size = this.width - 1;
       var step = size;
