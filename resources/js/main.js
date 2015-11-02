@@ -3,23 +3,23 @@
 
   var Monster = VAGABOND.ENTITIES.Monster;
   var Goblin = VAGABOND.ENTITIES.ENEMIES.Goblin;
-  var DiamondSquareMap = VAGABOND.MAPS.DiamondSquareMap;
+  var HeightMap = VAGABOND.MAPS.HeightMap;
   var Screen = VAGABOND.SCREEN.Screen;
   var Game = VAGABOND.GAME.Game;
 
   var milo = Object.create(Monster).init(0, 'Milo', 2, 4, 'M', 30);
   var otis = Object.create(Goblin).init(5, 10, 50);
   var henry = Object.create(Goblin).init(32, 15, 60);
-  var diamondSquareMap = Object.create(DiamondSquareMap).init(33, {
-    upper: 13,
+  var heightMap = Object.create(HeightMap).init(33, {
+    upper: 16,
     lower: 0
-  }).generate(20);
+  }).generate(10);
 
   var screen = Object.create(Screen).init(33, 33);
 
   var entityList = [milo, otis, henry];
 
-  var game = Object.create(Game).init(diamondSquareMap, entityList);
+  var game = Object.create(Game).init(heightMap, entityList);
 
   var i = 1000;
 
@@ -33,7 +33,7 @@
     document.body.replaceChild(screenHTML, document.body.firstChild);
 
     if (i > 0) {
-      setTimeout(func, 10);
+      UTIL.setTimeout(func, 10);
     }
   };
 

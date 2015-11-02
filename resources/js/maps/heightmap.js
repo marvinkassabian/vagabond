@@ -10,9 +10,16 @@
     var HeightMap = Object.create(DiamondSquareMap);
 
     var initProto = DiamondSquareMap.init;
+    var renderToProto = DiamondSquareMap.renderTo;
 
     HeightMap.init = function(size, seedRange) {
       return initProto.call(this, size, seedRange);
+    };
+
+    HeightMap.renderTo = function(screen, origin, size) {
+      renderToProto.call(this, screen, function(value) {
+        return Math.floor(Math.max(Math.min(value, 15), 0)).toString(16);
+      }, origin, size);
     };
 
     module.HeightMap = HeightMap;

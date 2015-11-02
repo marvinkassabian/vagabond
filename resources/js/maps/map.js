@@ -101,7 +101,7 @@
 
       options = UTIL.extend(options, {
         formatValue: function(value) {
-          return Math.floor(value);
+          return value;
         },
         formatReturn: function(ret) {
           return ret;
@@ -127,37 +127,6 @@
       return options.formatReturn.call(this, ret);
     };
 
-    Map.toHTML = function(options) {
-      var i, j, map, tileElement, value;
-      options = UTIL.extend(options, {
-        formatValue: function(value) {
-          return value;
-        },
-        formatElement: function(value) {
-          var tileElement = document.createElement('span');
-          tileElement.className = 'tile-' + value;
-          tileElement.innerHTML = value;
-
-          return tileElement;
-        }
-      });
-
-      map = document.createElement('div');
-      map.className = 'map';
-
-      for (i = 0; i < this.height; i++) {
-        for (j = 0; j < this.width; j++) {
-          value = options.formatValue.call(this, this.get(j, i), j, i);
-          tileElement = options.formatElement.call(this, value, j, i);
-
-          map.appendChild(tileElement);
-        }
-        map.appendChild(document.createElement('br'));
-      }
-
-      return map;
-    };
-
     Map.renderTo = function(screen, formatValue, origin, size) {
       var i, j;
 
@@ -168,7 +137,7 @@
       for (i = 0; i < this.height; i++) {
         for (j = 0; j < this.width; j++) {
           // only clamped for testing / to avoid errors
-          screen.clampedSet(j, i, formatValue(this.get(j, i)));
+          screen.clampedSet(j, i, formatValue.call(this, this.get(j, i), j, i));
         }
       }
     }

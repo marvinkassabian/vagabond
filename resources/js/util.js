@@ -72,10 +72,40 @@
       return ((((value - min) % range) + range) % range) + min;
     };
 
+    var nativeSetTimeout = window.setTimeout;
+
+    var setTimeout = function (vCallback, nDelay /*, argumentToPass1, argumentToPass2, etc. */) {
+      var self = this, aArgs = Array.prototype.slice.call(arguments, 2);
+
+      if (!(vCallback instanceof Function)) {
+        throw 'Eval is doubleplusnotgood.';
+      }
+
+      return nativeSetTimeout(function () {
+        vCallback.apply(self, aArgs);
+      });
+    };
+
+    var nativeSetInterval = window.setInterval;
+
+    var setInterval = function (vCallback, nDelay /*, argumentToPass1, argumentToPass2, etc. */) {
+      var self = this, aArgs = Array.prototype.slice.call(arguments, 2);
+
+      if (!(vCallback instanceof Function)) {
+        throw 'Eval is doubleplusnotgood.';
+      }
+
+      return nativeSetInterval(function () {
+        vCallback.apply(self, aArgs);
+      });
+    };
+
     this.generateUUID = generateUUID;
     this.extend = extend;
     this.clamp = clamp;
     this.wrap = wrap;
+    this.setTimeout = setTimeout;
+    this.setInterval = setInterval;
 
     return this;
   }).call(UTIL || {});
