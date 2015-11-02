@@ -42,7 +42,7 @@
 
       function diamondSquareStep(step, scale) {
         var i, j;
-        var halfStep = step / 2;
+        var halfStep = Math.floor(step / 2);
 
         for (i = halfStep; i <= size + halfStep; i += step) {
           for (j = halfStep; j <= size + halfStep; j += step) {

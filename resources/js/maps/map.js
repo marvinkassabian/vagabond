@@ -122,11 +122,18 @@
       return options.formatRet.call(this, ret);
     };
 
-    Map.render = function(element, options) {
+    Map.renderToHTML = function(element, options) {
       var i, j, map, tileElement, value;
       options = UTIL.extend(options, {
         formatValue: function(value) {
           return Math.floor(value);
+        },
+        formatElement: function(value) {
+          var tileElement = document.createElement('span');
+          tileElement.className = 'tile-' + value;
+          tileElement.innerHTML = value;
+
+          return tileElement;
         }
       });
 
@@ -135,11 +142,9 @@
 
       for (i = 0; i < this.height; i++) {
         for (j = 0; j < this.width; j++) {
-          tileElement = document.createElement('span');
           value = options.formatValue.call(this, this.get(j, i), j, i);
+          tileElement = options.formatElement.call(this, value, j, i);
 
-          tileElement.className = 'tile-' + value;
-          tileElement.innerHTML = value;
           map.appendChild(tileElement);
         }
         map.appendChild(document.createElement('br'));

@@ -10,61 +10,46 @@ body {
 }
 .tile-1 {
   color: #1F0073;
-  background: #0D012E;
 }
 .tile-2 {
   color: #3900D5;
-  background: #1F0073;
 }
 .tile-3 {
   color: #6831FF;
-  background: #3900D5;
 }
 .tile-4 {
   color: #FFC47A;
-  background: #6831FF;
 }
 .tile-5 {
   color: #0DE409;
-  background: #FFC47A;
 }
 .tile-6 {
   color: #028600;
-  background: #0DE409;
 }
 .tile-7 {
   color: #028600;
-  background: #0DE409;
 }
 .tile-8 {
   color: #025A00;
-  background: #028600;
 }
 .tile-9 {
   color: #494949;
-  background: #025A00;
 }
 .tile-a {
   color: #707070;
-  background: #494949;
 }
 .tile-b {
   color: #ABABAB;
-  background: #707070;
 }
 .tile-c {
   color: #C4C4C4;
-  background: #ABABAB;
 }
 .tile-d {
   color: #E4E4E4;
-  background: #C4C4C4;
 }
 .tile-e {
   color: #F5F5F5;
-  background: #E4E4E4;
 }
 .tile-f {
   color: #FFFFFF;
-  background: #F5F5F5;
 }
