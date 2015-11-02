@@ -15,9 +15,9 @@
     };
 
     Game.takeTurn = function() {
-      int i, entity;
+      var i, entity;
 
-      for (i = 0; i < entityPool.length, i++) {
+      for (i = 0; i < entityPool.length; i++) {
         entity = entityPool[i];
 
       }

@@ -7,11 +7,11 @@
 
     var Map = VAGABOND.MAPS.Map;
 
-    var TerrainMap = Object.create(Map);
+    var DiamondSquareMap = Object.create(Map);
 
     var initProto = Map.init;
 
-    TerrainMap.init = function(size, seedRange, randomScale) {
+    DiamondSquareMap.init = function(size, seedRange, randomScale) {
 
       seedRange = UTIL.extend(seedRange, {
         lower: 0,
@@ -20,7 +20,7 @@
 
       randomScale = (randomScale !== undefined) ? randomScale : 0;
 
-      initProto.call(this, size, size, function(x, y, w, h) {
+      initProto.call(this, size, size, function() {
         return (Math.random() * (seedRange.upper - seedRange.lower)) + seedRange.lower;
       });
 
@@ -29,7 +29,7 @@
       return this;
     };
 
-    TerrainMap.generate = function(scale) {
+    DiamondSquareMap.generate = function(scale) {
       var self = this;
       var size = this.width - 1;
       var step = size;
@@ -119,7 +119,7 @@
       }
     };
 
-    module.TerrainMap = TerrainMap;
+    module.DiamondSquareMap = DiamondSquareMap;
 
     return module;
 
