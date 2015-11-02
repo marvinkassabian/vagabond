@@ -1,5 +1,5 @@
 (function() {
-  'use strict';
+  "use strict";
 
   VAGABOND.namespace('VAGABOND.ENTITIES');
 

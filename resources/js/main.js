@@ -1,5 +1,5 @@
 (function(global) {
-  'use strict';
+  "use strict";
 
   var Monster = VAGABOND.ENTITIES.Monster;
   var Goblin = VAGABOND.ENTITIES.ENEMIES.Goblin;
@@ -9,7 +9,7 @@
   var milo = Object.create(Monster).init(0, 'Milo', 2, 4, 'M', 30);
   var otis = Object.create(Goblin).init(5, 10, 50);
   var henry = Object.create(Goblin).init(32, 15, 60);
-  var terrainMap = Object.create(TerrainMap).init(65, {
+  var terrainMap = Object.create(TerrainMap).init(129, {
     upper: 16,
     lower: 0
   }, 20);
