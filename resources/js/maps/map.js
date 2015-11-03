@@ -1,6 +1,7 @@
 (function() {
   "use strict";
 
+  //TODO: rename Map to Matrix
   VAGABOND.namespace('VAGABOND.MAPS');
 
   VAGABOND.MAPS = (function(module) {
@@ -8,12 +9,18 @@
     var Map = {};
 
     Map.init = function(h, w, initValueFunc) {
-      var i;
-      var j;
-
       this.grid = {};
       this.height = h;
       this.width = w;
+
+      this.initGrid(initValueFunc);
+
+      return this;
+    };
+
+    Map.initGrid = function(initValueFunc) {
+      var i;
+      var j;
 
       if (initValueFunc === undefined) {
         initValueFunc = function() {
@@ -30,14 +37,11 @@
        * ...   ...   ...         ...         ...
        *{0,h} {1,h} {2,h}  ...  {j,h}  ...  {w,h}
        */
-
       for (i = 0; i < this.height; i++) {
         for (j = 0; j < this.width; j++) {
           this.set(j, i, initValueFunc(j, i, this.height, this.width));
         }
       }
-
-      return this;
     };
 
     Map.get = function(x, y) {
@@ -127,20 +131,28 @@
       return options.formatReturn.call(this, ret);
     };
 
-    Map.renderTo = function(screen, formatValue, origin, size) {
+    Map.renderTo = function(screen, formatValue) {
       var i, j;
 
       formatValue = (formatValue !== undefined) ? formatValue : function(value) {
         return value;
       };
 
-      for (i = 0; i < this.height; i++) {
-        for (j = 0; j < this.width; j++) {
-          // only clamped for testing / to avoid errors
-          screen.clampedSet(j, i, formatValue.call(this, this.get(j, i), j, i));
+      var offset = {
+        x: screen.originX - Math.floor(screen.width / 2),
+        y: screen.originY - Math.floor(screen.height / 2)
+      };
+
+      for (i = 0; i < screen.height; i++) {
+        for (j = 0; j < screen.width; j++) {
+          if (screen.isValidCoordinate(j + offset.x, i + offset.y)) {
+            // only clamped for testing / to avoid errors
+            screen.clampedSet(j + offset.x, i + offset.y,
+              formatValue.call(this, this.get(j, i), j, i));
+          }
         }
       }
-    }
+    };
 
     module.Map = Map;
 

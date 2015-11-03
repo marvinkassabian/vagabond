@@ -59,7 +59,7 @@
       var range;
 
       if (min > max) {
-        temp = lower;
+        temp = min;
         min = max;
         max = temp;
       }
@@ -81,7 +81,7 @@
 
       return window.setTimeout(function () {
         boundCallback(aArgs);
-      });
+      }, nDelay);
     };
 
     // src: developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout
@@ -96,7 +96,7 @@
 
       return window.setInterval(function () {
         boundCallback(aArgs);
-      });
+      }, nDelay);
     };
 
     this.generateUUID = generateUUID;

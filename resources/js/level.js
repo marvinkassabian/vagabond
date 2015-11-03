@@ -21,7 +21,7 @@
       }
 
       Array.prototype.push.apply(this.entityPool, args);
-    }
+    };
 
     Level.takeTurn = function() {
       var i;
@@ -31,16 +31,19 @@
         entity = this.entityPool[i];
         entity.takeTurn(this);
       }
-    }
+    };
 
     Level.renderTo = function(screen) {
       var i;
+
+      screen.clear();
+
       this.map.renderTo(screen);
 
       for (i = 0; i < this.entityPool.length; i++) {
         this.entityPool[i].renderTo(screen);
       }
-    }
+    };
 
     module.Level = Level;
 

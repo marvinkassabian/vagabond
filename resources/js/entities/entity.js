@@ -34,9 +34,16 @@
     };
 
     Entity.renderTo = function(screen) {
-      // only clamped for testing / to avoid errors
-      screen.clampedSet(this.x, this.y, this.char);
-    }
+      var offset = {
+        x: screen.originX - Math.floor(screen.width / 2),
+        y: screen.originY - Math.floor(screen.height / 2)
+      };
+
+      if (screen.isValidCoordinate(this.x + offset.x, this.y + offset.y)) {
+        // only clamped for testing / to avoid errors
+        screen.clampedSet(this.x + offset.x, this.y + offset.y, this.char);
+      }
+    };
 
     module.Entity = Entity;
 

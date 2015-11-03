@@ -11,12 +11,32 @@
 
     var initProto = Map.init;
 
-    Screen.init = function(height, width) {
+    Screen.init = function(height, width, x, y) {
+      this.originX = x;
+      this.originY = y;
       initProto.call(this, height, width, function() {
         return ' ';
       });
 
       return this;
+    };
+
+    Screen.clear = function() {
+      this.initGrid(function() {
+        return ' ';
+      });
+    };
+
+    Screen.move = function(dx, dy) {
+      this.originX += dx;
+      this.originY += dy;
+    };
+
+    Screen.getOffset = function() {
+      return {
+        x: this.originX - Math.floor(this.width / 2),
+        y: this.originY - Math.floor(this.height / 2)
+      };
     };
 
     Screen.toHTML = function(options) {
