@@ -34,14 +34,12 @@
     };
 
     Entity.renderTo = function(screen) {
-      var offset = {
-        x: screen.originX - Math.floor(screen.width / 2),
-        y: screen.originY - Math.floor(screen.height / 2)
-      };
+      var offset = screen.getOffset();
+      var offsettedX = this.x + offset.x;
+      var offsettedY = this.y + offset.y;
 
-      if (screen.isValidCoordinate(this.x + offset.x, this.y + offset.y)) {
-        // only clamped for testing / to avoid errors
-        screen.clampedSet(this.x + offset.x, this.y + offset.y, this.char);
+      if (screen.isValidCoordinate(offsettedX, offsettedY)) {
+        screen.set(offsettedX, offsettedY, this.char);
       }
     };
 

@@ -1,4 +1,5 @@
 (function(global) {
+  "use strict";
 
   var UTIL = (function() {
 
@@ -45,7 +46,7 @@
       var temp;
 
       if (min > max) {
-        temp = lower;
+        temp = min;
         min = max;
         max = temp;
       }

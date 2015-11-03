@@ -138,17 +138,16 @@
         return value;
       };
 
-      var offset = {
-        x: screen.originX - Math.floor(screen.width / 2),
-        y: screen.originY - Math.floor(screen.height / 2)
-      };
+      var offset = screen.getOffset();
 
-      for (i = 0; i < screen.height; i++) {
-        for (j = 0; j < screen.width; j++) {
-          if (screen.isValidCoordinate(j + offset.x, i + offset.y)) {
-            // only clamped for testing / to avoid errors
-            screen.clampedSet(j + offset.x, i + offset.y,
-              formatValue.call(this, this.get(j, i), j, i));
+      for (i = offset.y; i < screen.height + offset.y; i++) {
+        for (j = offset.x; j < screen.width + offset.x; j++) {
+
+          if (screen.isValidCoordinate(j, i)) {
+
+            var value = (this.isValidCoordinate(j, i)) ? this.get(j, i) : 'X';
+
+            screen.set(j, i, formatValue.call(this, value, j, i));
           }
         }
       }
