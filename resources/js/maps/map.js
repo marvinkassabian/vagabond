@@ -143,11 +143,8 @@
       for (i = offset.y; i < screen.height + offset.y; i++) {
         for (j = offset.x; j < screen.width + offset.x; j++) {
 
-          if (screen.isValidCoordinate(j, i)) {
-
-            var value = (this.isValidCoordinate(j, i)) ? this.get(j, i) : 'X';
-
-            screen.set(j, i, formatValue.call(this, value, j, i));
+          if (this.isValidCoordinate(j, i)) {
+            screen.set(j - offset.x, i - offset.y, formatValue.call(this, this.get(j, i), j, i));
           }
         }
       }

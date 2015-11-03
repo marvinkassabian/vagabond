@@ -23,7 +23,7 @@
 
     Screen.clear = function() {
       this.initGrid(function() {
-        return ' ';
+        return '[___,___,___]';
       });
     };
 

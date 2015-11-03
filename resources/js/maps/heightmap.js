@@ -16,9 +16,15 @@
       return initProto.call(this, size, seedRange);
     };
 
-    HeightMap.renderTo = function(screen) {
-      renderToProto.call(this, screen, function(value) {
-        return Math.floor(Math.max(Math.min(value, 15), 0)).toString(16);
+    HeightMap.renderTo = function(screen, formatValue) {
+
+      formatValue = (formatValue !== undefined) ? formatValue : function(value) {
+        return Math.floor(UTIL.clamp(value, 0, 15)).toString(16);
+      };
+
+      renderToProto.call(this, screen, function(value, x, y) {
+        return '[' + UTIL.zeroPad(x, 3) + ',' + UTIL.zeroPad(y, 3) + ',' +
+        UTIL.zeroPad(Math.floor(UTIL.clamp(value, 0, 15)).toString(16), 3) + ']';
       });
     };
 

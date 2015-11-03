@@ -1,7 +1,7 @@
 (function() {
   "use strict";
 
-  UTIL.VirtualKeys = {
+  UTIL.VIRTUAL_KEYS = {
       /** Cancel key. */
       VK_CANCEL: 3,
       /** Help key. */

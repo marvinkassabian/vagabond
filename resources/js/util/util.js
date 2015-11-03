@@ -100,12 +100,35 @@
       }, nDelay);
     };
 
+    var zeroPad = function(num, size) {
+      var number;
+      if (isNaN(num)) {
+        number = Math.abs(num);
+        var zeros = Math.max(0, size - Math.floor(number).toString().length );
+        var zeroString = Math.pow(10,zeros).toString().substr(1);
+        if( num < 0 ) {
+            zeroString = '-' + zeroString;
+        }
+        return zeroString + number;
+      } else {
+        if(num === 'G'){
+          console.log('goblin');
+        }
+        number = num.toString();
+        while (number.length < size) {
+          number = "0" + number;
+        }
+        return number;
+      }
+    };
+
     this.generateUUID = generateUUID;
     this.extend = extend;
     this.clamp = clamp;
     this.wrap = wrap;
     this.setTimeout = setTimeout;
     this.setInterval = setInterval;
+    this.zeroPad = zeroPad;
 
     return this;
   }).call(UTIL || {});

@@ -40,8 +40,12 @@
 
       this.map.renderTo(screen);
 
+      var func = function(entity) {
+        return '[' + UTIL.zeroPad(entity.x, 3) + ',' + UTIL.zeroPad(entity.y, 3) + ',' + UTIL.zeroPad(entity.char, 3) + ']';
+      };
+
       for (i = 0; i < this.entityPool.length; i++) {
-        this.entityPool[i].renderTo(screen);
+        this.entityPool[i].renderTo(screen, func, this.map);
       }
     };
 
