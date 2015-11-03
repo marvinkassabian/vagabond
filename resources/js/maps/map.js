@@ -49,6 +49,10 @@
     };
 
     Map.set = function(x, y, value) {
+      if (!this.isValidCoordinate(x, y)) {
+        throw 'OutOfBoundError: the coordinate (' + x + ', ' + y + ') is out of bounds';
+      }
+
       this.grid[(y * this.width) + x] = value;
     };
 

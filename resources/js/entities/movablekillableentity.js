@@ -14,6 +14,13 @@
       this.y += dy;
     };
 
+    MovableKillableEntity.isValidMove = function(dx, dy, map) {
+      var newX = this.x + dx;
+      var newY = this.y + dy;
+
+      return map.isValidCoordinate(newX, newY);
+    };
+
     module.MovableKillableEntity = MovableKillableEntity;
 
     return module;

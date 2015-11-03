@@ -19,7 +19,7 @@
       console.log(this.name, 'attacks!');
     };
 
-    Goblin.takeTurn = function(game) {
+    Goblin.takeTurn = function(level) {
       var possibleMove = [
         {dx: 1, dy: 0},
         {dx: 0, dy: 1},
@@ -29,7 +29,9 @@
 
       var move = possibleMove[Math.floor(Math.random() * 4)];
 
-      this.move(move.dx, move.dy);
+      if (this.isValidMove(move.dx, move.dy, level.map)) {
+        this.move(move.dx, move.dy);
+      }
     };
 
     module.Goblin = Goblin;

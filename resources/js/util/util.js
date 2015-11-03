@@ -12,7 +12,7 @@
       uuid = uuid.replace(/[xy]/g, function(c) {
         var r = (d + Math.random() * 16) % 16 | 0;
         d = Math.floor(d / 16);
-        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        return (c === 'x' ? r : (r & 0x3 | 0x8));
       });
 
       return uuid;
@@ -102,23 +102,23 @@
 
     var zeroPad = function(num, size) {
       var number;
+      var zeros;
+      var zeroString;
+
       if (isNaN(num)) {
-        number = Math.abs(num);
-        var zeros = Math.max(0, size - Math.floor(number).toString().length );
-        var zeroString = Math.pow(10,zeros).toString().substr(1);
-        if( num < 0 ) {
-            zeroString = '-' + zeroString;
-        }
-        return zeroString + number;
-      } else {
-        if(num === 'G'){
-          console.log('goblin');
-        }
         number = num.toString();
         while (number.length < size) {
-          number = "0" + number;
+          number = '0' + number;
         }
         return number;
+      } else {
+        number = Math.abs(num);
+        zeros = Math.max(0, size - Math.floor(number).toString().length );
+        zeroString = Math.pow(10,zeros).toString().substr(1);
+        if( num < 0 ) {
+            zeroString[0] = '-';
+        }
+        return zeroString + number;
       }
     };
 

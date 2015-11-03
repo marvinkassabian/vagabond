@@ -36,16 +36,23 @@
     Level.renderTo = function(screen) {
       var i;
 
-      screen.clear();
+      screen.clear(function() {
+        return '[___,___,___]';
+      });
 
-      this.map.renderTo(screen);
+      this.map.renderTo(screen, function(value, x, y) {
+        return '[' + UTIL.zeroPad(x, 3) + ',' + UTIL.zeroPad(y, 3) + ',' +
+            UTIL.zeroPad(Math.floor(UTIL.clamp(value, 0, 15)), 3) + ']';
+      });
 
       var func = function(entity) {
-        return '[' + UTIL.zeroPad(entity.x, 3) + ',' + UTIL.zeroPad(entity.y, 3) + ',' + UTIL.zeroPad(entity.char, 3) + ']';
+        return '[' + UTIL.zeroPad(entity.x, 3) + ',' +
+            UTIL.zeroPad(entity.y, 3) + ',' +
+            UTIL.zeroPad(entity.char, 3) + ']';
       };
 
       for (i = 0; i < this.entityPool.length; i++) {
-        this.entityPool[i].renderTo(screen, func, this.map);
+        this.entityPool[i].renderTo(screen, func);
       }
     };
 

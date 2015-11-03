@@ -33,17 +33,18 @@
       return JSON.stringify(this.getTraits(), replacer, space);
     };
 
-    Entity.renderTo = function(screen, formatEntity, map) {
+    Entity.renderTo = function(screen, formatEntity) {
 
       formatEntity = (formatEntity !== undefined) ? formatEntity : function(entity) {
         return entity.char;
       };
 
-      //var offset = screen.getOffset();
-      var offsettedX = this.x;// + offset.x;
-      var offsettedY = this.y;// + offset.y;
+      var offset = screen.getOffset();
+      var offsettedX = this.x - offset.x;
+      var offsettedY = this.y - offset.y;
 
-      if (map.isValidCoordinate(offsettedX, offsettedY)) {
+
+      if (screen.isValidCoordinate(offsettedX, offsettedY)) {
         screen.set(offsettedX, offsettedY, formatEntity.call(this, this));
       }
     };

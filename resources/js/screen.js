@@ -21,10 +21,15 @@
       return this;
     };
 
-    Screen.clear = function() {
-      this.initGrid(function() {
-        return '[___,___,___]';
-      });
+    Screen.clear = function(initValueFunc) {
+
+      if (initValueFunc === undefined) {
+        initValueFunc = function() {
+          return ' ';
+        };
+      }
+
+      this.initGrid(initValueFunc);
     };
 
     Screen.move = function(dx, dy) {

@@ -19,13 +19,10 @@
     HeightMap.renderTo = function(screen, formatValue) {
 
       formatValue = (formatValue !== undefined) ? formatValue : function(value) {
-        return Math.floor(UTIL.clamp(value, 0, 15)).toString(16);
+        return Math.floor(UTIL.clamp(value, 0, 15));
       };
 
-      renderToProto.call(this, screen, function(value, x, y) {
-        return '[' + UTIL.zeroPad(x, 3) + ',' + UTIL.zeroPad(y, 3) + ',' +
-        UTIL.zeroPad(Math.floor(UTIL.clamp(value, 0, 15)).toString(16), 3) + ']';
-      });
+      renderToProto.call(this, screen, formatValue);
     };
 
     module.HeightMap = HeightMap;
