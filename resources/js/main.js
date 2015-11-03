@@ -5,7 +5,7 @@
   var Goblin = VAGABOND.ENTITIES.ENEMIES.Goblin;
   var HeightMap = VAGABOND.MAPS.HeightMap;
   var Screen = VAGABOND.SCREEN.Screen;
-  var Game = VAGABOND.GAME.Game;
+  var Level = VAGABOND.LEVEL.Level;
 
   var milo = Object.create(Monster).init(0, 'Milo', 2, 4, 'M', 30);
   var otis = Object.create(Goblin).init(5, 10, 50);
@@ -17,16 +17,16 @@
 
   var screen = Object.create(Screen).init(33, 33);
 
-  var entityList = [milo, otis, henry];
+  var level = Object.create(Level).init(heightMap);
 
-  var game = Object.create(Game).init(heightMap, entityList);
+  level.addEntity(milo, otis, henry);
 
   var i = 1000;
 
   var func = function() {
     i--;
-    game.takeTurn();
-    game.renderTo(screen);
+    level.takeTurn();
+    level.renderTo(screen);
 
     var screenHTML = screen.toHTML();
 

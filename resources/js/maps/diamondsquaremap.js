@@ -33,35 +33,35 @@
     };
 
     function diamondSquare(scale) {
-      var self = this;
       var size = this.width - 1;
       var step = size;
 
       while(step > 1) {
-        diamondSquareStep(step, scale);
+        diamondSquareStep.call(this, step, scale);
         step /= 2;
         scale /= 2;
       }
 
       function diamondSquareStep(step, scale) {
-        var i, j;
+        var i;
+        var j;
         var halfStep = Math.floor(step / 2);
 
         for (i = halfStep; i <= size + halfStep; i += step) {
           for (j = halfStep; j <= size + halfStep; j += step) {
-            if (self.isValidCoordinate(j, i)) {
-              diamondStep(j, i, step, scale);
+            if (this.isValidCoordinate(j, i)) {
+              diamondStep.call(this, j, i, step, scale);
             }
           }
         }
 
         for (i = 0; i <= size; i += step) {
           for (j = 0; j <= size; j += step) {
-            if (self.isValidCoordinate(j + halfStep, i)) {
-              squareStep(j + halfStep, i, step, scale);
+            if (this.isValidCoordinate(j + halfStep, i)) {
+              squareStep.call(this, j + halfStep, i, step, scale);
             }
-            if (self.isValidCoordinate(j, i + halfStep)) {
-              squareStep(j, i + halfStep, step, scale);
+            if (this.isValidCoordinate(j, i + halfStep)) {
+              squareStep.call(this, j, i + halfStep, step, scale);
             }
           }
         }
@@ -69,24 +69,25 @@
         function diamondStep(x, y, step, scale) {
           var possibleCoors = getDiamondCoors(x, y, step);
 
-          self.wrappedSet(x, y, computeNewValue(possibleCoors, scale));
+          this.wrappedSet(x, y, computeNewValue.call(this, possibleCoors, scale));
         }
 
         function squareStep(x, y, step, scale) {
           var possibleCoors = getSquareCoors(x, y, step);
 
-          self.wrappedSet(x, y, computeNewValue(possibleCoors, scale));
+          this.wrappedSet(x, y, computeNewValue.call(this, possibleCoors, scale));
         }
 
         function computeNewValue(possibleCoors, scale) {
-          var i, coor;
+          var i;
+          var coor;
           var newValue = 0;
           var validCoorCount = 0;
 
           for (i = 0; i < possibleCoors.length; i++) {
             coor = possibleCoors[i];
-            if (self.isValidCoordinate(coor.x, coor.y)) {
-              newValue += self.wrappedGet(coor.x, coor.y);
+            if (this.isValidCoordinate(coor.x, coor.y)) {
+              newValue += this.wrappedGet(coor.x, coor.y);
               validCoorCount++;
             }
           }

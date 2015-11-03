@@ -17,13 +17,10 @@
       return uuid;
     };
 
-    var unboundSlice = Array.prototype.slice;
-    var slice = Function.prototype.call.bind(unboundSlice);
-
     // src: raganwald.com/2014/04/10/mixins-forwarding-delegation.html
     var extend = function() {
       var consumer = arguments[0];
-      var providers = slice(arguments, 1);
+      var providers = Array.prototype.slice.call(arguments, 1);
       var key;
       var i;
       var provider;
@@ -74,27 +71,31 @@
 
     // src: developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout
     var setTimeout = function (vCallback, nDelay /*, argumentToPass1, argumentToPass2, etc. */) {
-      var self = this, aArgs = Array.prototype.slice.call(arguments, 2);
+      var aArgs = Array.prototype.slice.call(arguments, 2);
 
       if (!(vCallback instanceof Function)) {
-        throw 'implicit \'eval\' is doubleplusnotgood.';
+        throw 'EvilError: implicit \'eval\' is evil';
       }
 
+      var boundCallback = vCallback.bind(this);
+
       return window.setTimeout(function () {
-        vCallback.apply(self, aArgs);
+        boundCallback(aArgs);
       });
     };
 
     // src: developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout
     var setInterval = function (vCallback, nDelay /*, argumentToPass1, argumentToPass2, etc. */) {
-      var self = this, aArgs = Array.prototype.slice.call(arguments, 2);
+      var aArgs = Array.prototype.slice.call(arguments, 2);
 
       if (!(vCallback instanceof Function)) {
-        throw 'implicit \'eval\' is doubleplusnotgood.';
+        throw 'EvilError: implicit \'eval\' is evil';
       }
 
+      var boundCallback = vCallback.bind(this);
+
       return window.setInterval(function () {
-        vCallback.apply(self, aArgs);
+        boundCallback(aArgs);
       });
     };
 
