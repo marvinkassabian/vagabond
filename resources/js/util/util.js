@@ -1,5 +1,5 @@
 (function(global) {
-  "use strict";
+  'use strict';
 
   var UTIL = (function() {
 
@@ -71,7 +71,7 @@
     };
 
     // src: developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout
-    var setTimeout = function (vCallback, nDelay /*, argumentToPass1, argumentToPass2, etc. */) {
+    var setTimeout = function(vCallback, nDelay /*, argumentToPass1, argumentToPass2, etc. */) {
       var aArgs = Array.prototype.slice.call(arguments, 2);
 
       if (!(vCallback instanceof Function)) {
@@ -80,13 +80,13 @@
 
       var boundCallback = vCallback.bind(this);
 
-      return window.setTimeout(function () {
+      return window.setTimeout(function() {
         boundCallback(aArgs);
       }, nDelay);
     };
 
     // src: developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout
-    var setInterval = function (vCallback, nDelay /*, argumentToPass1, argumentToPass2, etc. */) {
+    var setInterval = function(vCallback, nDelay /*, argumentToPass1, argumentToPass2, etc. */) {
       var aArgs = Array.prototype.slice.call(arguments, 2);
 
       if (!(vCallback instanceof Function)) {
@@ -95,7 +95,7 @@
 
       var boundCallback = vCallback.bind(this);
 
-      return window.setInterval(function () {
+      return window.setInterval(function() {
         boundCallback(aArgs);
       }, nDelay);
     };
@@ -110,14 +110,16 @@
         while (number.length < size) {
           number = '0' + number;
         }
+
         return number;
       } else {
         number = Math.abs(num);
-        zeros = Math.max(0, size - Math.floor(number).toString().length );
-        zeroString = Math.pow(10,zeros).toString().substr(1);
-        if( num < 0 ) {
-            zeroString[0] = '-';
+        zeros = Math.max(0, size - Math.floor(number).toString().length);
+        zeroString = Math.pow(10, zeros).toString().substr(1);
+        if (num < 0) {
+          zeroString[0] = '-';
         }
+
         return zeroString + number;
       }
     };

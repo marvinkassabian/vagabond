@@ -1,5 +1,5 @@
 (function() {
-  "use strict";
+  'use strict';
 
   VAGABOND.namespace('VAGABOND.ENTITIES');
 
@@ -42,7 +42,6 @@
       var offset = screen.getOrigin();
       var offsettedX = this.x - offset.x;
       var offsettedY = this.y - offset.y;
-
 
       if (screen.isValidCoordinate(offsettedX, offsettedY)) {
         screen.set(offsettedX, offsettedY, formatEntity.call(this, this));

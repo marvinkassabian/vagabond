@@ -1,5 +1,5 @@
 (function() {
-  "use strict";
+  'use strict';
 
   //TODO: rename Map to Matrix
   VAGABOND.namespace('VAGABOND.MAPS');
@@ -111,9 +111,11 @@
         formatValue: function(value) {
           return value;
         },
+
         formatReturn: function(ret) {
           return ret;
         },
+
         formatting: {
           OPEN: '[',
           SEPERATOR: ', ',
@@ -136,7 +138,8 @@
     };
 
     Map.renderTo = function(screen, formatValue) {
-      var i, j;
+      var i;
+      var j;
 
       formatValue = (formatValue !== undefined) ? formatValue : function(value) {
         return value;

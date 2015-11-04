@@ -1,5 +1,5 @@
 (function() {
-  "use strict";
+  'use strict';
 
   VAGABOND.namespace('VAGABOND.CONTROLS');
 
@@ -30,11 +30,13 @@
       if (state === undefined) {
         return;
       }
+
       this.eventStack.push(state);
 
       if (e.preventDefault !== undefined) {
         e.preventDefault();
       }
+
       if (e.stopPropagation !== undefined) {
         e.stopPropagation();
       }

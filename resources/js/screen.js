@@ -1,5 +1,5 @@
 (function() {
-  "use strict";
+  'use strict';
 
   VAGABOND.namespace('VAGABOND.SCREEN');
 
@@ -55,11 +55,17 @@
     };
 
     Screen.toHTML = function(options) {
-      var i, j, map, tileElement, value;
+      var i;
+      var j;
+      var map;
+      var tileElement;
+      var value;
+
       options = UTIL.extend(options, {
         formatValue: function(value) {
           return value;
         },
+
         formatElement: function(value) {
           var tileElement = document.createElement('span');
           tileElement.className = 'tile-' + value;
@@ -79,6 +85,7 @@
 
           map.appendChild(tileElement);
         }
+
         map.appendChild(document.createElement('br'));
       }
 

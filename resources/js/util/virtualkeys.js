@@ -1,5 +1,5 @@
 (function() {
-  "use strict";
+  'use strict';
 
   UTIL.VIRTUAL_KEYS = {
       /** Cancel key. */

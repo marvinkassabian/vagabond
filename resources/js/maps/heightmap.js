@@ -1,5 +1,5 @@
 (function() {
-  "use strict";
+  'use strict';
 
   //TODO: remove heightmap.js, currently just a name wrapper for diamondsquare.js
   VAGABOND.namespace('VAGABOND.MAPS');

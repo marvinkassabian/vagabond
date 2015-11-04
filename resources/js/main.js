@@ -1,5 +1,5 @@
 (function() {
-  "use strict";
+  'use strict';
 
   var Monster = VAGABOND.ENTITIES.Monster;
   var Goblin = VAGABOND.ENTITIES.ENEMIES.Goblin;
@@ -25,7 +25,6 @@
   var level = Object.create(Level).init(heightMap);
 
   level.addEntity(milo, otis, henry);
-
 
   screen.renderToElement(level, document.body);
 

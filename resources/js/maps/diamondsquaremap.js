@@ -1,5 +1,5 @@
 (function() {
-  "use strict";
+  'use strict';
 
   VAGABOND.namespace('VAGABOND.MAPS');
 
@@ -36,7 +36,7 @@
       var size = map.width - 1;
       var step = size;
 
-      while(step > 1) {
+      while (step > 1) {
         diamondSquareStep(step, scale, map);
         step /= 2;
         scale /= 2;
@@ -60,6 +60,7 @@
             if (map.isValidCoordinate(j + halfStep, i)) {
               squareStep(j + halfStep, i, step, scale, map);
             }
+
             if (map.isValidCoordinate(j, i + halfStep)) {
               squareStep(j, i + halfStep, step, scale, map);
             }
@@ -121,7 +122,7 @@
           ];
         }
       }
-    };
+    }
 
     module.DiamondSquareMap = DiamondSquareMap;
 
