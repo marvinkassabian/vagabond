@@ -37,10 +37,20 @@
       this.originY += dy;
     };
 
-    Screen.getOffset = function() {
+    Screen.isValidMove = function(dx, dy, map) {
+      var newX = this.originX + dx;
+      var newY = this.originY + dy;
+
+      return map.isValidCoordinate(newX + this.width - 1, newY + this.height - 1) &&
+          map.isValidCoordinate(newX + this.width - 1, newY) &&
+          map.isValidCoordinate(newX, newY + this.height - 1) &&
+          map.isValidCoordinate(newX, newY);
+    };
+
+    Screen.getOrigin = function() {
       return {
-        x: this.originX - Math.floor(this.width / 2),
-        y: this.originY - Math.floor(this.height / 2)
+        x: this.originX,
+        y: this.originY
       };
     };
 
@@ -60,7 +70,7 @@
       });
 
       map = document.createElement('div');
-      map.className = 'map';
+      map.className = 'screen';
 
       for (i = 0; i < this.height; i++) {
         for (j = 0; j < this.width; j++) {
@@ -73,6 +83,14 @@
       }
 
       return map;
+    };
+
+    Screen.renderToElement = function(objectToRender, element) {
+      objectToRender.renderTo(this);
+
+      var screenHTML = this.toHTML();
+
+      element.replaceChild(screenHTML, element.firstChild);
     };
 
     module.Screen = Screen;

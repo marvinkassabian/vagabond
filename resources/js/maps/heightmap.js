@@ -1,6 +1,7 @@
 (function() {
   "use strict";
 
+  //TODO: remove heightmap.js, currently just a name wrapper for diamondsquare.js
   VAGABOND.namespace('VAGABOND.MAPS');
 
   VAGABOND.MAPS = (function(module) {
@@ -19,7 +20,7 @@
     HeightMap.renderTo = function(screen, formatValue) {
 
       formatValue = (formatValue !== undefined) ? formatValue : function(value) {
-        return Math.floor(UTIL.clamp(value, 0, 15));
+        return Math.floor(UTIL.clamp(value, 0, 31)).toString(32);
       };
 
       renderToProto.call(this, screen, formatValue);

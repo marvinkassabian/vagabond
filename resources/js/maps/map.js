@@ -142,7 +142,7 @@
         return value;
       };
 
-      var offset = screen.getOffset();
+      var offset = screen.getOrigin();
 
       for (i = offset.y; i < screen.height + offset.y; i++) {
         for (j = offset.x; j < screen.width + offset.x; j++) {

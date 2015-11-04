@@ -4,62 +4,111 @@ body {
   background: #000;
   font-size: 0.8em;
 }
-.tile-n {
+
+
+.tile-\# {
   background: white;
   color: red;
 }
-.tile-m {
-  background: #FFF;
-}
-.tile-g {
-  background: #FFF;
+
+.tile-\% {
+  background: white;
+  color: red;
 }
 
 .tile-0 {
   color: #0D012E;
 }
 .tile-1 {
-  color: #1F0073;
+  color: #0D012E;
 }
 .tile-2 {
-  color: #3900D5;
+  color: #1F0073;
 }
 .tile-3 {
-  color: #6831FF;
+  color: #1F0073;
 }
 .tile-4 {
-  color: #FFC47A;
+  color: #3900D5;
 }
 .tile-5 {
-  color: #0DE409;
+  color: #3900D5;
 }
 .tile-6 {
-  color: #028600;
+  color: #6831FF;
 }
 .tile-7 {
-  color: #028600;
+  color: #6831FF;
 }
 .tile-8 {
-  color: #025A00;
+  color: #FFC47A;
 }
 .tile-9 {
-  color: #494949;
+  color: #FFC47A;
 }
 .tile-a {
-  color: #707070;
+  color: #0DE409;
 }
 .tile-b {
-  color: #ABABAB;
+  color: #0DE409;
 }
 .tile-c {
-  color: #C4C4C4;
+  color: #028600;
 }
 .tile-d {
-  color: #E4E4E4;
+  color: #028600;
 }
 .tile-e {
-  color: #F5F5F5;
+  color: #028600;
 }
 .tile-f {
+  color: #028600;
+}
+.tile-g {
+  color: #025A00;
+}
+.tile-h {
+  color: #025A00;
+}
+.tile-i {
+  color: #494949;
+}
+.tile-j {
+  color: #494949;
+}
+.tile-k {
+  color: #707070;
+}
+.tile-l {
+  color: #707070;
+}
+.tile-m {
+  color: #ABABAB;
+}
+.tile-n {
+  color: #ABABAB;
+}
+.tile-o {
+  color: #C4C4C4;
+}
+.tile-p {
+  color: #C4C4C4;
+}
+.tile-q {
+  color: #E4E4E4;
+}
+.tile-r {
+  color: #E4E4E4;
+}
+.tile-s {
+  color: #F5F5F5;
+}
+.tile-t {
+  color: #F5F5F5;
+}
+.tile-u {
+  color: #FFFFFF;
+}
+.tile-v {
   color: #FFFFFF;
 }

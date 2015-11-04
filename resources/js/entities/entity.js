@@ -39,7 +39,7 @@
         return entity.char;
       };
 
-      var offset = screen.getOffset();
+      var offset = screen.getOrigin();
       var offsettedX = this.x - offset.x;
       var offsettedY = this.y - offset.y;
 

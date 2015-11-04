@@ -12,7 +12,7 @@
     var initProto = Goblin.init;
 
     Goblin.init = function(x, y, hp) {
-      return initProto.call(this, UTIL.generateUUID(), 'Goblin', x, y, 'G', hp);
+      return initProto.call(this, UTIL.generateUUID(), 'Goblin', x, y, '%', hp);
     };
 
     Goblin.attack = function() {
