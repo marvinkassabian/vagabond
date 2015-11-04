@@ -6,7 +6,7 @@
   VAGABOND.MAPS = (function(module) {
 
     var Map = VAGABOND.MAPS.Map;
-    var ALGO = VAGABOND.ALGORITHMS;
+    var ALGORITHMS = VAGABOND.ALGORITHMS;
 
     var DiamondSquareMap = Object.create(Map);
 
@@ -28,7 +28,7 @@
 
     DiamondSquareMap.generate = function(scale) {
       scale = (scale !== undefined) ? scale : 0;
-      ALGO.diamondSquare(scale, this);
+      ALGORITHMS.diamondSquare(scale, this);
 
       return this;
     };
