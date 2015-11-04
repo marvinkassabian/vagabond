@@ -26,7 +26,7 @@
       var i;
       var provider;
 
-      if (typeof consumer === 'undefined') {
+      if (consumer === undefined) {
         consumer = {};
       }
 

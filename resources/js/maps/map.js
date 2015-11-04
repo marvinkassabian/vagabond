@@ -12,8 +12,9 @@
       this.grid = {};
       this.height = h;
       this.width = w;
+      this.defaultInitValueFunc = initValueFunc;
 
-      this.initGrid(initValueFunc);
+      this.initGrid(this.defaultInitValueFunc);
 
       return this;
     };

@@ -16,7 +16,7 @@
   var heightMap = Object.create(HeightMap).init(size, {
     upper: 26,
     lower: 0
-  }).generate(2 * size);
+  }).generate(30);
 
   var screen = Object.create(Screen).init(20, 80, 0, 0);
 
