@@ -1,41 +1,41 @@
 (function() {
-  'use strict';
+  "use strict";
 
-  VAGABOND.namespace('VAGABOND.MAPS');
+  VAGABOND.namespace( "VAGABOND.MAPS" );
 
-  VAGABOND.MAPS = (function(module) {
+  VAGABOND.MAPS = (function( module ) {
 
     var Map = VAGABOND.MAPS.Map;
     var ALGO = VAGABOND.ALGORITHMS;
 
-    var DiamondSquareMap = Object.create(Map);
+    var DiamondSquareMap = Object.create( Map );
 
     var initProto = Map.init;
 
-    DiamondSquareMap.init = function(size, seedRange) {
+    DiamondSquareMap.init = function( size, seedRange ) {
 
-      seedRange = UTIL.extend(seedRange, {
+      seedRange = UTIL.extend( seedRange, {
         lower: 0,
         upper: 1
-      });
+       });
 
-      initProto.call(this, size, size, function() {
-        return (Math.random() * (seedRange.upper - seedRange.lower)) + seedRange.lower;
-      });
-
-      return this;
-    };
-
-    DiamondSquareMap.generate = function(scale) {
-      scale = (scale !== undefined) ? scale : 0;
-      ALGO.diamondSquare(scale, this);
+      initProto.call( this, size, size, function() {
+        return ( Math.random() * ( seedRange.upper - seedRange.lower ) ) + seedRange.lower;
+       });
 
       return this;
-    };
+     };
+
+    DiamondSquareMap.generate = function( scale ) {
+      scale = ( scale !== undefined ) ? scale : 0;
+      ALGO.diamondSquare( scale, this );
+
+      return this;
+     };
 
     module.DiamondSquareMap = DiamondSquareMap;
 
     return module;
 
-  })(VAGABOND.MAPS);
-})();
+   })( VAGABOND.MAPS );
+ })();
