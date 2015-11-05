@@ -1,22 +1,22 @@
 (function() {
   "use strict";
 
-  VAGABOND.namespace("VAGABOND.CONTROLLER");
+  VAGABOND.namespace("VAGABOND.CONTROLS");
 
-  VAGABOND.CONTROLLER = (function(module) {
+  VAGABOND.CONTROLS = (function(module) {
 
     var Controller = {};
 
-    Controller.init = function(controls) {
-      this.controls = controls;
+    Controller.init = function(listener) {
+      this.listener = listener;
 
       return this;
     };
 
     Controller.processInput = function(screen, avatar, map, level) {
-      if (this.controls.eventStack.length > 0) {
+      if (this.listener.eventStack.length > 0) {
 
-        var event = this.controls.eventStack.pop();
+        var event = this.listener.eventStack.pop();
 
         var moves = {
           screenUp: {dx: 0, dy: -1, entity: screen, useTurn: false},
@@ -52,5 +52,5 @@
 
     return module;
 
-  })(VAGABOND.CONTROLLER);
+  })(VAGABOND.CONTROLS);
 })();

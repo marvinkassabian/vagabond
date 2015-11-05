@@ -7,9 +7,9 @@
 
     var VIRTUAL_KEYS = UTIL.VIRTUAL_KEYS;
 
-    var Controls = {};
+    var Listener = {};
 
-    Controls.init = function() {
+    Listener.init = function() {
       this.eventStack = [];
       this.codes = {};
       this.codes[VIRTUAL_KEYS.VK_LEFT] = "screenLeft";
@@ -26,7 +26,7 @@
       return this;
     };
 
-    Controls.onKey = function(e) {
+    Listener.onKey = function(e) {
       var state = this.codes[e.keyCode];
       if (state === undefined) {
         return;
@@ -43,7 +43,7 @@
       }
     };
 
-    module.Controls = Controls;
+    module.Listener = Listener;
 
     return module;
 

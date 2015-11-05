@@ -6,8 +6,8 @@
   var Matrix = VAGABOND.MATRIX.Matrix;
   var Screen = VAGABOND.SCREEN.Screen;
   var Level = VAGABOND.LEVEL.Level;
-  var Controls = VAGABOND.CONTROLS.Controls;
-  var Controller = VAGABOND.CONTROLLER.Controller;
+  var Listener = VAGABOND.CONTROLS.Listener;
+  var Controller = VAGABOND.CONTROLS.Controller;
   var ALGORITHMS = VAGABOND.ALGORITHMS;
 
   var milo = Object.create(Monster).init(0, "Milo", 4, 4, "#", 30);
@@ -28,8 +28,8 @@
   //ALGORITHMS.cellularAutomata(map, 1);
 
   var screen = Object.create(Screen).init(20, 80, 0, 0);
-  var controls = Object.create(Controls).init();
-  var controller = Object.create(Controller).init(controls);
+  var listener = Object.create(Listener).init();
+  var controller = Object.create(Controller).init(listener);
   var level = Object.create(Level).init(map);
 
   level.addEntity(milo, otis, henry);
