@@ -14,8 +14,6 @@
 
       this.setDefaults(defaults);
 
-      this.initGrid(this.defaults.initValue);
-
       return this;
     };
 
@@ -34,15 +32,12 @@
           OPEN: "[",
           SEPERATOR: ", ",
           CLOSE: "]\n"
-        },
-        generate: function() {
         }
       });
     };
 
     Matrix.initGrid = function(initValueFunc) {
-      var i;
-      var j;
+      var i, j;
 
       if (initValueFunc === undefined) {
         initValueFunc = this.defaults.initValue;
@@ -60,6 +55,8 @@
           this.set(j, i, initValueFunc(j, i, this.height, this.width));
         }
       }
+
+      return this;
     };
 
     Matrix.get = function(x, y) {
@@ -119,10 +116,17 @@
           (y < this.height);
     };
 
+    Matrix.clone = function() {
+      var clone = Object.create(Matrix);
+
+      clone.init(this.height, this.width, this.defaults);
+      clone.grid = JSON.parse(JSON.stringify(this.grid));
+
+      return clone;
+    };
+
     Matrix.toString = function(options) {
-      var i;
-      var j;
-      var comma;
+      var i, j, comma;
       var ret = "";
 
       options = UTIL.extend(options, {
@@ -146,14 +150,13 @@
     };
 
     Matrix.renderTo = function(screen, formatValue) {
-      var i;
-      var j;
+      var i, j, offset;
 
       if (formatValue === undefined) {
         formatValue = this.defaults.formatValue;
       }
 
-      var offset = screen.getOrigin();
+      offset = screen.getOrigin();
 
       for (i = offset.y; i < screen.height + offset.y; i++) {
         for (j = offset.x; j < screen.width + offset.x; j++) {

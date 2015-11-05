@@ -14,21 +14,13 @@
       this.originY = y;
       Matrix.init.call(this, height, width, function() {
         return " ";
-      });
+      }).initGrid();
 
       return this;
     };
 
-    Screen.clear = function(initValueFunc) {
-
-      if (initValueFunc === undefined) {
-        initValueFunc = function() {
-          return " ";
-        };
-      }
-
-      this.initGrid(initValueFunc);
-    };
+    //TODO: do something with this and Matrix.initGrid
+    Screen.clear = Screen.initGrid;
 
     Screen.move = function(dx, dy) {
       this.originX += dx;
@@ -90,9 +82,7 @@
       return map;
     };
 
-    Screen.renderToElement = function(objectToRender, element) {
-      objectToRender.renderTo(this);
-
+    Screen.renderToElement = function(element) {
       var screenHTML = this.toHTML();
 
       element.replaceChild(screenHTML, element.firstChild);

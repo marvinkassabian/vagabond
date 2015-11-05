@@ -1,4 +1,4 @@
-(function() {
+(function(global) {
   "use strict";
 
   var Monster = VAGABOND.ENTITIES.Monster;
@@ -18,11 +18,13 @@
       return Math.floor(UTIL.clamp(value, 0, 31)).toString(32);
     },
     initValue: function() {
-      return UTIL.random(0, 26);
+      //return Math.random() > 0.5 ? 15 : 0;
+      return UTIL.random(6, 26);
     }
-  });
+  }).initGrid();
 
-  ALGORITHMS.diamondSquare(60, map);
+  ALGORITHMS.diamondSquare(map, 30);
+  ALGORITHMS.cellularAutomata(map, 1);
 
   var screen = Object.create(Screen).init(20, 80, 0, 0);
   var controls = Object.create(Controls).init();
@@ -30,7 +32,10 @@
 
   level.addEntity(milo, otis, henry);
 
-  screen.renderToElement(level, document.body);
+  global.screen = screen;
+
+  level.renderTo(screen);
+  screen.renderToElement(document.body);
 
   var func = function() {
 
@@ -59,7 +64,8 @@
         level.takeTurn();
       }
 
-      screen.renderToElement(level, document.body);
+      level.renderTo(screen);
+      screen.renderToElement(document.body);
     }
 
     //TODO: switch UTIL.setTimeout to window.requestAnimationFrame
