@@ -9,11 +9,8 @@
 
     var Monster = Object.create(MovableKillableEntity);
 
-    var initProto = Monster.init;
-    var getTraitsProto = Monster.getTraits;
-
     Monster.init = function(id, name, x, y, char, hp) {
-      initProto.call(this, x, y, char, hp);
+      MovableKillableEntity.init.call(this, x, y, char, hp);
 
       this.id = id;
       this.name = name;
@@ -22,7 +19,7 @@
     };
 
     Monster.getTraits = function() {
-      var traits = getTraitsProto.call(this);
+      var traits = MovableKillableEntity.getTraits.call(this);
       traits.id = this.id;
       traits.name = this.name;
       return traits;

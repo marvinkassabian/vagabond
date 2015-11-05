@@ -42,6 +42,7 @@
       return consumer;
     };
 
+    // clamps the value in the range of [min, max]
     var clamp = function(value, min, max) {
       var temp;
 
@@ -124,6 +125,26 @@
       }
     };
 
+    var random = function(upper, lower) {
+      var temp;
+
+      if (upper === undefined) {
+        upper = 1;
+      }
+
+      if (lower === undefined) {
+        lower = 0;
+      }
+
+      if (lower > upper) {
+        temp = lower;
+        lower = upper;
+        upper = temp;
+      }
+
+      return (Math.random() * (upper - lower)) + lower;
+    };
+
     this.generateUUID = generateUUID;
     this.extend = extend;
     this.clamp = clamp;
@@ -131,6 +152,7 @@
     this.setTimeout = setTimeout;
     this.setInterval = setInterval;
     this.zeroPad = zeroPad;
+    this.random = random;
 
     return this;
   }).call(UTIL || {});

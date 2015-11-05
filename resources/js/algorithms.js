@@ -5,17 +5,19 @@
 
   VAGABOND.ALGORITHMS = (function(module) {
 
+    //TODO: clean up code at some point
     var diamondSquare = function(scale, map) {
+
       var size = map.width - 1;
       var step = size;
 
       while (step > 1) {
-        diamondSquareStep(step, scale, map);
+        diamondSquareStep(step, scale);
         step /= 2;
         scale /= 2;
       }
 
-      function diamondSquareStep(step, scale, map) {
+      function diamondSquareStep(step, scale) {
         var i;
         var j;
         var halfStep = Math.floor(step / 2);

@@ -5,16 +5,14 @@
 
   VAGABOND.SCREEN = (function(module) {
 
-    var Map = VAGABOND.MAPS.Map;
+    var Matrix = VAGABOND.MATRIX.Matrix;
 
-    var Screen = Object.create(Map);
-
-    var initProto = Map.init;
+    var Screen = Object.create(Matrix);
 
     Screen.init = function(height, width, x, y) {
       this.originX = x;
       this.originY = y;
-      initProto.call(this, height, width, function() {
+      Matrix.init.call(this, height, width, function() {
         return " ";
       });
 

@@ -3,8 +3,7 @@
 
   var Monster = VAGABOND.ENTITIES.Monster;
   var Goblin = VAGABOND.ENTITIES.ENEMIES.Goblin;
-  var HeightMap = VAGABOND.MAPS.HeightMap;
-  var Map = VAGABOND.MAPS.Map;
+  var Matrix = VAGABOND.MATRIX.Matrix;
   var Screen = VAGABOND.SCREEN.Screen;
   var Level = VAGABOND.LEVEL.Level;
   var Controls = VAGABOND.CONTROLS.Controls;
@@ -14,22 +13,17 @@
   var otis = Object.create(Goblin).init(5, 10, 50);
   var henry = Object.create(Goblin).init(8, 15, 60);
 
-  var map = Object.create(Map).init(129, 129, {
+  var map = Object.create(Matrix).init(129, 129, {
     formatValue: function(value) {
       return Math.floor(UTIL.clamp(value, 0, 31)).toString(32);
     },
     initValue: function() {
-      //return (Math.random() * (seedRange.upper - seedRange.lower)) + seedRange.lower;
-      return Math.random() * 26;
+      return UTIL.random(0, 26);
     }
   });
 
-  map.generate(ALGORITHMS.diamondSquare, 30, map);
+  ALGORITHMS.diamondSquare(60, map);
 
-  var heightMap = Object.create(HeightMap).init(129, {
-    upper: 26,
-    lower: 0
-  }).generate(30);
   var screen = Object.create(Screen).init(20, 80, 0, 0);
   var controls = Object.create(Controls).init();
   var level = Object.create(Level).init(map);
@@ -44,41 +38,27 @@
 
       var event = controls.eventStack.pop();
 
-      if (event === "screenUp") {
-        if (screen.isValidMove(0, -1, heightMap)) {
-          screen.move(0, -1);
-        }
-      } else if (event === "screenDown") {
-        if (screen.isValidMove(0, 1, heightMap)) {
-          screen.move(0, 1);
-        }
-      } else if (event === "screenLeft") {
-        if (screen.isValidMove(-1, 0, heightMap)) {
-          screen.move(-1, 0);
-        }
-      } else if (event === "screenRight") {
-        if (screen.isValidMove(1, 0, heightMap)) {
-          screen.move(1, 0);
-        }
-      } else if (event === "charUp") {
-        if (milo.isValidMove(0, -1, heightMap)) {
-          milo.move(0, -1);
-        }
-      } else if (event === "charDown") {
-        if (milo.isValidMove(0, 1, heightMap)) {
-          milo.move(0, 1);
-        }
-      } else if (event === "charLeft") {
-        if (milo.isValidMove(-1, 0, heightMap)) {
-          milo.move(-1, 0);
-        }
-      } else if (event === "charRight") {
-        if (milo.isValidMove(1, 0, heightMap)) {
-          milo.move(1, 0);
-        }
+      var things = {
+        screenUp: {dx: 0, dy: -1, entity: screen, useTurn: false},
+        screenDown: {dx: 0, dy: 1, entity: screen, useTurn: false},
+        screenLeft: {dx: -1, dy: 0, entity: screen, useTurn: false},
+        screenRight: {dx: 1, dy: 0, entity: screen, useTurn: false},
+        charUp: {dx: 0, dy: -1, entity: milo, useTurn: true},
+        charDown: {dx: 0, dy: 1, entity: milo, useTurn: true},
+        charLeft: {dx: -1, dy: 0, entity: milo, useTurn: true},
+        charRight: {dx: 1, dy: 0, entity: milo, useTurn: true}
+      };
+
+      var move = things[event];
+
+      if (move.entity.isValidMove(move.dx, move.dy, map)) {
+        move.entity.move(move.dx, move.dy);
       }
 
-      level.takeTurn();
+      if (move.useTurn) {
+        level.takeTurn();
+      }
+
       screen.renderToElement(level, document.body);
     }
 

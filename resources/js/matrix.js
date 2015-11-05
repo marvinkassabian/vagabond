@@ -1,14 +1,13 @@
 (function() {
   "use strict";
 
-  //TODO: rename Map to Matrix
-  VAGABOND.namespace("VAGABOND.MAPS");
+  VAGABOND.namespace("VAGABOND.MATRIX");
 
-  VAGABOND.MAPS = (function(module) {
+  VAGABOND.MATRIX = (function(module) {
 
-    var Map = {};
+    var Matrix = {};
 
-    Map.init = function(h, w, defaults) {
+    Matrix.init = function(h, w, defaults) {
       this.grid = {};
       this.height = h;
       this.width = w;
@@ -20,7 +19,7 @@
       return this;
     };
 
-    Map.setDefaults = function(defaults) {
+    Matrix.setDefaults = function(defaults) {
       this.defaults = UTIL.extend(defaults, {
         initValue: function() {
           return 0;
@@ -35,17 +34,13 @@
           OPEN: "[",
           SEPERATOR: ", ",
           CLOSE: "]\n"
+        },
+        generate: function() {
         }
       });
     };
 
-    Map.generate = function(generateFunc /*, argumentToPass1, argumentToPass2, etc. */) {
-      var aArgs = Array.prototype.slice.call(arguments, 1);
-      generateFunc.apply(null, aArgs);
-      return this;
-    };
-
-    Map.initGrid = function(initValueFunc) {
+    Matrix.initGrid = function(initValueFunc) {
       var i;
       var j;
 
@@ -67,11 +62,11 @@
       }
     };
 
-    Map.get = function(x, y) {
+    Matrix.get = function(x, y) {
       return this.grid[(y * this.width) + x];
     };
 
-    Map.set = function(x, y, value) {
+    Matrix.set = function(x, y, value) {
       if (!this.isValidCoordinate(x, y)) {
         throw "OutOfBoundError: the coordinate (" + x + ", " + y + ") is out of bounds";
       }
@@ -79,52 +74,52 @@
       this.grid[(y * this.width) + x] = value;
     };
 
-    Map.wrappedGet = function(x, y) {
+    Matrix.wrappedGet = function(x, y) {
       var wrappedCoor = this.wrapCoor(x, y);
 
       return this.get(wrappedCoor.x, wrappedCoor.y);
     };
 
-    Map.wrappedSet = function(x, y, value) {
+    Matrix.wrappedSet = function(x, y, value) {
       var wrappedCoor = this.wrapCoor(x, y);
 
       return this.set(wrappedCoor.x, wrappedCoor.y, value);
     };
 
-    Map.clampedGet = function(x, y) {
+    Matrix.clampedGet = function(x, y) {
       var clampedCoor = this.clampCoor(x, y);
 
       return this.get(clampedCoor.x, clampedCoor.y);
     };
 
-    Map.clampedSet = function(x, y, value) {
+    Matrix.clampedSet = function(x, y, value) {
       var clampedCoor = this.clampCoor(x, y);
 
       return this.set(clampedCoor.x, clampedCoor.y, value);
     };
 
-    Map.clampCoor = function(x, y) {
+    Matrix.clampCoor = function(x, y) {
       return {
         x: UTIL.clamp(x, 0, this.width - 1),
         y: UTIL.clamp(y, 0, this.height - 1)
       };
     };
 
-    Map.wrapCoor = function(x, y) {
+    Matrix.wrapCoor = function(x, y) {
       return {
         x: UTIL.wrap(x, 0, this.width),
         y: UTIL.wrap(y, 0, this.height)
       };
     };
 
-    Map.isValidCoordinate = function(x, y) {
+    Matrix.isValidCoordinate = function(x, y) {
       return (x >= 0) &&
           (x < this.width) &&
           (y >= 0) &&
           (y < this.height);
     };
 
-    Map.toString = function(options) {
+    Matrix.toString = function(options) {
       var i;
       var j;
       var comma;
@@ -150,7 +145,7 @@
       return options.formatReturn.call(this, ret);
     };
 
-    Map.renderTo = function(screen, formatValue) {
+    Matrix.renderTo = function(screen, formatValue) {
       var i;
       var j;
 
@@ -171,9 +166,9 @@
       }
     };
 
-    module.Map = Map;
+    module.Matrix = Matrix;
 
     return module;
 
-  })(VAGABOND.MAPS);
+  })(VAGABOND.MATRIX);
 })();
