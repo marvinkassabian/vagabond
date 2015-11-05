@@ -1,21 +1,47 @@
 (function() {
   "use strict";
 
-  // TODO: rename Map to Matrix
+  //TODO: rename Map to Matrix
   VAGABOND.namespace("VAGABOND.MAPS");
 
   VAGABOND.MAPS = (function(module) {
 
     var Map = {};
 
-    Map.init = function(h, w, initValueFunc) {
+    Map.init = function(h, w, defaults) {
       this.grid = {};
       this.height = h;
       this.width = w;
-      this.defaultInitValueFunc = initValueFunc;
 
-      this.initGrid(this.defaultInitValueFunc);
+      this.setDefaults(defaults);
 
+      this.initGrid(this.defaults.initValue);
+
+      return this;
+    };
+
+    Map.setDefaults = function(defaults) {
+      this.defaults = UTIL.extend(defaults, {
+        initValue: function() {
+          return 0;
+        },
+        formatValue: function(value) {
+          return value;
+        },
+        formatReturn: function(ret) {
+          return ret;
+        },
+        formatting: {
+          OPEN: "[",
+          SEPERATOR: ", ",
+          CLOSE: "]\n"
+        }
+      });
+    };
+
+    Map.generate = function(generateFunc /*, argumentToPass1, argumentToPass2, etc. */) {
+      var aArgs = Array.prototype.slice.call(arguments, 1);
+      generateFunc.apply(null, aArgs);
       return this;
     };
 
@@ -24,9 +50,7 @@
       var j;
 
       if (initValueFunc === undefined) {
-        initValueFunc = function() {
-          return 0;
-        };
+        initValueFunc = this.defaults.initValue;
       }
 
       // { 0,0} { 1,0} { 2,0}  ...  { j,0}  ...  { w,0}
@@ -107,19 +131,9 @@
       var ret = "";
 
       options = UTIL.extend(options, {
-        formatValue: function(value) {
-          return value;
-        },
-
-        formatReturn: function(ret) {
-          return ret;
-        },
-
-        formatting: {
-          OPEN: "[",
-          SEPERATOR: ", ",
-          CLOSE: "]\n"
-        }
+        formatValue: this.defaults.formatValue,
+        formatReturn: this.defaults.formatReturn,
+        formatting: this.defaults.formatting
       });
 
       for (i = 0; i < this.height; i++) {
@@ -140,9 +154,9 @@
       var i;
       var j;
 
-      formatValue = (formatValue !== undefined) ? formatValue : function(value) {
-        return value;
-      };
+      if (formatValue === undefined) {
+        formatValue = this.defaults.formatValue;
+      }
 
       var offset = screen.getOrigin();
 

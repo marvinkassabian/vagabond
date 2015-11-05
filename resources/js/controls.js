@@ -20,12 +20,12 @@
       this.codes[VIRTUAL_KEYS.VK_D] = "charRight";
       this.codes[VIRTUAL_KEYS.VK_W] = "charUp";
       this.codes[VIRTUAL_KEYS.VK_S] = "charDown";
-      document.addEventListener("keydown", this.onKey.bind(this, true), false);
+      document.addEventListener("keydown", this.onKey.bind(this), false);
 
       return this;
     };
 
-    Controls.onKey = function(val, e) {
+    Controls.onKey = function(e) {
       var state = this.codes[e.keyCode];
       if (state === undefined) {
         return;

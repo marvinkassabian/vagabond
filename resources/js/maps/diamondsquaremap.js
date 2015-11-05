@@ -19,8 +19,10 @@
         upper: 1
       });
 
-      initProto.call(this, size, size, function() {
-        return (Math.random() * (seedRange.upper - seedRange.lower)) + seedRange.lower;
+      initProto.call(this, size, size, {
+        initValue: function() {
+          return (Math.random() * (seedRange.upper - seedRange.lower)) + seedRange.lower;
+        }
       });
 
       return this;
