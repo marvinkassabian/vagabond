@@ -13,23 +13,23 @@
       return this;
     };
 
-    Controller.processInput = function(screen, milo, map, level) {
+    Controller.processInput = function(screen, avatar, map, level) {
       if (this.controls.eventStack.length > 0) {
 
         var event = this.controls.eventStack.pop();
 
-        var things = {
+        var moves = {
           screenUp: {dx: 0, dy: -1, entity: screen, useTurn: false},
           screenDown: {dx: 0, dy: 1, entity: screen, useTurn: false},
           screenLeft: {dx: -1, dy: 0, entity: screen, useTurn: false},
           screenRight: {dx: 1, dy: 0, entity: screen, useTurn: false},
-          charUp: {dx: 0, dy: -1, entity: milo, useTurn: true},
-          charDown: {dx: 0, dy: 1, entity: milo, useTurn: true},
-          charLeft: {dx: -1, dy: 0, entity: milo, useTurn: true},
-          charRight: {dx: 1, dy: 0, entity: milo, useTurn: true}
+          charUp: {dx: 0, dy: -1, entity: avatar, useTurn: true},
+          charDown: {dx: 0, dy: 1, entity: avatar, useTurn: true},
+          charLeft: {dx: -1, dy: 0, entity: avatar, useTurn: true},
+          charRight: {dx: 1, dy: 0, entity: avatar, useTurn: true}
         };
 
-        var move = things[event];
+        var move = moves[event];
 
         if (move && move.entity.isValidMove(move.dx, move.dy, map)) {
           move.entity.move(move.dx, move.dy);
