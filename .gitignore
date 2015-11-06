@@ -1,4 +1,5 @@
 .jscsrc
 .jshintrc
-.jscsrc.old
-.jshintrc.old
+node_modules/
+*.min.js
+*.min.map
