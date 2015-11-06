@@ -20,7 +20,7 @@
   var controller = Object.create(Controller).init(listener);
   var level = Object.create(Level).init(map);
 
-  listener.eventStack.push({state: "algorithm", render: true}, {state: "initMap", render: false});
+  listener.eventStack.unshift({state: "algorithm", render: true}, {state: "initMap", render: false});
   level.addEntity(milo, otis, henry);
 
   var func = function() {

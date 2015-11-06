@@ -44,12 +44,8 @@
       };
     };
 
-    Screen.toHTML = function(options) {
-      var i;
-      var j;
-      var map;
-      var tileElement;
-      var value;
+    Screen.toElement = function(options) {
+      var i, j, map, tileElement, value;
 
       options = UTIL.extend(options, {
         formatValue: function(value) {
@@ -83,9 +79,9 @@
     };
 
     Screen.renderToElement = function(element) {
-      var screenHTML = this.toHTML();
+      var screenElement = this.toElement();
 
-      element.replaceChild(screenHTML, element.firstChild);
+      element.innerHTML = screenElement.innerHTML;
     };
 
     module.Screen = Screen;

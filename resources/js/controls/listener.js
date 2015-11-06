@@ -22,8 +22,8 @@
       this.codes[VirtualKeys.VK_W] = "charUp";
       this.codes[VirtualKeys.VK_S] = "charDown";
       this.codes[VirtualKeys.VK_SPACE] = "algorithm";
-      this.codes[VirtualKeys.VK_0] = "diamondSquare";
-      this.codes[VirtualKeys.VK_1] = "cellularAutomata";
+      this.codes[VirtualKeys.VK_1] = "diamondSquare";
+      this.codes[VirtualKeys.VK_2] = "cellularAutomata";
       this.codes[VirtualKeys.VK_RETURN] = "initMap";
       this.codes[VirtualKeys.VK_CONTROL] = "switchMapType";
 

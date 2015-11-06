@@ -48,7 +48,7 @@
         if (event === "algorithm") {
           mapMode.generate.bind(null, map).apply(null, mapMode.algorithmArgs);
         } else if (event === "diamondSquare") {
-          ALGORITHMS.diamondSquare(map, 30);
+          ALGORITHMS.diamondSquare(map, 100);
         } else if (event === "cellularAutomata") {
           ALGORITHMS.cellularAutomata(map, 1);
         } else if (event === "initMap") {
@@ -57,12 +57,12 @@
           var currentMapModeIndex = MAP_MODES.MapModeNames.indexOf(map.mapType);
           var nextMapModeIndex = UTIL.wrap(currentMapModeIndex + 1, 0, MAP_MODES.MapModeNames.length);
           map.setType(MAP_MODES.MapModeNames[nextMapModeIndex]);
-          //this.listener.eventStack.unshift({state: "initMap", render: true});
+          this.listener.eventStack.unshift({state: "initMap", render: true});
         }
 
         if (eventBlob.render) {
           level.renderTo(screen);
-          screen.renderToElement(document.body);
+          screen.renderToElement(document.body.getElementsByClassName("map")[0]);
         }
       }
     };
