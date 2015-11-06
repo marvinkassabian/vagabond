@@ -17,12 +17,6 @@
       return this;
     };
 
-    Monster.getTraits = function() {
-      var traits = MovableKillableEntity.getTraits.call(this);
-      traits.name = this.name;
-      return traits;
-    };
-
     module.Monster = Monster;
 
     return module;

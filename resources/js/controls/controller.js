@@ -16,6 +16,7 @@
       return this;
     };
 
+    //TODO: clean this up, clean all of this up
     Controller.processInput = function(screen, avatar, map, level) {
       if (this.listener.eventStack.length > 0) {
 
@@ -43,12 +44,14 @@
           level.takeTurn();
         }
 
+        // START DEBUG / TEST CODE
+
         var mapMode = MAP_MODES.MapModes[map.mapType];
 
         if (event === "algorithm") {
           mapMode.generate.bind(null, map).apply(null, mapMode.algorithmArgs);
         } else if (event === "diamondSquare") {
-          ALGORITHMS.diamondSquare(map, 100);
+          ALGORITHMS.diamondSquare(map, 30);
         } else if (event === "cellularAutomata") {
           ALGORITHMS.cellularAutomata(map, 1);
         } else if (event === "initMap") {
@@ -59,6 +62,8 @@
           map.setType(MAP_MODES.MapModeNames[nextMapModeIndex]);
           this.listener.eventStack.unshift({state: "initMap", render: true});
         }
+
+        // END DEBUG / TEST CODE
 
         if (eventBlob.render) {
           level.renderTo(screen);

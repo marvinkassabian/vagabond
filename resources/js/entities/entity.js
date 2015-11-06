@@ -16,19 +16,17 @@
       return this;
     };
 
-    Entity.getTraits = function() {
-      return {
-        coor: {
-          x: this.x,
-          y: this.y
-        },
-        char: this.char
-      };
-    };
-
     Entity.takeTurn = function() {
 
     };
+
+    Entity.getTraits = function() {
+    return {
+      x: this.x,
+      y: this.y,
+      id: this.id
+    };
+  };
 
     Entity.toString = function(replacer, space) {
       return JSON.stringify(this.getTraits(), replacer, space);

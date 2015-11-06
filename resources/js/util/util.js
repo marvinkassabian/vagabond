@@ -163,6 +163,31 @@
       return (Math.random() * (upper - lower)) + lower;
     };
 
+    var createAccessors = function(attribute) {
+      var _attribute = attribute;
+      return {
+        get: function() {
+          return attribute;
+        },
+
+        set: function(attribute) {
+          _attribute = attribute;
+        },
+      };
+    };
+
+    //TODO: think of better naming convention
+    var initAccessorFunctions = function(object, attributes) {
+      var i, attribute, attributeFunctions;
+
+      for (i = 0; i < attributes.length; i++) {
+        attribute = attributes[i];
+        attributeFunctions = UTIL.createAccessors(attribute.value);
+        object["get" + attribute.name] = attributeFunctions.get;
+        object["set" + attribute.name] = attributeFunctions.set;
+      }
+    };
+
     this.namespace = namespace;
     this.generateUUID = generateUUID;
     this.extend = extend;
@@ -172,6 +197,8 @@
     this.setInterval = setInterval;
     this.zeroPad = zeroPad;
     this.random = random;
+    this.createAccessors = createAccessors;
+    this.initAccessorFunctions = initAccessorFunctions;
 
     return this;
   }).call(UTIL || {});

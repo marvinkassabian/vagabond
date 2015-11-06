@@ -17,12 +17,6 @@
       return this;
     };
 
-    KillableEntity.getTraits = function() {
-      var traits = Entity.getTraits.call(this);
-      traits.health = this.hp;
-      return traits;
-    };
-
     module.KillableEntity = KillableEntity;
 
     return module;
