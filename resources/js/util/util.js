@@ -3,6 +3,24 @@
 
   var UTIL = (function() {
 
+    var namespace = function() {
+      var i, j, d;
+      var a = arguments;
+      var o = null;
+
+      for (i = 0; i < a.length; i = i + 1) {
+        d = a[i].split(".");
+        o = UTIL;
+
+        for (j = ((d[0] === "UTIL") ? 1 : 0); j < d.length; j++) {
+          o[d[j]] = o[d[j]] || {};
+          o = o[d[j]];
+        }
+      }
+
+      return o;
+    };
+
     // src: stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
     // RFC4122 version 4 compliant
     var generateUUID = function() {
@@ -145,6 +163,7 @@
       return (Math.random() * (upper - lower)) + lower;
     };
 
+    this.namespace = namespace;
     this.generateUUID = generateUUID;
     this.extend = extend;
     this.clamp = clamp;

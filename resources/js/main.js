@@ -3,7 +3,7 @@
 
   var Monster = VAGABOND.ENTITIES.Monster;
   var Goblin = VAGABOND.ENTITIES.ENEMIES.Goblin;
-  var Matrix = VAGABOND.MATRIX.Matrix;
+  var Map = VAGABOND.MAPS.Map;
   var Screen = VAGABOND.SCREEN.Screen;
   var Level = VAGABOND.LEVEL.Level;
   var Listener = VAGABOND.CONTROLS.Listener;
@@ -13,20 +13,14 @@
   var otis = Object.create(Goblin).init(5, 10, 50);
   var henry = Object.create(Goblin).init(8, 15, 60);
 
-  var map = Object.create(Matrix).init(129, 129, {
-    formatValue: function(value) {
-      return value ? "0" : "O";
-    },
-    initValue: function() {
-      return Math.random() > 0.5 ? 1 : 0;
-    }
-  });
+  var map = Object.create(Map).init(129, 129, "diamondSquare");
 
   var screen = Object.create(Screen).init(20, 80, 0, 0);
   var listener = Object.create(Listener).init();
   var controller = Object.create(Controller).init(listener);
   var level = Object.create(Level).init(map);
 
+  listener.eventStack.push({state: "algorithm", render: true}, {state: "initMap", render: false});
   level.addEntity(milo, otis, henry);
 
   var func = function() {

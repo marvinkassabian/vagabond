@@ -3,26 +3,27 @@
 
   VAGABOND.namespace("VAGABOND.CONTROLS");
 
+  //TODO: think of a better name
   VAGABOND.CONTROLS = (function(module) {
 
-    var VIRTUAL_KEYS = UTIL.VIRTUAL_KEYS;
+    var VirtualKeys = UTIL.VIRTUAL_KEYS.VirtualKeys;
 
     var Listener = {};
 
     Listener.init = function() {
       this.eventStack = [];
       this.codes = {};
-      this.codes[VIRTUAL_KEYS.VK_LEFT] = "screenLeft";
-      this.codes[VIRTUAL_KEYS.VK_RIGHT] = "screenRight";
-      this.codes[VIRTUAL_KEYS.VK_UP] = "screenUp";
-      this.codes[VIRTUAL_KEYS.VK_DOWN] = "screenDown";
-      this.codes[VIRTUAL_KEYS.VK_A] = "charLeft";
-      this.codes[VIRTUAL_KEYS.VK_D] = "charRight";
-      this.codes[VIRTUAL_KEYS.VK_W] = "charUp";
-      this.codes[VIRTUAL_KEYS.VK_S] = "charDown";
-      this.codes[VIRTUAL_KEYS.VK_SPACE] = "algorithm";
-      this.codes[VIRTUAL_KEYS.VK_RETURN] = "initMap";
-      this.codes[VIRTUAL_KEYS.VK_CONTROL] = "switchMapType";
+      this.codes[VirtualKeys.VK_LEFT] = "screenLeft";
+      this.codes[VirtualKeys.VK_RIGHT] = "screenRight";
+      this.codes[VirtualKeys.VK_UP] = "screenUp";
+      this.codes[VirtualKeys.VK_DOWN] = "screenDown";
+      this.codes[VirtualKeys.VK_A] = "charLeft";
+      this.codes[VirtualKeys.VK_D] = "charRight";
+      this.codes[VirtualKeys.VK_W] = "charUp";
+      this.codes[VirtualKeys.VK_S] = "charDown";
+      this.codes[VirtualKeys.VK_SPACE] = "algorithm";
+      this.codes[VirtualKeys.VK_RETURN] = "initMap";
+      this.codes[VirtualKeys.VK_CONTROL] = "switchMapType";
 
       document.addEventListener("keydown", this.onKey.bind(this), false);
 
@@ -37,7 +38,7 @@
 
       //TODO: seperate eventStack and listener
       if (this.eventStack.length === 0) {
-        this.eventStack.push(state);
+        this.eventStack.push({state: state, render: true});
       }
 
       if (e.preventDefault !== undefined) {

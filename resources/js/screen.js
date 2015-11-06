@@ -20,7 +20,7 @@
     };
 
     //TODO: do something with this and Matrix.initGrid
-    Screen.clear = Screen.initGrid;
+    Screen.clear = Matrix.initGrid;
 
     Screen.move = function(dx, dy) {
       this.originX += dx;

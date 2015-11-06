@@ -18,7 +18,8 @@
     Controller.processInput = function(screen, avatar, map, level) {
       if (this.listener.eventStack.length > 0) {
 
-        var event = this.listener.eventStack.pop();
+        var eventBlob = this.listener.eventStack.pop();
+        var event = eventBlob.state;
 
         var moves = {
           screenUp: {dx: 0, dy: -1, entity: screen, useTurn: false},
@@ -41,24 +42,23 @@
           level.takeTurn();
         }
 
-        var mapMode = MAP_MODES[map.mapModeIndex];
+        var mapMode = MAP_MODES.MapModes[map.mapType];
 
         if (event === "algorithm") {
-          mapMode.algorithm(map, mapMode.algorithmArg);
+          mapMode.generate.bind(null, map).apply(null, mapMode.algorithmArgs);
         } else if (event === "initMap") {
           map.initGrid();
         } else if (event === "switchMapType") {
-          map.mapModeIndex = UTIL.wrap(map.mapModeIndex + 1, 0, MAP_MODES.length);
-          mapMode = MAP_MODES[map.mapModeIndex];
-
-          map.setDefaults({
-            initValue: mapMode.initValue,
-            formatValue: mapMode.formatValue
-          });
+          var currentMapModeIndex = MAP_MODES.MapModeNames.indexOf(map.mapType);
+          var nextMapModeIndex = UTIL.wrap(currentMapModeIndex + 1, 0, MAP_MODES.MapModeNames.length);
+          map.setType(MAP_MODES.MapModeNames[nextMapModeIndex]);
+          this.listener.eventStack.unshift({state: "initMap", render: true});
         }
 
-        level.renderTo(screen);
-        screen.renderToElement(document.body);
+        if (eventBlob.render) {
+          level.renderTo(screen);
+          screen.renderToElement(document.body);
+        }
       }
     };
 
