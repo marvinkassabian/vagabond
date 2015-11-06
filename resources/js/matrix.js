@@ -11,6 +11,8 @@
       this.grid = {};
       this.height = h;
       this.width = w;
+      //TODO: move this and other map things out to map.js
+      this.mapModeIndex = 0;
 
       this.setDefaults(defaults);
 

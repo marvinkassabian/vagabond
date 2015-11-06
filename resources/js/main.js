@@ -1,4 +1,4 @@
-(function(global) {
+(function(global) { // jshint ignore:line
   "use strict";
 
   var Monster = VAGABOND.ENTITIES.Monster;
@@ -8,7 +8,6 @@
   var Level = VAGABOND.LEVEL.Level;
   var Listener = VAGABOND.CONTROLS.Listener;
   var Controller = VAGABOND.CONTROLS.Controller;
-  var ALGORITHMS = VAGABOND.ALGORITHMS;
 
   var milo = Object.create(Monster).init(0, "Milo", 4, 4, "#", 30);
   var otis = Object.create(Goblin).init(5, 10, 50);
@@ -16,16 +15,12 @@
 
   var map = Object.create(Matrix).init(129, 129, {
     formatValue: function(value) {
-      return Math.floor(UTIL.clamp(value, 0, 31)).toString(32);
+      return value ? "0" : "O";
     },
     initValue: function() {
-      return Math.random() > 0.5 ? 15 : 0;
-      //return UTIL.random(6, 26);
+      return Math.random() > 0.5 ? 1 : 0;
     }
-  }).initGrid();
-
-  //ALGORITHMS.diamondSquare(map, 30);
-  //ALGORITHMS.cellularAutomata(map, 1);
+  });
 
   var screen = Object.create(Screen).init(20, 80, 0, 0);
   var listener = Object.create(Listener).init();
@@ -33,11 +28,6 @@
   var level = Object.create(Level).init(map);
 
   level.addEntity(milo, otis, henry);
-
-  global.screen = screen;
-
-  level.renderTo(screen);
-  screen.renderToElement(document.body);
 
   var func = function() {
 

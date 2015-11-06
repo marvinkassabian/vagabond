@@ -5,6 +5,8 @@
 
   VAGABOND.CONTROLS = (function(module) {
 
+    var MAP_MODES = VAGABOND.MAPS.MAP_MODES;
+
     var Controller = {};
 
     Controller.init = function(listener) {
@@ -39,8 +41,20 @@
           level.takeTurn();
         }
 
-        if (event === "normalize") {
-          VAGABOND.ALGORITHMS.cellularAutomata(map, 1);
+        var mapMode = MAP_MODES[map.mapModeIndex];
+
+        if (event === "algorithm") {
+          mapMode.algorithm(map, mapMode.algorithmArg);
+        } else if (event === "initMap") {
+          map.initGrid();
+        } else if (event === "switchMapType") {
+          map.mapModeIndex = UTIL.wrap(map.mapModeIndex + 1, 0, MAP_MODES.length);
+          mapMode = MAP_MODES[map.mapModeIndex];
+
+          map.setDefaults({
+            initValue: mapMode.initValue,
+            formatValue: mapMode.formatValue
+          });
         }
 
         level.renderTo(screen);

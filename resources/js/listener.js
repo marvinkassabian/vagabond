@@ -20,7 +20,10 @@
       this.codes[VIRTUAL_KEYS.VK_D] = "charRight";
       this.codes[VIRTUAL_KEYS.VK_W] = "charUp";
       this.codes[VIRTUAL_KEYS.VK_S] = "charDown";
-      this.codes[VIRTUAL_KEYS.VK_SPACE] = "normalize";
+      this.codes[VIRTUAL_KEYS.VK_SPACE] = "algorithm";
+      this.codes[VIRTUAL_KEYS.VK_RETURN] = "initMap";
+      this.codes[VIRTUAL_KEYS.VK_CONTROL] = "switchMapType";
+
       document.addEventListener("keydown", this.onKey.bind(this), false);
 
       return this;
@@ -32,7 +35,10 @@
         return;
       }
 
-      this.eventStack.push(state);
+      //TODO: seperate eventStack and listener
+      if (this.eventStack.length === 0) {
+        this.eventStack.push(state);
+      }
 
       if (e.preventDefault !== undefined) {
         e.preventDefault();
