@@ -134,7 +134,7 @@
             newY = y + move[1];
 
             if (matrix.isValidCoordinate(newX, newY)) {
-              cell = matrix.get(newX, newY);
+              cell = Math.floor(matrix.get(newX, newY));
               counters[cell] = counters[cell] ? counters[cell] + 1 : 1;
               if (max < counters[cell]) {
                 max = counters[cell];

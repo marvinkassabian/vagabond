@@ -7,7 +7,8 @@
 
     var Entity = {};
 
-    Entity.init = function(x, y, char) {
+    Entity.init = function(id, x, y, char) {
+      this.id = id;
       this.x = x;
       this.y = y;
       this.char = char;

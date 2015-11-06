@@ -16,7 +16,6 @@
         initValue: function() {
           return UTIL.random(6, 26);
         },
-        //TODO: change algorithms, and algorithmArg to take arrays of inputs
         algorithmArgs: [30]
       },
       cellularAutomata: {

@@ -9,8 +9,8 @@
 
     var KillableEntity = Object.create(Entity);
 
-    KillableEntity.init = function(x, y, char, hp) {
-      Entity.init.call(this, x, y, char);
+    KillableEntity.init = function(id, x, y, char, hp) {
+      Entity.init.call(this, id, x, y, char);
 
       this.hp = hp;
 
