@@ -64,6 +64,8 @@
         {dx: 0, dy: -1}
       ];
 
+      possibleMove = UTIL.shuffle(possibleMove);
+
       var playerCoor = {
         x: level.player.x,
         y: level.player.y

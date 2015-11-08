@@ -163,6 +163,23 @@
       return (Math.random() * (upper - lower)) + lower;
     };
 
+    // src: Underscore.js
+    var shuffle = function(obj) {
+      var set = obj;
+      var length = set.length;
+      var shuffled = new Array(length);
+      for (var index = 0, rand; index < length; index++) {
+        rand = Math.floor(UTIL.random(0, index));
+        if (rand !== index) {
+          shuffled[index] = shuffled[rand];
+        }
+
+        shuffled[rand] = set[index];
+      }
+
+      return shuffled;
+    };
+
     this.namespace = namespace;
     this.generateUUID = generateUUID;
     this.extend = extend;
@@ -172,6 +189,7 @@
     this.setInterval = setInterval;
     this.zeroPad = zeroPad;
     this.random = random;
+    this.shuffle = shuffle;
 
     return this;
   }).call(UTIL || {});
