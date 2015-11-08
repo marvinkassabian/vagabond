@@ -21,7 +21,7 @@
       this.codes[VirtualKeys.VK_D] = "charRight";
       this.codes[VirtualKeys.VK_W] = "charUp";
       this.codes[VirtualKeys.VK_S] = "charDown";
-      this.codes[VirtualKeys.VK_SPACE] = "algorithm";
+      this.codes[VirtualKeys.VK_SPACE] = "generate";
       this.codes[VirtualKeys.VK_1] = "diamondSquare";
       this.codes[VirtualKeys.VK_2] = "cellularAutomata";
       this.codes[VirtualKeys.VK_RETURN] = "initMap";

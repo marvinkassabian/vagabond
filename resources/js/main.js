@@ -3,7 +3,7 @@
 
   var Monster = VAGABOND.ENTITIES.Monster;
   var Goblin = VAGABOND.ENTITIES.ENEMIES.Goblin;
-  var FACTORY = VAGABOND.MAPS.FACTORY;
+  var MAP_FACTORY = VAGABOND.MAPS.FACTORY;
   var Screen = VAGABOND.SCREEN.Screen;
   var Level = VAGABOND.LEVEL.Level;
   var Listener = VAGABOND.CONTROLS.Listener;
@@ -13,7 +13,7 @@
   var otis = Object.create(Goblin).init(5, 10, 50);
   var henry = Object.create(Goblin).init(8, 15, 60);
 
-  var map = FACTORY.createDungeonMap(100, 200);//.createHeightMap(129);
+  var map = MAP_FACTORY.createDungeonMap(129, 129);//.createHeightMap(129);
 
   var screen = Object.create(Screen).init(20, 80, 0, 0);
   var listener = Object.create(Listener).init();
@@ -25,7 +25,7 @@
 
   var func = function() {
 
-    controller.processInput(screen, milo, map, level);
+    controller.processInput(screen, milo, level);
 
     //TODO: switch UTIL.setTimeout to window.requestAnimationFrame
     UTIL.setTimeout(func, 10);

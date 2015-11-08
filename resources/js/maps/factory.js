@@ -29,6 +29,8 @@
         ALGORITHMS.diamondSquare(this, 30);
       };
 
+      heightMap.type = "height";
+
       return heightMap;
 
     };
@@ -52,6 +54,8 @@
         this.initGrid();
         ALGORITHMS.cellularAutomata(this, 5);
       };
+
+      dungeonMap.type = "dungeon";
 
       return dungeonMap;
     };

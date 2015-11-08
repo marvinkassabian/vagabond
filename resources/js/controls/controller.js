@@ -5,8 +5,8 @@
 
   VAGABOND.CONTROLS = (function(module) {
 
-    var MAP_MODES = VAGABOND.MAPS.MAP_MODES;
     var ALGORITHMS = VAGABOND.ALGORITHMS;
+    var MAP_FACTORY = VAGABOND.MAPS.FACTORY;
 
     var Controller = {};
 
@@ -17,8 +17,10 @@
     };
 
     //TODO: clean this up, clean all of this up
-    Controller.processInput = function(screen, avatar, map, level) {
+    Controller.processInput = function(screen, avatar, level) {
       if (this.listener.eventStack.length > 0) {
+
+        var map = level.map;
 
         var eventBlob = this.listener.eventStack.pop();
         var event = eventBlob.state;
@@ -46,7 +48,7 @@
 
         // START DEBUG / TEST CODE
 
-        if (event === "algorithm") {
+        if (event === "generate") {
           map.generate();
         } else if (event === "diamondSquare") {
           ALGORITHMS.diamondSquare(map, 30);
@@ -55,10 +57,13 @@
         } else if (event === "initMap") {
           map.initGrid();
         } else if (event === "switchMapType") {
-          var currentMapModeIndex = MAP_MODES.MapModeNames.indexOf(map.mapType);
-          var nextMapModeIndex = UTIL.wrap(currentMapModeIndex + 1, 0, MAP_MODES.MapModeNames.length);
-          map.setType(MAP_MODES.MapModeNames[nextMapModeIndex]);
-          this.listener.eventStack.unshift({state: "initMap", render: true});
+          if (map.type === "height") {
+            level.map = MAP_FACTORY.createDungeonMap(129, 129);
+          } else {
+            level.map = MAP_FACTORY.createHeightMap(129);
+          }
+
+          level.map.initGrid();
         }
 
         // END DEBUG / TEST CODE
