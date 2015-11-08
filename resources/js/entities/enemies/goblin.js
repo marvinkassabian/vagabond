@@ -18,7 +18,11 @@
       console.log(this.name, "attacks!");
       entity.hp -= 10;
       if (entity.hp < 0) {
+        //TODO: turn into a function
         console.log(entity.name, "is dead!");
+        entity.move = function() {};
+
+        entity.char = "X";
       }
     };
 

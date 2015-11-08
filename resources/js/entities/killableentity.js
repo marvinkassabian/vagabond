@@ -20,6 +20,7 @@
     //TODO: clean this
     Entity.takeTurn = function() {
       if (this.hp < 0) {
+        //TODO: turn into a function
         console.log("DEAD!");
         this.char = "X";
         this.move = function() {};
