@@ -24,6 +24,11 @@
       Array.prototype.push.apply(this.entityPool, args);
     };
 
+    //TODO: clean this
+    Level.setPlayer = function(entity) {
+      this.player = entity;
+    };
+
     Level.takeTurn = function() {
       var i;
       var entity;

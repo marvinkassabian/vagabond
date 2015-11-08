@@ -38,10 +38,10 @@
     var createDungeonMap = function(height, width, options) {
       options = UTIL.extend(options, {
         formatValue: function(value) {
-          return value ? "0" : "O";
+          return value ? "O" : "0";
         },
         initValue: function() {
-          return Math.random() > 0.5 ? 1 : 0;
+          return Math.random() > 0.55 ? 1 : 0;
         }
       });
 

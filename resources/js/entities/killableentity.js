@@ -17,6 +17,15 @@
       return this;
     };
 
+    //TODO: clean this
+    Entity.takeTurn = function() {
+      if (this.hp < 0) {
+        console.log("DEAD!");
+        this.char = "X";
+        this.move = function() {};
+      }
+    };
+
     module.KillableEntity = KillableEntity;
 
     return module;

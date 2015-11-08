@@ -13,15 +13,20 @@
   var otis = Object.create(Goblin).init(5, 10, 50);
   var henry = Object.create(Goblin).init(8, 15, 60);
 
-  var map = MAP_FACTORY.createDungeonMap(129, 129);//.createHeightMap(129);
+  global.otis = otis;
+  global.henry = henry;
+
+  var map = MAP_FACTORY.createDungeonMap(129, 129);
 
   var screen = Object.create(Screen).init(20, 80, 0, 0);
   var listener = Object.create(Listener).init();
   var controller = Object.create(Controller).init(listener);
   var level = Object.create(Level).init(map);
 
-  listener.eventStack.unshift({state: "algorithm", render: true}, {state: "initMap", render: false});
+  listener.eventStack.unshift({state: "generate", render: true});
+
   level.addEntity(milo, otis, henry);
+  level.setPlayer(milo);
 
   var func = function() {
 

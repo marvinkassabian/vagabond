@@ -20,8 +20,6 @@
     Controller.processInput = function(screen, avatar, level) {
       if (this.listener.eventStack.length > 0) {
 
-        var map = level.map;
-
         var eventBlob = this.listener.eventStack.pop();
         var event = eventBlob.state;
 
@@ -38,7 +36,7 @@
 
         var move = moves[event];
 
-        if (move && move.entity.isValidMove(move.dx, move.dy, map)) {
+        if (move && move.entity.isValidMove(move.dx, move.dy, level)) {
           move.entity.move(move.dx, move.dy);
         }
 
@@ -48,23 +46,7 @@
 
         // START DEBUG / TEST CODE
 
-        if (event === "generate") {
-          map.generate();
-        } else if (event === "diamondSquare") {
-          ALGORITHMS.diamondSquare(map, 30);
-        } else if (event === "cellularAutomata") {
-          ALGORITHMS.cellularAutomata(map, 1);
-        } else if (event === "initMap") {
-          map.initGrid();
-        } else if (event === "switchMapType") {
-          if (map.type === "height") {
-            level.map = MAP_FACTORY.createDungeonMap(129, 129);
-          } else {
-            level.map = MAP_FACTORY.createHeightMap(129);
-          }
-
-          level.map.initGrid();
-        }
+        debugMapTesting(event, level);
 
         // END DEBUG / TEST CODE
 
@@ -74,6 +56,31 @@
         }
       }
     };
+
+    // START DEBUG / TEST CODE
+
+    function debugMapTesting(event, level) {
+      var map = level.map;
+      if (event === "generate") {
+        map.generate();
+      } else if (event === "diamondSquare") {
+        ALGORITHMS.diamondSquare(map, 30);
+      } else if (event === "cellularAutomata") {
+        ALGORITHMS.cellularAutomata(map, 1);
+      } else if (event === "initMap") {
+        map.initGrid();
+      } else if (event === "switchMapType") {
+        if (map.type === "height") {
+          level.map = MAP_FACTORY.createDungeonMap(129, 129);
+        } else {
+          level.map = MAP_FACTORY.createHeightMap(129);
+        }
+
+        level.map.initGrid();
+      }
+    }
+
+    // END DEBUG / TEST CODE
 
     module.Controller = Controller;
 

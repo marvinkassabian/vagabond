@@ -8,11 +8,13 @@ body {
 .tile-\# {
   background: white;
   color: red;
+  font-weight: bold;
 }
 
 .tile-\% {
   background: white;
-  color: red;
+  color: green;
+  font-weight: bold;
 }
 
 .tile-0 {

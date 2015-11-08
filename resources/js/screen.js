@@ -27,7 +27,8 @@
       this.originY += dy;
     };
 
-    Screen.isValidMove = function(dx, dy, map) {
+    Screen.isValidMove = function(dx, dy, level) {
+      var map = level.map;
       var newX = this.originX + dx;
       var newY = this.originY + dy;
 
