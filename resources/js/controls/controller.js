@@ -46,10 +46,8 @@
 
         // START DEBUG / TEST CODE
 
-        var mapMode = MAP_MODES.MapModes[map.mapType];
-
         if (event === "algorithm") {
-          mapMode.generate.bind(null, map).apply(null, mapMode.algorithmArgs);
+          map.generate();
         } else if (event === "diamondSquare") {
           ALGORITHMS.diamondSquare(map, 30);
         } else if (event === "cellularAutomata") {

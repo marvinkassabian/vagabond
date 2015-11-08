@@ -3,7 +3,7 @@
 
   var Monster = VAGABOND.ENTITIES.Monster;
   var Goblin = VAGABOND.ENTITIES.ENEMIES.Goblin;
-  var Map = VAGABOND.MAPS.Map;
+  var FACTORY = VAGABOND.MAPS.FACTORY;
   var Screen = VAGABOND.SCREEN.Screen;
   var Level = VAGABOND.LEVEL.Level;
   var Listener = VAGABOND.CONTROLS.Listener;
@@ -13,7 +13,7 @@
   var otis = Object.create(Goblin).init(5, 10, 50);
   var henry = Object.create(Goblin).init(8, 15, 60);
 
-  var map = Object.create(Map).init(129, 129, "diamondSquare");
+  var map = FACTORY.createDungeonMap(100, 200);//.createHeightMap(129);
 
   var screen = Object.create(Screen).init(20, 80, 0, 0);
   var listener = Object.create(Listener).init();
