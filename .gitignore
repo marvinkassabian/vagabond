@@ -2,4 +2,4 @@
 .jshintrc
 node_modules/
 *.min.js
-*.min.map
+*.map

@@ -7,7 +7,7 @@ module.exports = function(grunt) {
       my_target: {
         options: {
           sourceMap: true,
-          sourceMapName: "vagabond.min.map"
+          sourceMapName: "source.map"
         },
         files: {
           "util.min.js": [
@@ -25,13 +25,13 @@ module.exports = function(grunt) {
             "resources/js/entities/movablekillableentity.js",
             "resources/js/entities/monster.js",
             "resources/js/entities/enemies/goblin.js",
-            "resources/js/maps/heightmap.js",
+            "resources/js/maps/factory.js",
             "resources/js/controls/listener.js",
             "resources/js/controls/controller.js",
             "resources/js/screen.js",
             "resources/js/level.js",
             "resources/js/main.js"
-          ]
+          ],
         }
       }
     }
