@@ -12,8 +12,10 @@
     Screen.init = function(height, width, x, y) {
       this.originX = x;
       this.originY = y;
-      Matrix.init.call(this, height, width, function() {
-        return " ";
+      Matrix.init.call(this, height, width, {
+        initValue: function() {
+          return " ";
+        }
       }).initGrid();
 
       return this;
