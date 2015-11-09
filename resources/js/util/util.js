@@ -167,7 +167,7 @@
     var shuffle = function(obj) {
       var set = obj;
       var length = set.length;
-      var shuffled = new Array(length);
+      var shuffled = [];//new Array(length);
       for (var index = 0, rand; index < length; index++) {
         rand = Math.floor(UTIL.random(0, index));
         if (rand !== index) {
