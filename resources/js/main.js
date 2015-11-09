@@ -13,7 +13,7 @@
   var otis = Object.create(Goblin).init(5, 10, 50);
   var henry = Object.create(Goblin).init(8, 15, 60);
 
-  var map = MAP_FACTORY.createDungeonMap(129, 129);
+  var map = MAP_FACTORY.createDungeonMap(20, 20);
 
   var screen = Object.create(Screen).init(20, 80, 0, 0);
   var listener = Object.create(Listener).init();
@@ -36,7 +36,7 @@
     controller.processInput(screen, milo, level);
 
     //TODO: switch UTIL.setTimeout to window.requestAnimationFrame
-    UTIL.setTimeout(func, 10);
+    UTIL.setTimeout(func, 50);
   };
 
   func();

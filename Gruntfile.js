@@ -4,16 +4,24 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     uglify: {
-      my_target: {
+      util: {
         options: {
           sourceMap: true,
-          sourceMapName: "source.map"
+          sourceMapName: "util.min.js.map"
         },
         files: {
           "util.min.js": [
             "resources/js/util/util.js",
             "resources/js/util/virtualkeys.js"
-          ],
+          ]
+        }
+      },
+      vagabond: {
+        options: {
+          sourceMap: true,
+          sourceMapName: "vagabond.min.js.map"
+        },
+        files: {
           "vagabond.min.js": [
             "resources/js/vagabond.js",
             "resources/js/matrix.js",
@@ -31,7 +39,7 @@ module.exports = function(grunt) {
             "resources/js/screen.js",
             "resources/js/level.js",
             "resources/js/main.js"
-          ],
+          ]
         }
       }
     }
@@ -41,7 +49,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-uglify");
 
   // Default task(s).
-  grunt.registerTask("default", ["min"]);
-  grunt.registerTask("min", ["uglify"]);
+  grunt.registerTask("default", ["util", "vagabond"]);
+  grunt.registerTask("vagabond", ["uglify:vagabond"]);
+  grunt.registerTask("util", ["uglify:util"]);
 
 };

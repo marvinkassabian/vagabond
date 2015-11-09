@@ -71,7 +71,7 @@
         map.initGrid();
       } else if (event === "switchMapType") {
         if (map.type === "height") {
-          level.map = MAP_FACTORY.createDungeonMap(129, 129);
+          level.map = MAP_FACTORY.createDungeonMap(20, 10);
         } else {
           level.map = MAP_FACTORY.createHeightMap(129);
         }

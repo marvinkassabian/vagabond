@@ -7,13 +7,13 @@ body {
 
 .tile-\# {
   background: white;
-  color: red;
+  color: rgba(255,0,0,0.8);;
   font-weight: bold;
 }
 
 .tile-\% {
   background: white;
-  color: green;
+  color: rgba(0,255,0,0.8);;
   font-weight: bold;
 }
 

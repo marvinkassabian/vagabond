@@ -43,16 +43,19 @@
         initValueFunc = this.defaults.initValue;
       }
 
-      // { 0,0} { 1,0} { 2,0}  ...  { j,0}  ...  { w,0}
-      // { 0,1} { 1,1} { 2,1}  ...  { j,1}  ...  { w,1}
-      // { 0,2} { 1,2} { 2,2}  ...  { j,2}  ...  { w,2}
+      // {0,0} {1,0} {2,0}  ...  {i,0}  ...  {w,0}
+      // {0,1} {1,1} {2,1}  ...  {i,1}  ...  {w,1}
+      // {0,2} {1,2} {2,2}  ...  {i,2}  ...  {w,2}
       //  ...   ...   ...         ...         ...
-      // { 0,i} { 1,i} { 2,i}  ...  { j,i}  ...  { w,i}
+      // {0,j} {1,j} {2,j}  ...  {i,j}  ...  {w,j}
       //  ...   ...   ...         ...         ...
-      // { 0,h} { 1,h} { 2,h}  ...  { j,h}  ...  { w,h}
-      for (i = 0; i < this.height; i++) {
-        for (j = 0; j < this.width; j++) {
-          this.set(j, i, initValueFunc(j, i, this.height, this.width));
+      // {0,h} {1,h} {2,h}  ...  {i,h}  ...  {w,h}
+      for (i = 0; i < this.width; i++) {
+        this.grid[i] = [];
+
+        for (j = 0; j < this.height; j++) {
+          //this.grid[i][j] = initValueFunc(j, i, this.height, this.width);
+          this.set(i, j, initValueFunc(i, j, this.height, this.width));
         }
       }
 
@@ -60,7 +63,7 @@
     };
 
     Matrix.get = function(x, y) {
-      return this.grid[(y * this.width) + x];
+      return this.grid[x][y];
     };
 
     Matrix.set = function(x, y, value) {
@@ -68,7 +71,7 @@
         throw "OutOfBoundError: the coordinate (" + x + ", " + y + ") is out of bounds";
       }
 
-      this.grid[(y * this.width) + x] = value;
+      this.grid[x][y] = value;
     };
 
     Matrix.wrappedGet = function(x, y) {
@@ -135,11 +138,11 @@
         formatting: this.defaults.formatting
       });
 
-      for (i = 0; i < this.height; i++) {
+      for (i = 0; i < this.width; i++) {
         ret += options.formatting.OPEN;
         comma = "";
-        for (j = 0; j < this.width; j++) {
-          ret += comma + options.formatValue.call(this, this.get(j, i), j, i);
+        for (j = 0; j < this.height; j++) {
+          ret += comma + options.formatValue.call(this, this.get(i, j), i, j);
           comma = options.formatting.SEPERATOR;
         }
 
