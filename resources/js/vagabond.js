@@ -27,5 +27,6 @@
   }).call(VAGABOND || {});
 
   global.VAGABOND = VAGABOND;
+  //global.DEBUG = true;
 
 })(this);

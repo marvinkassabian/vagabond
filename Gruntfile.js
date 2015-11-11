@@ -8,7 +8,8 @@ module.exports = function(grunt) {
   ];
   var vagabondFiles = [
     "resources/js/vagabond.js",
-    "resources/js/matrix.js",
+    "resources/js/datastructures/matrix.js",
+    "resources/js/datastructures/graph.js",
     "resources/js/algorithms.js",
     "resources/js/maps/mapmodes.js",
     "resources/js/maps/map.js",
@@ -32,6 +33,12 @@ module.exports = function(grunt) {
         sourceMap: true,
         sourceMapName: function(path) {
           return path + ".map";
+        },
+        compress: {
+          global_defs: {
+            "DEBUG": false
+          },
+          dead_code: true
         }
       },
       util: {
@@ -45,6 +52,32 @@ module.exports = function(grunt) {
           "vagabond.min.js": vagabondFiles,
           "../marvinkassabian.github.io/vagabond.min.js": vagabondFiles
         }
+      },
+      util_DEBUG: {
+        files: {
+          "vagabond.min.js": vagabondFiles,
+          "../marvinkassabian.github.io/vagabond.min.js": vagabondFiles
+        },
+        options: {
+          compress: {
+            global_defs: {
+              "DEBUG": true
+            }
+          }
+        }
+      },
+      vagabond_DEBUG: {
+        files: {
+          "vagabond.min.js": vagabondFiles,
+          "../marvinkassabian.github.io/vagabond.min.js": vagabondFiles
+        },
+        options: {
+          compress: {
+            global_defs: {
+              "DEBUG": true
+            }
+          }
+        }
       }
     }
   });
@@ -53,8 +86,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-uglify");
 
   // Default task(s).
-  grunt.registerTask("default", ["util", "vagabond"]);
+  grunt.registerTask("default", ["debug"]);
   grunt.registerTask("vagabond", ["uglify:vagabond"]);
   grunt.registerTask("util", ["uglify:util"]);
+  grunt.registerTask("debug", ["uglify:util_DEBUG", "uglify:vagabond_DEBUG"]);
 
 };

@@ -21,11 +21,14 @@
       this.codes[VirtualKeys.VK_D] = "charRight";
       this.codes[VirtualKeys.VK_W] = "charUp";
       this.codes[VirtualKeys.VK_S] = "charDown";
-      this.codes[VirtualKeys.VK_SPACE] = "generate";
-      this.codes[VirtualKeys.VK_1] = "diamondSquare";
-      this.codes[VirtualKeys.VK_2] = "cellularAutomata";
-      this.codes[VirtualKeys.VK_RETURN] = "initMap";
-      this.codes[VirtualKeys.VK_CONTROL] = "switchMapType";
+
+      if (DEBUG) {
+        this.codes[VirtualKeys.VK_SPACE] = "generate";
+        this.codes[VirtualKeys.VK_1] = "diamondSquare";
+        this.codes[VirtualKeys.VK_2] = "cellularAutomata";
+        this.codes[VirtualKeys.VK_RETURN] = "initMap";
+        this.codes[VirtualKeys.VK_CONTROL] = "switchMapType";
+      }
 
       document.addEventListener("keydown", this.onKey.bind(this), false);
 
