@@ -180,6 +180,19 @@
       return shuffled;
     };
 
+    // TODO: rename this to better reflect what it is
+    var ADJACENT = [
+      [1, 1],
+      [1, -1],
+      [-1, -1],
+      [-1, 1],
+      [1, 0],
+      [0, -1],
+      [-1, 0],
+      [0, 1],
+      [0, 0]
+    ];
+
     this.namespace = namespace;
     this.generateUUID = generateUUID;
     this.extend = extend;
@@ -190,6 +203,7 @@
     this.zeroPad = zeroPad;
     this.random = random;
     this.shuffle = shuffle;
+    this.ADJACENT = ADJACENT;
 
     return this;
   }).call(UTIL || {});

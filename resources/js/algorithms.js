@@ -115,21 +115,9 @@
           var i, move, newX, newY, cell, maxCell;
           var max = -Infinity;
           var counters = {};
-          // also includes the center with [0, 0]
-          var ADJACENT = [
-            [1, 1],
-            [1, 0],
-            [1, -1],
-            [0, -1],
-            [-1, -1],
-            [-1, 0],
-            [-1, 1],
-            [0, 1],
-            [0, 0]
-          ];
 
-          for (i = 0; i < ADJACENT.length; i++) {
-            move = ADJACENT[i];
+          for (i = 0; i < UTIL.ADJACENT.length; i++) {
+            move = UTIL.ADJACENT[i];
             newX = x + move[0];
             newY = y + move[1];
 

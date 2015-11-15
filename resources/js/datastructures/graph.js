@@ -20,17 +20,6 @@
       return this;
     };
 
-    var ADJACENT = [
-      // [1, 1],
-      // [1, -1],
-      // [-1, -1],
-      // [-1, 1],
-      [1, 0],
-      [0, -1],
-      [-1, 0],
-      [0, 1]
-    ];
-
     var Graph = {};
 
     // TODO: all for different init functions
@@ -67,8 +56,8 @@
 
           vertex = this.vertexMatrix.get(i, j);
 
-          for (k = 0; k < ADJACENT.length; k++) {
-            move = ADJACENT[k];
+          for (k = 0; k < UTIL.ADJACENT.length; k++) {
+            move = UTIL.ADJACENT[k];
 
             if (this.vertexMatrix.isValidCoordinate(i + move[0], j + move[1])) {
               neighbor = this.vertexMatrix.get(i + move[0], j + move[1]);
