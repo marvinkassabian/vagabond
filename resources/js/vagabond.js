@@ -21,7 +21,17 @@
       return o;
     };
 
+    // TODO: make a DOM editor module and move this to it
+    var writeToLog = function(string) {
+      var log = document.body.getElementsByClassName("log")[0];
+      var line = document.createElement("span");
+      line.innerText = string + "\n";
+      log.insertBefore(line, log.firstChild);
+      // log.appendChild(line);
+    };
+
     this.namespace = namespace;
+    this.writeToLog = writeToLog;
 
     return this;
   }).call(VAGABOND || {});

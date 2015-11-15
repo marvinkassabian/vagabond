@@ -10,21 +10,19 @@ body {
   font-size: 1em;
 }
 
-.map, .info, .menu {
+.map, .info, .menu, .log {
   overflow: hidden;
   float: left;
   display: inline-block;
+  margin-right: 3em;
+  margin-bottom: 1em;
 }
 
-/* one day, do some viewport kinda stuff to the css */
 .map {
-  width: 48em;
-  margin-right: 3em;
+  width: 49em;
 }
 
 .info {
-  margin-right: 3em;
-  overflow: hidden;
   width: 20em;
   clear: right;
 }

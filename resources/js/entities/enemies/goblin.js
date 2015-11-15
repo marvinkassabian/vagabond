@@ -16,11 +16,11 @@
 
     // TODO: clean this
     Goblin.attack = function(entity) {
-      console.log(this.name, "attacks!");
-      entity.hp -= 10;
+      VAGABOND.writeToLog(this.name + " attacks!");
+      entity.hp -= 5;
       if (entity.hp < 0) {
         // TODO: turn into a function
-        console.log(entity.name, "is dead!");
+        VAGABOND.writeToLog(this.name + " killed " + entity.name + "!");
         entity.move = function() {};
 
         entity.char = "X";
