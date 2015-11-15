@@ -9,6 +9,14 @@
 
     var MovableKillableEntity =  Object.create(KillableEntity);
 
+    MovableKillableEntity.init = function(id, x, y, char, hp) {
+      KillableEntity.init.call(this, id, x, y, char, hp);
+
+      this.movement = 6;
+
+      return this;
+    };
+
     MovableKillableEntity.move = function(dx, dy) {
       this.x += dx;
       this.y += dy;

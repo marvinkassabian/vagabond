@@ -13,6 +13,13 @@
       this.y = y;
       this.char = char;
 
+      // TODO: redo entity 'class' structure
+      this.actionCounts = {
+        main: 0,
+        secondary: 0,
+        minor: 0
+      };
+
       return this;
     };
 
