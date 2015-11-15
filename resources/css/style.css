@@ -17,99 +17,64 @@ body {
   font-weight: bold;
 }
 
-.tile-0 {
+.tile-0, .tile-1 {
   color: #0D012E;
 }
-.tile-1 {
-  color: #0D012E;
-}
-.tile-2 {
+.tile-2, .tile-3 {
   color: #1F0073;
 }
-.tile-3 {
-  color: #1F0073;
-}
-.tile-4 {
+.tile-4, .tile-5 {
   color: #3900D5;
 }
-.tile-5 {
-  color: #3900D5;
-}
-.tile-6 {
+
+.tile-6, .tile-7 {
   color: #6831FF;
 }
-.tile-7 {
-  color: #6831FF;
-}
-.tile-8 {
+
+.tile-8, .tile-8 {
   color: #FFC47A;
 }
-.tile-9 {
-  color: #FFC47A;
-}
-.tile-a {
+
+.tile-a, .tile-b {
   color: #0DE409;
 }
-.tile-b {
-  color: #0DE409;
-}
-.tile-c {
+
+.tile-c, .tile-d {
   color: #028600;
 }
-.tile-d {
+
+.tile-e, .tile-f {
   color: #028600;
 }
-.tile-e {
-  color: #028600;
-}
-.tile-f {
-  color: #028600;
-}
-.tile-g {
+
+.tile-g, .tile-h {
   color: #025A00;
 }
-.tile-h {
-  color: #025A00;
-}
-.tile-i {
+
+.tile-i, .tile-j {
   color: #494949;
 }
-.tile-j {
-  color: #494949;
-}
-.tile-k {
+
+.tile-k, .tile-l {
   color: #707070;
 }
-.tile-l {
-  color: #707070;
-}
-.tile-m {
+
+.tile-m, .tile-n {
   color: #ABABAB;
 }
-.tile-n {
-  color: #ABABAB;
-}
-.tile-o {
+
+.tile-o, .tile-p {
   color: #C4C4C4;
 }
-.tile-p {
-  color: #C4C4C4;
-}
-.tile-q {
+
+.tile-q, .tile-r {
   color: #E4E4E4;
 }
-.tile-r {
-  color: #E4E4E4;
-}
-.tile-s {
+
+.tile-s, .tile-t {
   color: #F5F5F5;
 }
-.tile-t {
-  color: #F5F5F5;
-}
-.tile-u {
-  color: #FFFFFF;
-}
-.tile-v {
+
+.tile-u, .tile-v {
   color: #FFFFFF;
 }

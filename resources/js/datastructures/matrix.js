@@ -8,7 +8,7 @@
     var Matrix = {};
 
     Matrix.init = function(h, w, defaults) {
-      this.grid = {};
+      this.grid = [];
       this.height = h;
       this.width = w;
 

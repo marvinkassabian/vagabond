@@ -148,8 +148,76 @@
       }
     };
 
+    var aStar = function(graph, startCoor, endCoor) {
+      var vertex, i, neighbor;
+      var dirtyVertices = [];
+      var remaining = [];
+      var found = false;
+
+      for (var vertexID in graph.vertices) {
+        vertex = cleanVertex(graph.vertices[vertexID]);
+        if (vertex.x === startCoor.x && vertex.y === startCoor.y) {
+          vertex.pathWeight = 0;
+        }
+
+        remaining.push(vertex);
+      }
+
+      while (!found && remaining.length !== 0) {
+        remaining.sort(function(a, b) {
+          return (a.getTotal() - b.getTotal()) * -1;
+        });
+
+        vertex = remaining.pop();
+        dirtyVertices.push(vertex);
+
+        for (i = 0; i < vertex.neighbors.length; i++) {
+          neighbor = vertex.neighbors[i];
+          if (dirtyVertices.indexOf(neighbor) === -1) {
+            neighbor.pathWeight = vertex.pathWeight + graph.getEdgeValue(vertex, neighbor);
+            neighbor.previousVertex = vertex;
+            dirtyVertices.push(neighbor);
+            remaining.push(neighbor);
+            if (neighbor.x === endCoor.x && neighbor.y === endCoor.y) {
+              found = true;
+            }
+          }
+        }
+      }
+
+      return toCoordinateArray(graph.getVertex(endCoor.x, endCoor.y));
+
+      function cleanVertex(vertex) {
+        vertex.pathWeight = Infinity;
+        //TODO: decouple heuristic
+        vertex.heuristic = 5 * manhattanDistance(vertex, endCoor);
+        vertex.getTotal = function() {
+          return this.pathWeight + this.heuristic;
+        };
+
+        vertex.previousVertex = undefined;
+
+        return vertex;
+      }
+
+      function manhattanDistance(vertexX, vertexY) {
+        return Math.abs(vertexX.x - vertexY.x) + Math.abs(vertexX.y - vertexY.y);
+      }
+
+      function toCoordinateArray(vertex) {
+        var ret = [];
+        while (vertex.previousVertex !== undefined) {
+          ret.unshift({x: vertex.x, y: vertex.y});
+          vertex = vertex.previousVertex;
+        }
+
+        return ret;
+      }
+    };
+
     module.diamondSquare = diamondSquare;
     module.cellularAutomata = cellularAutomata;
+    module.aStar = aStar;
 
     return module;
 

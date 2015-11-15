@@ -5,89 +5,100 @@
 
   VAGABOND.GRAPH = (function(module) {
 
+    var Matrix = VAGABOND.MATRIX.Matrix;
+
     var Vertex = {};
 
-    //TODO: do something cleaner / more informative than 'data'
-    Vertex.init = function(vertexNumber, data) {
-      this.vertexNumber = vertexNumber;
-      this.data = data;
+    Vertex.init = function(id, x, y, weight) {
+      this.id = id;
+      this.x = x;
+      this.y = y;
+      this.weight = weight;
+      this.neighbors = [];
+      this.entities = [];
+
+      return this;
     };
 
-    var Matrix = VAGABOND.MATRIX.Matrix;
+    var ADJACENT = [
+      // [1, 1],
+      // [1, -1],
+      // [-1, -1],
+      // [-1, 1],
+      [1, 0],
+      [0, -1],
+      [-1, 0],
+      [0, 1]
+    ];
 
     var Graph = {};
 
     //TODO: all for different init functions
     //      i.e. number of vertices, or a matrix (end use for map creation)
-    Graph.init = function(vertexCount, options) {
-      var i;
+    Graph.init = function(weightMatrix) {
 
-      //TODO: decouple inner data structure from graph object.
-      this.adjacencyMatrix = Object.create(Matrix).init(vertexCount, vertexCount);
-      this.vertices = {};
-      this.edges = {};
+      this.height = weightMatrix.height;
+      this.width = weightMatrix.width;
+
+      this.vertexMatrix = Object.create(Matrix).init(this.height, this.width);
+      this.vertexMatrix.initGrid();
+      this.vertices = [];
       this.vertexCount = 0;
-      this.edgeCount = 0;
 
-      for (i = 0; i < vertexCount; i++) {
-        this.vertices[i] = {
-          vertexNumber: i,
-          data: {}
-        };
-        this.vertexCount++;
-      }
-    };
+      var i, j, weight, vertex, id;
 
-    Graph.adjacent = function(x, y) {
-      return !!this.adjacencyMatrix.get(x.vertexNumber, y.vertexNumber);
-    };
+      for (i = 0; i < this.width; i++) {
+        for (j = 0; j < this.height; j++) {
 
-    Graph.neighbors = function(x) {
-      var i;
-      var ret = [];
+          weight = weightMatrix.get(i, j);
+          id = this.vertexCount;
+          vertex = Object.create(Vertex).init(id, i, j, weight);
 
-      for (i = 0; i < this.vertexCount; i++) {
-        if (this.adjacencyMatrix.get(x.vertexNumber, i) !== undefined) {
-          ret.push(this.vertices[i]);
+          this.vertexMatrix.set(i, j, vertex);
+          this.vertices[id] = vertex;
+          this.vertexCount++;
+
         }
       }
 
-      return ret;
+      var k, move, neighbor;
+
+      for (i = 0; i < this.width; i++) {
+        for (j = 0; j < this.height; j++) {
+
+          vertex = this.vertexMatrix.get(i, j);
+
+          for (k = 0; k < ADJACENT.length; k++) {
+            move = ADJACENT[k];
+
+            if (this.vertexMatrix.isValidCoordinate(i + move[0], j + move[1])) {
+              neighbor = this.vertexMatrix.get(i + move[0], j + move[1]);
+              vertex.neighbors.push(neighbor);
+            }
+          }
+
+        }
+      }
+
+      return this;
     };
 
-    Graph.addVertex = function(x) {
-
-    };
-
-    Graph.removeVertex = function(x) {
-
-    };
-
-    Graph.addEdge = function(x, y) {
-
-    };
-
-    Graph.removeEdge = function(x, y) {
-
-    };
-
-    Graph.getVertexValue = function(x) {
-
-    };
-
-    Graph.setVertexValue = function(x, v) {
-
+    //TODO: redo all the function signatures
+    Graph.adjacent = function(x, y) {
+      return x.neighbors.indexOf(y) !== -1;
     };
 
     Graph.getEdgeValue = function(x, y) {
-
+      //return (x.weight + y.weight) / 2;
+      return Math.max(x.weight, y.weight);
     };
 
-    Graph.setEdgeValue = function(x, y, v) {
-
+    Graph.getVertex = function(x, y) {
+      return this.vertexMatrix.get(x, y);
     };
 
     module.Graph = Graph;
+    module.Vertex = Vertex;
 
     return module;
 

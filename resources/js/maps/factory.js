@@ -35,10 +35,14 @@
 
     };
 
+    // it's (2 ^ 16) - 1
+    // i.e. random large value
+    var WALL_WEIGHT = 32767;
+
     var createDungeonMap = function(height, width, options) {
       options = UTIL.extend(options, {
         formatValue: function(value) {
-          if (value === 1) {
+          if (value === WALL_WEIGHT) {
             return "O";
           } else if (value === 0) {
             return "0";
@@ -47,7 +51,7 @@
           }
         },
         initValue: function() {
-          return Math.random() > 0.55 ? 1 : 0;
+          return Math.random() > 0.55 ? WALL_WEIGHT : 0;
         }
       });
 
