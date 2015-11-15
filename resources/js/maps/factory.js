@@ -45,13 +45,13 @@
           if (value === WALL_WEIGHT) {
             return "O";
           } else if (value === 1) {
-            return "0";
+            return ".";
           } else {
             return " ";
           }
         },
         initValue: function() {
-          return Math.random() > 0.55 ? WALL_WEIGHT : 1;
+          return Math.random() < 0.45 ? WALL_WEIGHT : 1;
         }
       });
 
@@ -62,7 +62,7 @@
       //      something cleaner.
       dungeonMap.generate = function() {
         this.initGrid();
-        ALGORITHMS.cellularAutomata(this, 5);
+        ALGORITHMS.cellularAutomata(this, 8);
       };
 
       dungeonMap.type = "dungeon";
