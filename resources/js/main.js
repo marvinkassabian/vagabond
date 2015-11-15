@@ -9,9 +9,9 @@
   var Listener = VAGABOND.CONTROLS.Listener;
   var Controller = VAGABOND.CONTROLS.Controller;
 
-  var milo = Object.create(Monster).init(UTIL.generateUUID(), "Milo", 4, 4, "#", 34);
-  var otis = Object.create(Goblin).init(5, 10, 50);
-  var henry = Object.create(Goblin).init(8, 15, 60);
+  var milo = Object.create(Monster).init(4, 4, "#", 34, "Milo", "Beermaster");
+  var otis = Object.create(Goblin).init(5, 10, 50, "Kik");
+  var henry = Object.create(Goblin).init(8, 15, 60, "Snik");
 
   var map = MAP_FACTORY.createDungeonMap(40, 90);
   map.generate();
@@ -29,10 +29,16 @@
 
   var i;
   for (i = 0; i < 10; i++) {
-    level.addEntity(Object.create(Goblin).init(
+    var gobbo = Object.create(Goblin).init(
         Math.floor(Math.random() * map.width),
         Math.floor(Math.random() * map.height),
-        50));
+        50, "#" + i);
+
+    gobbo.getFullName = function() {
+      return "Random " + this.type + " " + this.name;
+    };
+
+    level.addEntity(gobbo);
   }
 
   level.setPlayer(milo);

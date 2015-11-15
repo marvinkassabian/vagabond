@@ -10,21 +10,8 @@
 
     var Goblin = Object.create(Monster);
 
-    Goblin.init = function(x, y, hp) {
-      return Monster.init.call(this, UTIL.generateUUID(), "Goblin", x, y, "%", hp);
-    };
-
-    // TODO: clean this
-    Goblin.attack = function(entity) {
-      VAGABOND.writeToLog(this.name + " attacks!");
-      entity.hp -= 5;
-      if (entity.hp < 0) {
-        // TODO: turn into a function
-        VAGABOND.writeToLog(this.name + " killed " + entity.name + "!");
-        entity.move = function() {};
-
-        entity.char = "X";
-      }
+    Goblin.init = function(x, y, hp, name) {
+      return Monster.init.call(this, x, y, "%", hp, name, "Goblin");
     };
 
     // TODO: clean this

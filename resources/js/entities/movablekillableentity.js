@@ -38,7 +38,7 @@
         }
       }
 
-      // TODO: decouple the '1'
+      // TODO: decouple the WALL_WEIGHT
       return map.isValidCoordinate(newX, newY) && map.get(newX, newY) !== WALL_WEIGHT && !isOccupied;
     };
 
