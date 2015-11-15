@@ -72,6 +72,7 @@
 
     module.createHeightMap = createHeightMap;
     module.createDungeonMap = createDungeonMap;
+    module.WALL_WEIGHT = WALL_WEIGHT;
 
     return module;
 

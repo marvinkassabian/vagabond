@@ -6,6 +6,7 @@
   VAGABOND.ENTITIES = (function(module) {
 
     var KillableEntity = VAGABOND.ENTITIES.KillableEntity;
+    var WALL_WEIGHT = VAGABOND.MAPS.FACTORY.WALL_WEIGHT;
 
     var MovableKillableEntity =  Object.create(KillableEntity);
 
@@ -38,7 +39,7 @@
       }
 
       // TODO: decouple the '1'
-      return map.isValidCoordinate(newX, newY) && map.get(newX, newY) === 1 && !isOccupied;
+      return map.isValidCoordinate(newX, newY) && map.get(newX, newY) !== WALL_WEIGHT && !isOccupied;
     };
 
     module.MovableKillableEntity = MovableKillableEntity;
