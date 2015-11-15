@@ -14,12 +14,12 @@
       return Monster.init.call(this, UTIL.generateUUID(), "Goblin", x, y, "%", hp);
     };
 
-    //TODO: clean this
+    // TODO: clean this
     Goblin.attack = function(entity) {
       console.log(this.name, "attacks!");
       entity.hp -= 10;
       if (entity.hp < 0) {
-        //TODO: turn into a function
+        // TODO: turn into a function
         console.log(entity.name, "is dead!");
         entity.move = function() {};
 
@@ -27,7 +27,7 @@
       }
     };
 
-    //TODO: clean this
+    // TODO: clean this
     Goblin.takeTurn = function(level) {
       Monster.takeTurn.call(this);
 
@@ -54,7 +54,7 @@
       return dx + dy;
     }
 
-    //TODO: clean this
+    // TODO: clean this
     Goblin.takeNextMove = function(level) {
       var playerCoor = {
         x: level.player.x,

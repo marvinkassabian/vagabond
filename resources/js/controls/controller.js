@@ -16,7 +16,7 @@
       return this;
     };
 
-    //TODO: clean this up, clean all of this up
+    // TODO: clean this up, clean all of this up
     Controller.processInput = function(screen, avatar, level) {
       if (this.listener.eventStack.length > 0) {
 
@@ -37,7 +37,6 @@
         var move = moves[event];
 
         if (move && move.entity.isValidMove(move.dx, move.dy, level)) {
-          console.log("move");
           move.entity.move(move.dx, move.dy);
         }
 
@@ -45,11 +44,9 @@
           level.takeTurn();
         }
 
-        // START DEBUG / TEST CODE
-
-        debugMapTesting(event, level);
-
-        // END DEBUG / TEST CODE
+        if (DEBUG) {
+          debugMapTesting(event, level);
+        }
 
         if (eventBlob.render) {
           level.renderTo(screen);

@@ -33,7 +33,7 @@
 
     var Graph = {};
 
-    //TODO: all for different init functions
+    // TODO: all for different init functions
     //      i.e. number of vertices, or a matrix (end use for map creation)
     Graph.init = function(weightMatrix) {
       this.height = weightMatrix.height;
@@ -82,13 +82,13 @@
       return this;
     };
 
-    //TODO: redo all the function signatures
+    // TODO: redo all the function signatures
     Graph.adjacent = function(x, y) {
       return x.neighbors.indexOf(y) !== -1;
     };
 
     Graph.getEdgeValue = function(x, y) {
-      //return (x.weight + y.weight) / 2;
+      // return (x.weight + y.weight) / 2;
       return Math.max(x.weight, y.weight);
     };
 

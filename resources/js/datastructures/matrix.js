@@ -1,7 +1,7 @@
 (function() {
   "use strict";
 
-  //TODO: change namespace to VAGABOND.DATA_STRUCTURES.MATRIX
+  // TODO: change namespace to VAGABOND.DATA_STRUCTURES.MATRIX
   VAGABOND.namespace("VAGABOND.DATA_STRUCTURES.MATRIX");
 
   VAGABOND.DATA_STRUCTURES.MATRIX = (function(module) {
@@ -55,7 +55,6 @@
         this.grid[i] = [];
 
         for (j = 0; j < this.height; j++) {
-          //this.grid[i][j] = initValueFunc(j, i, this.height, this.width);
           this.set(i, j, initValueFunc(i, j, this.height, this.width));
         }
       }

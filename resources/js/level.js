@@ -1,7 +1,7 @@
 (function() {
   "use strict";
 
-  //TODO: rename to something else, maybe
+  // TODO: rename to something else, maybe
   VAGABOND.namespace("VAGABOND.LEVEL");
 
   VAGABOND.LEVEL = (function(module) {
@@ -32,7 +32,7 @@
       Array.prototype.push.apply(this.entityPool, args);
     };
 
-    //TODO: clean this
+    // TODO: clean this
     Level.setPlayer = function(entity) {
       this.player = entity;
     };

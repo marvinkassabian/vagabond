@@ -5,7 +5,7 @@
 
   VAGABOND.ALGORITHMS = (function(module) {
 
-    //TODO: clean up code at some point
+    // TODO: clean up code at some point
     var diamondSquare = function(matrix, scale) {
       var size = matrix.width - 1;
       var step = size;
@@ -189,7 +189,7 @@
 
       function cleanVertex(vertex) {
         vertex.pathWeight = Infinity;
-        //TODO: decouple heuristic
+        // TODO: decouple heuristic
         vertex.heuristic = 1 * manhattanDistance(vertex, endCoor);
         vertex.getTotal = function() {
           return this.pathWeight + this.heuristic;

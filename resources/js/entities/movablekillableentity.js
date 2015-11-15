@@ -19,7 +19,7 @@
       var newX = this.x + dx;
       var newY = this.y + dy;
 
-      //TODO: clean this
+      // TODO: clean this
       var isOccupied = false;
       var i;
       for (i = 0; i < level.entityPool.length; i++) {
@@ -29,7 +29,7 @@
         }
       }
 
-      //TODO: decouple the '1'
+      // TODO: decouple the '1'
       return map.isValidCoordinate(newX, newY) && map.get(newX, newY) === 1 && !isOccupied;
     };
 

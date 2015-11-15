@@ -21,7 +21,7 @@
       return this;
     };
 
-    //TODO: do something with this and Matrix.initGrid
+    // TODO: do something with this and Matrix.initGrid
     Screen.clear = Matrix.initGrid;
 
     Screen.move = function(dx, dy) {

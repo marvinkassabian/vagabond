@@ -21,7 +21,7 @@
 
       var heightMap = Object.create(Map).init(size, size, options);
 
-      //TODO: figure out some way so that this doesn't need to be defined each
+      // TODO: figure out some way so that this doesn't need to be defined each
       //      call, probably have it saved as a module variable. Think of
       //      something cleaner.
       heightMap.generate = function() {
@@ -57,7 +57,7 @@
 
       var dungeonMap = Object.create(Map).init(height, width, options);
 
-      //TODO: figure out some way so that this doesn't need to be defined each
+      // TODO: figure out some way so that this doesn't need to be defined each
       //      call, probably have it saved as a module variable. Think of
       //      something cleaner.
       dungeonMap.generate = function() {

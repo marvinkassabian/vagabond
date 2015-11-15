@@ -3,7 +3,7 @@
 
   VAGABOND.namespace("VAGABOND.CONTROLS");
 
-  //TODO: think of a better name
+  // TODO: think of a better name
   VAGABOND.CONTROLS = (function(module) {
 
     var VirtualKeys = UTIL.VIRTUAL_KEYS.VirtualKeys;
@@ -41,7 +41,7 @@
         return;
       }
 
-      //TODO: seperate eventStack and listener
+      // TODO: seperate eventStack and listener
       if (this.eventStack.length === 0) {
         this.eventStack.push({state: state, render: true});
       }

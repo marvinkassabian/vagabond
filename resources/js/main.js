@@ -26,15 +26,14 @@
   listener.eventStack.unshift({state: "do nothing", render: true});
 
   level.addEntity(milo, otis, henry);
-  /*
-  var i;
-  for (i = 0; i < 30; i++) {
-    level.addEntity(Object.create(Goblin).init(
-        Math.floor(Math.random() * map.width),
-        Math.floor(Math.random() * map.height),
-        50));
-  }
-  */
+
+  // var i;
+  // for (i = 0; i < 2; i++) {
+  //   level.addEntity(Object.create(Goblin).init(
+  //       Math.floor(Math.random() * map.width),
+  //       Math.floor(Math.random() * map.height),
+  //       50));
+  // }
 
   level.setPlayer(milo);
 
@@ -42,7 +41,7 @@
 
     controller.processInput(screen, milo, level);
 
-    //TODO: switch UTIL.setTimeout to window.requestAnimationFrame
+    // TODO: switch UTIL.setTimeout to window.requestAnimationFrame
     UTIL.setTimeout(func, 50);
   };
 
