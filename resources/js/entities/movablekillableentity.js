@@ -29,7 +29,8 @@
         }
       }
 
-      return map.isValidCoordinate(newX, newY) && map.get(newX, newY) === 0 && !isOccupied;
+      //TODO: decouple the '1'
+      return map.isValidCoordinate(newX, newY) && map.get(newX, newY) === 1 && !isOccupied;
     };
 
     module.MovableKillableEntity = MovableKillableEntity;

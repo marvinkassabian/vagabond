@@ -86,9 +86,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-uglify");
 
   // Default task(s).
-  grunt.registerTask("default", ["debug"]);
-  grunt.registerTask("vagabond", ["uglify:vagabond"]);
-  grunt.registerTask("util", ["uglify:util"]);
+  grunt.registerTask("default", ["production"]);
+  grunt.registerTask("production", ["uglify:util", "uglify:vagabond"]);
   grunt.registerTask("debug", ["uglify:util_DEBUG", "uglify:vagabond_DEBUG"]);
 
 };

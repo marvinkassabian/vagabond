@@ -36,7 +36,6 @@
     //TODO: all for different init functions
     //      i.e. number of vertices, or a matrix (end use for map creation)
     Graph.init = function(weightMatrix) {
-
       this.height = weightMatrix.height;
       this.width = weightMatrix.width;
 

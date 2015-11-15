@@ -14,6 +14,7 @@
   var henry = Object.create(Goblin).init(8, 15, 60);
 
   var map = MAP_FACTORY.createDungeonMap(40, 90);
+  map.generate();
 
   var screen = Object.create(Screen).init(20, 80, 0, 0);
   var listener = Object.create(Listener).init();
@@ -22,10 +23,10 @@
 
   global.map = map;
 
-  listener.eventStack.unshift({state: "generate", render: true});
+  listener.eventStack.unshift({state: "do nothing", render: true});
 
   level.addEntity(milo, otis, henry);
-
+  /*
   var i;
   for (i = 0; i < 30; i++) {
     level.addEntity(Object.create(Goblin).init(
@@ -33,6 +34,7 @@
         Math.floor(Math.random() * map.height),
         50));
   }
+  */
 
   level.setPlayer(milo);
 

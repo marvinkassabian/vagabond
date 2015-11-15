@@ -6,6 +6,7 @@
   VAGABOND.ENTITIES.ENEMIES = (function(module) {
 
     var Monster = VAGABOND.ENTITIES.Monster;
+    var ALGORITHMS = VAGABOND.ALGORITHMS;
 
     var Goblin = Object.create(Monster);
 
@@ -55,54 +56,21 @@
 
     //TODO: clean this
     Goblin.takeNextMove = function(level) {
-      var i, move, possibleNextPosition, nextPosition, distance, nextMove;
-      var min = Infinity;
-      var possibleMove = [
-        {dx: 1, dy: 0},
-        {dx: 0, dy: 1},
-        {dx: -1, dy: 0},
-        {dx: 0, dy: -1}
-      ];
-
-      possibleMove = UTIL.shuffle(possibleMove);
-
       var playerCoor = {
         x: level.player.x,
         y: level.player.y
       };
 
-      for (i = 0; i < possibleMove.length; i++) {
-        move = possibleMove[i];
+      var currentPosition = {
+        x: this.x,
+        y: this.y
+      };
 
-        if (this.isValidMove(move.dx, move.dy, level)) {
-          possibleNextPosition = {
-            x: this.x + move.dx,
-            y: this.y + move.dy
-          };
+      var nextMoves = ALGORITHMS.aStar(level.graph, currentPosition, playerCoor);
+      var nextMove = nextMoves.shift();
 
-          distance = manhattanDistance(possibleNextPosition, playerCoor);
-
-          if (min > distance) {
-            min = distance;
-            nextMove = move;
-            nextPosition = possibleNextPosition;
-          }
-        }
-      }
-
-      if (nextMove) {
-        var currentPosition = {
-          x: this.x,
-          y: this.y
-        };
-
-        var newPosDis = manhattanDistance(nextPosition, playerCoor);
-        var oldPosDis = manhattanDistance(currentPosition, playerCoor);
-
-        if (this.isValidMove(nextMove.dx, nextMove.dy, level) && newPosDis < oldPosDis) {
-
-          this.move(nextMove.dx, nextMove.dy);
-        }
+      if (this.isValidMove(nextMove.dx, nextMove.dy, level)) {
+        this.move(nextMove.dx, nextMove.dy);
       }
     };
 

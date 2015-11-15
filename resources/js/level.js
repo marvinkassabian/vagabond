@@ -13,7 +13,7 @@
     Level.init = function(map, entityPool) {
       this.entityPool = (entityPool === undefined) ? {} : entityPool;
       this.map = map;
-      this.graph = Object.create(Graph).init(map.grid);
+      this.graph = Object.create(Graph).init(map);
 
       return this;
     };
@@ -30,8 +30,6 @@
       }
 
       Array.prototype.push.apply(this.entityPool, args);
-
-      console.log(this.entityPool);
     };
 
     //TODO: clean this

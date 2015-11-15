@@ -37,6 +37,7 @@
         var move = moves[event];
 
         if (move && move.entity.isValidMove(move.dx, move.dy, level)) {
+          console.log("move");
           move.entity.move(move.dx, move.dy);
         }
 

@@ -190,7 +190,7 @@
       function cleanVertex(vertex) {
         vertex.pathWeight = Infinity;
         //TODO: decouple heuristic
-        vertex.heuristic = 5 * manhattanDistance(vertex, endCoor);
+        vertex.heuristic = 1 * manhattanDistance(vertex, endCoor);
         vertex.getTotal = function() {
           return this.pathWeight + this.heuristic;
         };
@@ -209,7 +209,7 @@
 
         while (vertex.previousVertex !== undefined) {
           var previous = vertex.previousVertex;
-          ret.unshift({x: vertex.x - previous.x, y: vertex.y - previous.y});
+          ret.unshift({dx: vertex.x - previous.x, dy: vertex.y - previous.y});
           vertex = previous;
         }
 

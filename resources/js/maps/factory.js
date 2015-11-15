@@ -44,14 +44,14 @@
         formatValue: function(value) {
           if (value === WALL_WEIGHT) {
             return "O";
-          } else if (value === 0) {
+          } else if (value === 1) {
             return "0";
           } else {
             return " ";
           }
         },
         initValue: function() {
-          return Math.random() > 0.55 ? WALL_WEIGHT : 0;
+          return Math.random() > 0.55 ? WALL_WEIGHT : 1;
         }
       });
 
