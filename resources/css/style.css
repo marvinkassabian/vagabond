@@ -1,23 +1,55 @@
+* {
+  margin: 0em;
+  padding: 0em;
+}
+
 body {
   font-family: "Consolas", monospace;
   color: green;
   background: #000;
-  font-size: 0.8em;
+  font-size: 1em;
+}
+
+.map, .info, .menu {
+  overflow: hidden;
+  float: left;
+  display: inline-block;
+}
+
+/* one day, do some viewport kinda stuff to the css */
+.map {
+  width: 48em;
+  margin-right: 3em;
+}
+
+.info {
+  margin-right: 3em;
+  overflow: hidden;
+  width: 20em;
+  clear: right;
+}
+
+.menu {
+  width: 48em;
+}
+
+span:hover {
+  background: white;
 }
 
 .tile-\# {
   background: white;
-  color: rgba(255,0,0,0.8);;
+  color: rgba(255,0,0,0.8);
   font-weight: bold;
 }
 
 .tile-\% {
   background: white;
-  color: rgba(0,255,0,0.8);;
+  color: rgba(0,255,0,0.8);
   font-weight: bold;
 }
 
-.tile-0, .tile-1 {
+.tile-0, .tile-1, .tile-\. {
   color: #0D012E;
 }
 .tile-2, .tile-3 {
