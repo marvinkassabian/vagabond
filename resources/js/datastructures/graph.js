@@ -15,6 +15,7 @@
       this.y = y;
       this.weight = weight;
       this.neighbors = [];
+      // TODO: use this at some point
       this.entities = [];
 
       return this;

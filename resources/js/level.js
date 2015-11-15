@@ -6,14 +6,11 @@
 
   VAGABOND.LEVEL = (function(module) {
 
-    var Graph = VAGABOND.DATA_STRUCTURES.GRAPH.Graph;
-
     var Level = {};
 
     Level.init = function(map, entityPool) {
       this.entityPool = (entityPool === undefined) ? {} : entityPool;
       this.map = map;
-      this.graph = Object.create(Graph).init(map);
 
       return this;
     };

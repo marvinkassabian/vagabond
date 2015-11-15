@@ -87,7 +87,7 @@
         y: this.y
       };
 
-      var nextMoves = ALGORITHMS.aStar(level.graph, currentPosition, playerCoor);
+      var nextMoves = ALGORITHMS.aStar(level.map.graph, currentPosition, playerCoor);
       var nextMove = nextMoves.shift();
 
       if (this.isValidMove(nextMove.dx, nextMove.dy, level)) {

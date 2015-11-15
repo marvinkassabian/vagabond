@@ -1,7 +1,6 @@
 (function() {
   "use strict";
 
-  // TODO: change namespace to VAGABOND.DATA_STRUCTURES.MATRIX
   VAGABOND.namespace("VAGABOND.DATA_STRUCTURES.MATRIX");
 
   VAGABOND.DATA_STRUCTURES.MATRIX = (function(module) {
