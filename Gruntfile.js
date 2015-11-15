@@ -55,8 +55,8 @@ module.exports = function(grunt) {
       },
       util_DEBUG: {
         files: {
-          "vagabond.min.js": vagabondFiles,
-          "../marvinkassabian.github.io/vagabond.min.js": vagabondFiles
+          "util.min.js": utilFiles,
+          "../marvinkassabian.github.io/util.min.js": utilFiles
         },
         options: {
           compress: {

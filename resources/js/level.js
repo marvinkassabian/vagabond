@@ -6,11 +6,14 @@
 
   VAGABOND.LEVEL = (function(module) {
 
+    var Graph = VAGABOND.DATA_STRUCTURES.GRAPH.Graph;
+
     var Level = {};
 
     Level.init = function(map, entityPool) {
-      this.entityPool = (entityPool === undefined) ? [] : entityPool;
+      this.entityPool = (entityPool === undefined) ? {} : entityPool;
       this.map = map;
+      this.graph = Object.create(Graph).init(map.grid);
 
       return this;
     };
@@ -21,7 +24,14 @@
         args = args[0];
       }
 
+      for (var argIndex in args) {
+        var entity = args[argIndex];
+        this.entityPool[entity.id] = entity;
+      }
+
       Array.prototype.push.apply(this.entityPool, args);
+
+      console.log(this.entityPool);
     };
 
     //TODO: clean this

@@ -9,7 +9,7 @@
   var Listener = VAGABOND.CONTROLS.Listener;
   var Controller = VAGABOND.CONTROLS.Controller;
 
-  var milo = Object.create(Monster).init(0, "Milo", 4, 4, "#", 34);
+  var milo = Object.create(Monster).init(UTIL.generateUUID(), "Milo", 4, 4, "#", 34);
   var otis = Object.create(Goblin).init(5, 10, 50);
   var henry = Object.create(Goblin).init(8, 15, 60);
 
@@ -28,7 +28,10 @@
 
   var i;
   for (i = 0; i < 30; i++) {
-    level.addEntity(Object.create(Goblin).init(Math.floor(Math.random() * 129), Math.floor(Math.random() * 129), 50));
+    level.addEntity(Object.create(Goblin).init(
+        Math.floor(Math.random() * map.width),
+        Math.floor(Math.random() * map.height),
+        50));
   }
 
   level.setPlayer(milo);

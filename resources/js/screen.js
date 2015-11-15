@@ -5,7 +5,7 @@
 
   VAGABOND.SCREEN = (function(module) {
 
-    var Matrix = VAGABOND.MATRIX.Matrix;
+    var Matrix = VAGABOND.DATA_STRUCTURES.MATRIX.Matrix;
 
     var Screen = Object.create(Matrix);
 

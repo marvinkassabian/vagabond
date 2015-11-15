@@ -185,7 +185,7 @@
         }
       }
 
-      return toCoordinateArray(graph.getVertex(endCoor.x, endCoor.y));
+      return toMoveArray(graph.getVertex(endCoor.x, endCoor.y));
 
       function cleanVertex(vertex) {
         vertex.pathWeight = Infinity;
@@ -204,11 +204,13 @@
         return Math.abs(vertexX.x - vertexY.x) + Math.abs(vertexX.y - vertexY.y);
       }
 
-      function toCoordinateArray(vertex) {
+      function toMoveArray(vertex) {
         var ret = [];
+
         while (vertex.previousVertex !== undefined) {
-          ret.unshift({x: vertex.x, y: vertex.y});
-          vertex = vertex.previousVertex;
+          var previous = vertex.previousVertex;
+          ret.unshift({x: vertex.x - previous.x, y: vertex.y - previous.y});
+          vertex = previous;
         }
 
         return ret;

@@ -1,11 +1,11 @@
 (function() {
   "use strict";
 
-  VAGABOND.namespace("VAGABOND.GRAPH");
+  VAGABOND.namespace("VAGABOND.DATA_STRUCTURES.GRAPH");
 
-  VAGABOND.GRAPH = (function(module) {
+  VAGABOND.DATA_STRUCTURES.GRAPH = (function(module) {
 
-    var Matrix = VAGABOND.MATRIX.Matrix;
+    var Matrix = VAGABOND.DATA_STRUCTURES.MATRIX.Matrix;
 
     var Vertex = {};
 
@@ -102,5 +102,5 @@
 
     return module;
 
-  })(VAGABOND.GRAPH);
+  })(VAGABOND.DATA_STRUCTURES.GRAPH);
 })();
