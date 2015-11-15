@@ -41,13 +41,34 @@
         y: this.y
       };
 
-      if (manhattanDistance(currentPosition, playerCoor) === 1) {
+      var distance = manhattanDistance(currentPosition, playerCoor);
+
+      if (distance === 1 && level.player.hp > 0) {
         this.attack(level.player, level);
-      } else {
+      } else if (distance < 10 && level.player.hp > 0) {
         this.takeNextMove(level);
+      } else {
+        var nextMove = getRandomMove();
+
+        if (this.isValidMove(nextMove.dx, nextMove.dy, level)) {
+          this.move(nextMove.dx, nextMove.dy);
+        }
       }
     };
 
+    function getRandomMove() {
+      // TODO: move valid moves to a single location
+      var moves = UTIL.ADJACENT;
+
+      var randomMove = moves[Math.floor(UTIL.random(moves.length))];
+
+      return {
+        dx: randomMove[0],
+        dy: randomMove[1]
+      };
+    }
+
+    // TODO: do something about duplicate function
     function manhattanDistance(origin, destination) {
       var dx = Math.abs(origin.x - destination.x);
       var dy = Math.abs(origin.y - destination.y);

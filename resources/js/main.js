@@ -27,13 +27,13 @@
 
   level.addEntity(milo, otis, henry);
 
-  // var i;
-  // for (i = 0; i < 2; i++) {
-  //   level.addEntity(Object.create(Goblin).init(
-  //       Math.floor(Math.random() * map.width),
-  //       Math.floor(Math.random() * map.height),
-  //       50));
-  // }
+  var i;
+  for (i = 0; i < 10; i++) {
+    level.addEntity(Object.create(Goblin).init(
+        Math.floor(Math.random() * map.width),
+        Math.floor(Math.random() * map.height),
+        50));
+  }
 
   level.setPlayer(milo);
 
