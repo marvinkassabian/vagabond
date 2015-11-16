@@ -55,9 +55,12 @@
           return value;
         },
 
-        formatElement: function(value) {
+        formatElement: function(value, x, y) {
+          var offset = this.getOrigin();
+
           var tileElement = document.createElement("span");
-          tileElement.className = "tile-" + value;
+          tileElement.className = "tile tile-" + value;
+          tileElement.dataset.coordinate = (x + offset.x) + ":" + (y + offset.y);
           tileElement.innerHTML = value;
 
           return tileElement;

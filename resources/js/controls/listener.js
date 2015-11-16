@@ -11,6 +11,7 @@
     var Listener = {};
 
     Listener.init = function() {
+      // TODO: make event stack a seperate object to pass to listeners
       this.eventStack = [];
       this.codes = {};
       this.codes[VirtualKeys.VK_LEFT] = "screenLeft";

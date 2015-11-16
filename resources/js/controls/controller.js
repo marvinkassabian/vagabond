@@ -51,6 +51,7 @@
         if (eventBlob.render) {
           level.renderTo(screen);
           screen.renderToElement(document.body.getElementsByClassName("map")[0]);
+          Object.create(VAGABOND.CONTROLS.MapListener).init();
         }
       }
     };

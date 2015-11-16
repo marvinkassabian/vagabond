@@ -35,6 +35,10 @@ span:hover {
   background: white;
 }
 
+.tile {
+  background: #080808;
+}
+
 .tile-\# {
   background: white;
   color: rgba(255,0,0,0.8);

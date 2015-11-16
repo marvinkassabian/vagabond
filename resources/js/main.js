@@ -10,7 +10,7 @@
   var Controller = VAGABOND.CONTROLS.Controller;
 
   var milo = Object.create(Monster).init(4, 4, "#", 34, "Milo", "Beermaster");
-  var otis = Object.create(Goblin).init(5, 10, 50, "Kik");
+  var otis = Object.create(Goblin).init(5, 10, 50, "Grot");
   var henry = Object.create(Goblin).init(8, 15, 60, "Snik");
 
   var map = MAP_FACTORY.createDungeonMap(40, 90);
@@ -48,7 +48,7 @@
     controller.processInput(screen, milo, level);
 
     // TODO: switch UTIL.setTimeout to window.requestAnimationFrame
-    UTIL.setTimeout(func, 50);
+    UTIL.setTimeout(func, 30);
   };
 
   func();
