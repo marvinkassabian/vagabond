@@ -9,7 +9,7 @@
     var MapListener = {};
 
     // TODO: make it so that this doesn't need to get called each move
-    MapListener.init = function() {
+    MapListener.init = function(listener) {
 
       var tiles = document.getElementsByClassName("tile");
 
@@ -18,8 +18,18 @@
         tile.addEventListener("click", writeToLog.bind(this, tile), false);
       }
 
+      // TODO: rename function
       function writeToLog(tile) {
-        VAGABOND.writeToLog(tile.dataset.coordinate);
+        var coordinate = {
+          x: tile.dataset.x,
+          y: tile.dataset.y
+        };
+
+        listener.eventStack.push({
+          state: "click",
+          render: false,
+          coordinate: coordinate
+        });
       }
 
       return this;

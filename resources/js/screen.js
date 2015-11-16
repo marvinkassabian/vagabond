@@ -60,7 +60,8 @@
 
           var tileElement = document.createElement("span");
           tileElement.className = "tile tile-" + value;
-          tileElement.dataset.coordinate = (x + offset.x) + ":" + (y + offset.y);
+          tileElement.dataset.x = (x + offset.x);
+          tileElement.dataset.y = (y + offset.y);
           tileElement.innerHTML = value;
 
           return tileElement;

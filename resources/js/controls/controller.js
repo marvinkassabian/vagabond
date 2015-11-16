@@ -44,6 +44,10 @@
           level.takeTurn();
         }
 
+        if (event === "click") {
+          VAGABOND.writeToLog("[" + eventBlob.coordinate.x + ", " + eventBlob.coordinate.y + "]");
+        }
+
         if (DEBUG) {
           debugMapTesting(event, level);
         }
@@ -51,7 +55,7 @@
         if (eventBlob.render) {
           level.renderTo(screen);
           screen.renderToElement(document.body.getElementsByClassName("map")[0]);
-          Object.create(VAGABOND.CONTROLS.MapListener).init();
+          Object.create(VAGABOND.CONTROLS.MapListener).init(this.listener);
         }
       }
     };
