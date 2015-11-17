@@ -38,6 +38,19 @@ module.exports = function(grunt) {
     "../marvinkassabian.github.io/vagabond/vagabond.min.js": vagabondFiles
   };
 
+  var debugOff = {
+    global_defs: {
+      "DEBUG": false
+    },
+    dead_code: true
+  };
+
+  var debugOn = {
+    global_defs: {
+      "DEBUG": true
+    }
+  };
+
   // Project configuration.
   grunt.initConfig({
     uglify: {
@@ -46,12 +59,7 @@ module.exports = function(grunt) {
         sourceMapName: function(path) {
           return path + ".map";
         },
-        compress: {
-          global_defs: {
-            "DEBUG": false
-          },
-          dead_code: true
-        }
+        compress: debugOff
       },
       util: {
         files: utilOutputs
@@ -62,21 +70,13 @@ module.exports = function(grunt) {
       util_DEBUG: {
         files: utilOutputs,
         options: {
-          compress: {
-            global_defs: {
-              "DEBUG": true
-            }
-          }
+          compress: debugOn
         }
       },
       vagabond_DEBUG: {
         files: vagabondOutputs,
         options: {
-          compress: {
-            global_defs: {
-              "DEBUG": true
-            }
-          }
+          compress: debugOn
         }
       }
     }
