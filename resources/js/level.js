@@ -9,7 +9,8 @@
     var Level = {};
 
     Level.init = function(map, entityPool) {
-      this.entityPool = (entityPool === undefined) ? {} : entityPool;
+      // TODO: decide between array or object to store entities
+      this.entityPool = (entityPool === undefined) ? [] : entityPool;
       this.map = map;
 
       return this;
@@ -36,7 +37,8 @@
 
       for (var argIndex in args) {
         var entity = args[argIndex];
-        this.entityPool[entity.id] = entity;
+        this.entityPool.push(entity);
+        //this.entityPool[entity.id] = entity;
       }
 
       Array.prototype.push.apply(this.entityPool, args);
@@ -64,10 +66,15 @@
 
       this.map.renderTo(screen);
 
+      // HACK: just here to allow living entities to render on top of dead ones
+      var sortedEntities = this.entityPool.sort(function(a, b) {
+        return a.hp - b.hp;
+      });
+
       // TODO: organize the entityPool by a z-index, in turn
       //       add z-index to entities
-      for (i = 0; i < this.entityPool.length; i++) {
-        this.entityPool[i].renderTo(screen);
+      for (i = 0; i < sortedEntities.length; i++) {
+        sortedEntities[i].renderTo(screen);
       }
     };
 

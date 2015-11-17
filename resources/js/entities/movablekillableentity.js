@@ -19,11 +19,12 @@
     };
 
     MovableKillableEntity.move = function(dx, dy) {
-      // HACK: just so that the player can in theory kill everything
-      // TODO: remove after healing is implemented
-      this.hp++;
       this.x += dx;
       this.y += dy;
+
+      // HACK: just so that the player can in theory kill everything
+      // TODO: remove after healing is implemented
+      this.hp = Math.min(this.hp + 1, this.totalHp);
     };
 
     MovableKillableEntity.isValidMove = function(dx, dy, level) {

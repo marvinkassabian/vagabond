@@ -24,6 +24,21 @@
       return this.name + ", the " + this.type;
     };
 
+    // TODO: move this method to entity and 'inherit' down
+    Monster.getInformation = function() {
+      return {
+        x: this.x,
+        y: this.y,
+        char: this.char,
+        hp: this.hp,
+        totalHp: this.totalHp,
+        name: this.name,
+        type: this.type,
+        fullName: this.getFullName(),
+        strength: this.strength
+      };
+    };
+
     // TODO: clean this
     Monster.attack = function(entity) {
       VAGABOND.writeToLog(VAGABOND.toSentence(this.getFullName(), "attacked", entity.getFullName()));

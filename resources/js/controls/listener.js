@@ -25,8 +25,6 @@
 
       if (DEBUG) {
         this.codes[VirtualKeys.VK_SPACE] = "generate";
-        this.codes[VirtualKeys.VK_1] = "diamondSquare";
-        this.codes[VirtualKeys.VK_2] = "cellularAutomata";
         this.codes[VirtualKeys.VK_RETURN] = "initMap";
         this.codes[VirtualKeys.VK_CONTROL] = "switchMapType";
       }

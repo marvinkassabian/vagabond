@@ -12,6 +12,8 @@
     KillableEntity.init = function(id, x, y, char, hp) {
       Entity.init.call(this, id, x, y, char);
 
+      // TODO: make variable name not shorthand to avoid 'Hp' or 'HP' issue
+      this.totalHp = hp;
       this.hp = hp;
 
       return this;

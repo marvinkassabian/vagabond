@@ -5,7 +5,6 @@
 
   VAGABOND.CONTROLS = (function(module) {
 
-    var ALGORITHMS = VAGABOND.ALGORITHMS;
     var MAP_FACTORY = VAGABOND.MAPS.FACTORY;
 
     var Controller = {};
@@ -17,7 +16,7 @@
     };
 
     // TODO: clean this up, clean all of this up
-    Controller.processInput = function(screen, avatar, level) {
+    Controller.processInput = function(screen, avatar, level, info) {
       if (this.listener.eventStack.length > 0) {
 
         var eventBlob = this.listener.eventStack.pop();
@@ -48,13 +47,20 @@
 
           // TODO: sort entities by health
           // TODO: eventually allow player to choose which entity to attack
-          var entity = level.getEntitiesAt(clickCoordinate)[0];
+          var entity = level.getEntitiesAt(clickCoordinate).sort(function(a, b) {
+            return b.hp - a.hp;
+          })[0];
 
           if (entity !== undefined) {
+
+            info.init(entity);
+
             if (UTIL.manhattanDistance(avatar, entity) === 1 && entity.hp > 0) {
               avatar.attack(entity);
               eventBlob.useTurn = true;
             }
+          } else {
+            info.init(avatar);
           }
         }
 
@@ -70,20 +76,17 @@
           level.renderTo(screen);
           screen.renderToElement(document.body.getElementsByClassName("map")[0]);
           Object.create(VAGABOND.CONTROLS.MapListener).init(this.listener);
+          info.renderToElement(document.body.getElementsByClassName("selectedinfo")[0]);
         }
       }
     };
 
-    // START DEBUG / TEST CODE
+    // START DEBUG CODE
 
     function debugMapTesting(event, level) {
       var map = level.map;
       if (event === "generate") {
         map.generate();
-      } else if (event === "diamondSquare") {
-        ALGORITHMS.diamondSquare(map, 30);
-      } else if (event === "cellularAutomata") {
-        ALGORITHMS.cellularAutomata(map, 1);
       } else if (event === "initMap") {
         map.initGrid();
       } else if (event === "switchMapType") {
@@ -97,7 +100,7 @@
       }
     }
 
-    // END DEBUG / TEST CODE
+    // END DEBUG CODE
 
     module.Controller = Controller;
 

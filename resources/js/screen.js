@@ -47,7 +47,11 @@
       };
     };
 
+    // TODO: decouple from screen, and into parent object for both screen
+    //       and other user interface objects.
+    //       well, put method signature in at least for duck typing.
     Screen.toElement = function(options) {
+      // TODO: change map variable to screen, do in other relevent places too.
       var i, j, map, tileElement, value;
 
       options = UTIL.extend(options, {
@@ -59,10 +63,10 @@
           var offset = this.getOrigin();
 
           var tileElement = document.createElement("span");
-          tileElement.className = "tile tile-" + value;
+          tileElement.className = "tile tile-" + ((value === " ") ? "SPACE" : value);
           tileElement.dataset.x = (x + offset.x);
           tileElement.dataset.y = (y + offset.y);
-          tileElement.innerHTML = value;
+          tileElement.innerText = value;
 
           return tileElement;
         }
@@ -85,6 +89,8 @@
       return map;
     };
 
+    // TODO: decouple from screen, and into parent object for both screen
+    //       and other interface objects.
     Screen.renderToElement = function(element) {
       var screenElement = this.toElement();
 

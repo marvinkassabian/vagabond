@@ -18,9 +18,9 @@ body {
   margin-bottom: 1em;
 }
 
-.map {
+.map, .menu {
   width: 49em;
-  /* prevents the map from being highlighted */
+  /* prevents map and menu from being highlighted */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -29,18 +29,17 @@ body {
   user-select: none;
 }
 
+.map {
+  cursor: none;
+}
+
 .info {
   width: 20em;
   clear: right;
 }
 
-.menu {
-  width: 48em;
-}
-
 .tile {
   background: #080808;
-  cursor: none;
 }
 
 .tile-\# {

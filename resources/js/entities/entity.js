@@ -28,12 +28,15 @@
     };
 
     Entity.getTraits = function() {
-    return {
-      x: this.x,
-      y: this.y,
-      id: this.id
+      return {
+        x: this.x,
+        y: this.y,
+        id: this.id
+      };
     };
-  };
+
+    // TODO: consolidate the two methods and clean up entities
+    Entity.getInformation = Entity.getTraits;
 
     Entity.toString = function(replacer, space) {
       return JSON.stringify(this.getTraits(), replacer, space);

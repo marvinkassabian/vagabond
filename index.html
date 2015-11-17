@@ -5,20 +5,37 @@
   <body>
     <div class = "map"></div>
     <div class = "info">
-      <h1>Information</h1>
+      <h1><span>Information</span></h1>
       <p>
         This is where information regarding what is selected on the screen.
         probably somewhat pokedex like in nature.
       </p>
+      <!-- TODO: figure out what kind of casing to use in HTML class names -->
+      <div class = "selectedinfo"></div>
     </div>
     <div class = "menu">
-      <h1>Menu</h1>
+      <h1><span>Menu</span></h1>
       <p>
-        This is where a list of actions whill be shown to the player.
+        <span>This is where a list of actions whill be shown to the player.</span><br>
+        <span>For now it will act as a list of what the controls are.</span><br>
+        <h2><span>Controls</span></h2>
+        <p>
+          <span>[W][A][S][D] to move player character [<span class = "tile-#">#</span>]</span><br>
+          <span>Arrow keys [UP][LEFT][DOWN][RIGHT] to move screen</span><br>
+          <span>If the map spawns you in a wall, press [SPACE] to make a new map</span><br>
+          <span>If you want to switch between map types, press [CONTROL]</span><br>
+          <span>If you decide to switch map types, you will need to press [SPACE] again</span><br>
+          <span>Attack by clicking on a goblin that is adjacent to you</span><br>
+        </p>
+        <h2><span>Game Information</span></h2>
+        <p>
+          <span>You heal one hit point for every step</span><br>
+          <span>Goblins [<span class = "tile-%">%</span>] only chase you when you're close to them</span><br>
+        </p>
       </p>
     </div>
     <div class = "log">
-      <h1>Log</h1>
+      <h1><span>Log</span></h1>
       <div class = "logs"></div>
     </div>
     <script src = "util.min.js"></script>
