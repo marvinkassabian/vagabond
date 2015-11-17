@@ -15,17 +15,16 @@
 
       for (var i = 0; i < tiles.length; i++) {
         var tile = tiles[i];
-        tile.addEventListener("click", writeToLog.bind(this, tile), false);
+        tile.addEventListener("click", handleClickEvent.bind(this, tile), false);
       }
 
-      // TODO: rename function
-      function writeToLog(tile) {
+      function handleClickEvent(tile) {
         var coordinate = {
           x: parseInt(tile.dataset.x),
           y: parseInt(tile.dataset.y)
         };
 
-        listener.eventStack.push({
+        listener.addToEventStack({
           state: "click",
           render: true,
           useTurn: false,

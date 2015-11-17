@@ -44,7 +44,6 @@
     };
 
     function getRandomMove() {
-      // TODO: move valid moves to a single location
       var moves = UTIL.ADJACENT;
 
       var randomMove = moves[Math.floor(UTIL.random(moves.length))];

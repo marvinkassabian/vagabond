@@ -22,18 +22,18 @@ module.exports = function(grunt) {
     "resources/js/entities/playerentity.js",
     "resources/js/interface/information.js",
     "resources/js/controls/listener.js",
-    "resources/js/controls/controller.js",
     "resources/js/controls/maplistener.js",
+    "resources/js/controls/controller.js",
     "resources/js/screen.js",
     "resources/js/level.js",
     "resources/js/main.js"
   ];
 
-  var utilFiles = {
+  var utilOutputs = {
     "util.min.js": utilFiles,
     "../marvinkassabian.github.io/vagabond/util.min.js": utilFiles
   };
-  var vagabondFiles = {
+  var vagabondOutputs = {
     "vagabond.min.js": vagabondFiles,
     "../marvinkassabian.github.io/vagabond/vagabond.min.js": vagabondFiles
   };
@@ -54,13 +54,13 @@ module.exports = function(grunt) {
         }
       },
       util: {
-        files: utilFiles
+        files: utilOutputs
       },
       vagabond: {
-        files: vagabondFiles
+        files: vagabondOutputs
       },
       util_DEBUG: {
-        files: utilFiles,
+        files: utilOutputs,
         options: {
           compress: {
             global_defs: {
@@ -70,7 +70,7 @@ module.exports = function(grunt) {
         }
       },
       vagabond_DEBUG: {
-        files: vagabondFiles,
+        files: vagabondOutputs,
         options: {
           compress: {
             global_defs: {

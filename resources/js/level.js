@@ -35,12 +35,6 @@
         args = args[0];
       }
 
-      for (var argIndex in args) {
-        var entity = args[argIndex];
-        this.entityPool.push(entity);
-        //this.entityPool[entity.id] = entity;
-      }
-
       Array.prototype.push.apply(this.entityPool, args);
     };
 
@@ -55,8 +49,13 @@
 
       for (i = 0; i < this.entityPool.length; i++) {
         entity = this.entityPool[i];
-        entity.takeTurn(this);
+
+        // TODO: move hp checking out of level and into entity objects
+        if (entity.hp > 0) {
+          entity.takeTurn(this);
+        }
       }
+
     };
 
     Level.renderTo = function(screen) {

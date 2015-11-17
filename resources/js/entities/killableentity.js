@@ -20,7 +20,7 @@
     };
 
     // TODO: clean this
-    Entity.takeTurn = function() {
+    KillableEntity.takeTurn = function() {
       if (this.hp <= 0) {
         // TODO: turn into a function
         this.char = "X";

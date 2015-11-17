@@ -30,7 +30,7 @@
   level.addEntity(milo, otis, henry);
 
   var i;
-  for (i = 0; i < 30; i++) {
+  for (i = 0; i < 10; i++) {
     var gobbo = Object.create(Goblin).init(
         Math.floor(Math.random() * map.width),
         Math.floor(Math.random() * map.height),

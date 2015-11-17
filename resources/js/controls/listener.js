@@ -13,6 +13,7 @@
     Listener.init = function() {
       // TODO: make event stack a seperate object to pass to listeners
       this.eventStack = [];
+
       this.codes = {};
       this.codes[VirtualKeys.VK_LEFT] = "screenLeft";
       this.codes[VirtualKeys.VK_RIGHT] = "screenRight";
@@ -34,16 +35,20 @@
       return this;
     };
 
+    Listener.addToEventStack = function(eventBlob) {
+      // TODO: seperate eventStack and listener
+      if (this.eventStack.length === 0) {
+        this.eventStack.push(eventBlob);
+      }
+    };
+
     Listener.onKey = function(e) {
       var state = this.codes[e.keyCode];
       if (state === undefined) {
         return;
       }
 
-      // TODO: seperate eventStack and listener
-      if (this.eventStack.length === 0) {
-        this.eventStack.push({state: state, render: true});
-      }
+      this.addToEventStack({state: state, render: true});
 
       if (e.preventDefault !== undefined) {
         e.preventDefault();

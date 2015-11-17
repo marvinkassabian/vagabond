@@ -6,6 +6,7 @@
   VAGABOND.CONTROLS = (function(module) {
 
     var MAP_FACTORY = VAGABOND.MAPS.FACTORY;
+    var MapListener = VAGABOND.CONTROLS.MapListener;
 
     var Controller = {};
 
@@ -75,7 +76,7 @@
         if (eventBlob.render) {
           level.renderTo(screen);
           screen.renderToElement(document.body.getElementsByClassName("map")[0]);
-          Object.create(VAGABOND.CONTROLS.MapListener).init(this.listener);
+          Object.create(MapListener).init(this.listener);
           info.renderToElement(document.body.getElementsByClassName("selected-info")[0]);
         }
       }
