@@ -22,8 +22,8 @@
       var heightMap = Object.create(Map).init(size, size, options);
 
       // TODO: figure out some way so that this doesn't need to be defined each
-      //      call, probably have it saved as a module variable. Think of
-      //      something cleaner.
+      //       call, probably have it saved as a module variable. Think of
+      //       something cleaner.
       heightMap.generate = function() {
         this.initGrid();
         ALGORITHMS.diamondSquare(this, 30);
@@ -58,8 +58,8 @@
       var dungeonMap = Object.create(Map).init(height, width, options);
 
       // TODO: figure out some way so that this doesn't need to be defined each
-      //      call, probably have it saved as a module variable. Think of
-      //      something cleaner.
+      //       call, probably have it saved as a module variable. Think of
+      //       something cleaner.
       dungeonMap.generate = function() {
         this.initGrid();
         ALGORITHMS.cellularAutomata(this, 8);

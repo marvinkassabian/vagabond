@@ -19,6 +19,9 @@
     };
 
     MovableKillableEntity.move = function(dx, dy) {
+      // HACK: just so that the player can in theory kill everything
+      // TODO: remove after healing is implemented
+      this.hp++;
       this.x += dx;
       this.y += dy;
     };
@@ -33,7 +36,9 @@
       var i;
       for (i = 0; i < level.entityPool.length; i++) {
         var entity = level.entityPool[i];
-        if (entity.x === newX && entity.y === newY) {
+        // TODO: do something more elegant about allowing entities to walk
+        //       over dead bodies.
+        if (entity.x === newX && entity.y === newY && entity.hp > 0) {
           isOccupied = true;
         }
       }

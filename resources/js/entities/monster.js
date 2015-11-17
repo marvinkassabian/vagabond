@@ -38,6 +38,9 @@
         // TODO: do something more elegant
         entity.attack = function() {};
 
+        // TODO: do something more elegant
+        entity.takeTurn = function() {};
+
         entity.char = "X";
       }
     };

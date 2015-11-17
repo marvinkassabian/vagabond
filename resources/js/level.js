@@ -64,6 +64,8 @@
 
       this.map.renderTo(screen);
 
+      // TODO: organize the entityPool by a z-index, in turn
+      //       add z-index to entities
       for (i = 0; i < this.entityPool.length; i++) {
         this.entityPool[i].renderTo(screen);
       }

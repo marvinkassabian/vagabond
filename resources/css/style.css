@@ -38,10 +38,6 @@ body {
   width: 48em;
 }
 
-span:hover {
-  background: white;
-}
-
 .tile {
   background: #080808;
   cursor: none;
@@ -57,6 +53,10 @@ span:hover {
   background: white;
   color: rgba(0,255,0,0.8);
   font-weight: bold;
+}
+
+span:hover {
+  background: #aaa;
 }
 
 .tile-0, .tile-1, .tile-\. {
