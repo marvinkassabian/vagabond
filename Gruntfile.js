@@ -30,11 +30,11 @@ module.exports = function(grunt) {
   ];
 
   var utilOutputs = {
-    "util.min.js": utilFiles,
+    "resources/js/compiled/util.min.js": utilFiles,
     "../marvinkassabian.github.io/vagabond/util.min.js": utilFiles
   };
   var vagabondOutputs = {
-    "vagabond.min.js": vagabondFiles,
+    "resources/js/compiled/vagabond.min.js": vagabondFiles,
     "../marvinkassabian.github.io/vagabond/vagabond.min.js": vagabondFiles
   };
 
