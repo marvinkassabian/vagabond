@@ -25,7 +25,9 @@
     var writeToLog = function(string) {
       var log = document.body.getElementsByClassName("logs")[0];
       var line = document.createElement("span");
-      line.innerText = string + "\n";
+
+      line.innerHTML = string + "<br>";
+
       log.insertBefore(line, log.firstChild);
     };
 

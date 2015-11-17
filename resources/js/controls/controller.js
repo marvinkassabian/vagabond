@@ -76,7 +76,7 @@
           level.renderTo(screen);
           screen.renderToElement(document.body.getElementsByClassName("map")[0]);
           Object.create(VAGABOND.CONTROLS.MapListener).init(this.listener);
-          info.renderToElement(document.body.getElementsByClassName("selectedinfo")[0]);
+          info.renderToElement(document.body.getElementsByClassName("selected-info")[0]);
         }
       }
     };

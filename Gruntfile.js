@@ -29,6 +29,15 @@ module.exports = function(grunt) {
     "resources/js/main.js"
   ];
 
+  var utilFiles = {
+    "util.min.js": utilFiles,
+    "../marvinkassabian.github.io/vagabond/util.min.js": utilFiles
+  };
+  var vagabondFiles = {
+    "vagabond.min.js": vagabondFiles,
+    "../marvinkassabian.github.io/vagabond/vagabond.min.js": vagabondFiles
+  };
+
   // Project configuration.
   grunt.initConfig({
     uglify: {
@@ -45,22 +54,13 @@ module.exports = function(grunt) {
         }
       },
       util: {
-        files: {
-          "util.min.js": utilFiles,
-          "../marvinkassabian.github.io/util.min.js": utilFiles
-        }
+        files: utilFiles
       },
       vagabond: {
-        files: {
-          "vagabond.min.js": vagabondFiles,
-          "../marvinkassabian.github.io/vagabond.min.js": vagabondFiles
-        }
+        files: vagabondFiles
       },
       util_DEBUG: {
-        files: {
-          "util.min.js": utilFiles,
-          "../marvinkassabian.github.io/util.min.js": utilFiles
-        },
+        files: utilFiles,
         options: {
           compress: {
             global_defs: {
@@ -70,10 +70,7 @@ module.exports = function(grunt) {
         }
       },
       vagabond_DEBUG: {
-        files: {
-          "vagabond.min.js": vagabondFiles,
-          "../marvinkassabian.github.io/vagabond.min.js": vagabondFiles
-        },
+        files: vagabondFiles,
         options: {
           compress: {
             global_defs: {

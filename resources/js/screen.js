@@ -66,7 +66,8 @@
           tileElement.className = "tile tile-" + ((value === " ") ? "SPACE" : value);
           tileElement.dataset.x = (x + offset.x);
           tileElement.dataset.y = (y + offset.y);
-          tileElement.innerText = value;
+
+          tileElement.innerHTML = value;
 
           return tileElement;
         }

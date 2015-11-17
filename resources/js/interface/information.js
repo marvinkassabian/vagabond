@@ -15,7 +15,7 @@
 
     Information.toElement = function() {
       var info = document.createElement("div");
-      info.className = "selectedinfo";
+      info.className = "selected-info";
 
       var entityInfo = this.selectedEntity.getInformation();
 
