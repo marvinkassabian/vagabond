@@ -46,6 +46,8 @@
             y: eventBlob.coordinate.y
           };
 
+          // TODO: sort entities by health
+          // TODO: eventually allow player to choose which entity to attack
           var entity = level.getEntitiesAt(clickCoordinate)[0];
 
           if (entity !== undefined) {
