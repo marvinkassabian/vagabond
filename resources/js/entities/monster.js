@@ -9,11 +9,12 @@
 
     var Monster = Object.create(MovableKillableEntity);
 
-    Monster.init = function(x, y, char, hp, name, type) {
+    Monster.init = function(x, y, char, hp, name, type, strength) {
       MovableKillableEntity.init.call(this, UTIL.generateUUID(), x, y, char, hp);
 
       this.name = name;
       this.type = type;
+      this.strength = strength;
 
       return this;
     };
@@ -26,11 +27,16 @@
     // TODO: clean this
     Monster.attack = function(entity) {
       VAGABOND.writeToLog(VAGABOND.toSentence(this.getFullName(), "attacked", entity.getFullName()));
-      entity.hp -= 5;
+      entity.hp -= this.strength;
       if (entity.hp < 0) {
         // TODO: turn into a function
         VAGABOND.writeToLog(VAGABOND.toSentence(this.getFullName(), "killed", entity.getFullName()));
+
+        // TODO: do something more elegant
         entity.move = function() {};
+
+        // TODO: do something more elegant
+        entity.attack = function() {};
 
         entity.char = "X";
       }

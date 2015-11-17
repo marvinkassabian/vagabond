@@ -193,6 +193,12 @@
       [0, 0]
     ];
 
+    var manhattanDistance = function(origin, destination) {
+      var dx = Math.abs(origin.x - destination.x);
+      var dy = Math.abs(origin.y - destination.y);
+      return dx + dy;
+    };
+
     this.namespace = namespace;
     this.generateUUID = generateUUID;
     this.extend = extend;
@@ -204,6 +210,7 @@
     this.random = random;
     this.shuffle = shuffle;
     this.ADJACENT = ADJACENT;
+    this.manhattanDistance = manhattanDistance;
 
     return this;
   }).call(UTIL || {});

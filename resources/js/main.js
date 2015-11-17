@@ -1,7 +1,7 @@
 (function(global) { // jshint ignore:line
   "use strict";
 
-  var Monster = VAGABOND.ENTITIES.Monster;
+  var PlayerEntity = VAGABOND.ENTITIES.PlayerEntity;
   var Goblin = VAGABOND.ENTITIES.ENEMIES.Goblin;
   var MAP_FACTORY = VAGABOND.MAPS.FACTORY;
   var Screen = VAGABOND.SCREEN.Screen;
@@ -9,7 +9,7 @@
   var Listener = VAGABOND.CONTROLS.Listener;
   var Controller = VAGABOND.CONTROLS.Controller;
 
-  var milo = Object.create(Monster).init(4, 4, "#", 34, "Milo", "Beermaster");
+  var milo = Object.create(PlayerEntity).init(4, 4, "#", 34, "Milo", "Beermaster", 15);
   var otis = Object.create(Goblin).init(5, 10, 50, "Grot");
   var henry = Object.create(Goblin).init(8, 15, 60, "Snik");
 
@@ -21,7 +21,7 @@
   var controller = Object.create(Controller).init(listener);
   var level = Object.create(Level).init(map);
 
-  global.map = map;
+  global.level = level;
 
   listener.eventStack.unshift({state: "do nothing", render: true});
 

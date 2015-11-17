@@ -86,6 +86,10 @@
       return this.vertexMatrix.get(x, y);
     };
 
+    Graph.setVertex = function(x, y, vertex) {
+      return this.vertexMatrix.set(x, y, vertex);
+    };
+
     module.Graph = Graph;
     module.Vertex = Vertex;
 

@@ -19,6 +19,7 @@ module.exports = function(grunt) {
     "resources/js/entities/movablekillableentity.js",
     "resources/js/entities/monster.js",
     "resources/js/entities/enemies/goblin.js",
+    "resources/js/entities/playerentity.js",
     "resources/js/controls/listener.js",
     "resources/js/controls/controller.js",
     "resources/js/controls/maplistener.js",

@@ -40,12 +40,24 @@
           move.entity.move(move.dx, move.dy);
         }
 
-        if (move && move.useTurn) {
-          level.takeTurn();
+        if (event === "click") {
+          var clickCoordinate = {
+            x: eventBlob.coordinate.x,
+            y: eventBlob.coordinate.y
+          };
+
+          var entity = level.getEntitiesAt(clickCoordinate)[0];
+
+          if (entity !== undefined) {
+            if (UTIL.manhattanDistance(avatar, entity) === 1 && entity.hp > 0) {
+              avatar.attack(entity);
+              eventBlob.useTurn = true;
+            }
+          }
         }
 
-        if (event === "click") {
-          VAGABOND.writeToLog("[" + eventBlob.coordinate.x + ", " + eventBlob.coordinate.y + "]");
+        if ((move && move.useTurn) || eventBlob.useTurn) {
+          level.takeTurn();
         }
 
         if (DEBUG) {

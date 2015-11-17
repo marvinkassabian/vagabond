@@ -11,7 +11,7 @@
     var Goblin = Object.create(Monster);
 
     Goblin.init = function(x, y, hp, name) {
-      return Monster.init.call(this, x, y, "%", hp, name, "Goblin");
+      return Monster.init.call(this, x, y, "%", hp, name, "Goblin", 3);
     };
 
     // TODO: clean this
@@ -28,7 +28,7 @@
         y: this.y
       };
 
-      var distance = manhattanDistance(currentPosition, playerCoor);
+      var distance = UTIL.manhattanDistance(currentPosition, playerCoor);
 
       if (distance === 1 && level.player.hp > 0) {
         this.attack(level.player, level);
@@ -53,13 +53,6 @@
         dx: randomMove[0],
         dy: randomMove[1]
       };
-    }
-
-    // TODO: do something about duplicate function
-    function manhattanDistance(origin, destination) {
-      var dx = Math.abs(origin.x - destination.x);
-      var dy = Math.abs(origin.y - destination.y);
-      return dx + dy;
     }
 
     // TODO: clean this

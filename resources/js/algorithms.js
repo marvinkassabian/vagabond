@@ -178,7 +178,7 @@
       function cleanVertex(vertex) {
         vertex.pathWeight = Infinity;
         // TODO: decouple heuristic
-        vertex.heuristic = 1 * manhattanDistance(vertex, endCoor);
+        vertex.heuristic = 10 * UTIL.manhattanDistance(vertex, endCoor);
         vertex.getTotal = function() {
           return this.pathWeight + this.heuristic;
         };
@@ -186,10 +186,6 @@
         vertex.previousVertex = undefined;
 
         return vertex;
-      }
-
-      function manhattanDistance(vertexX, vertexY) {
-        return Math.abs(vertexX.x - vertexY.x) + Math.abs(vertexX.y - vertexY.y);
       }
 
       function toMoveArray(vertex) {

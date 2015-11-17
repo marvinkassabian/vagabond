@@ -21,13 +21,14 @@
       // TODO: rename function
       function writeToLog(tile) {
         var coordinate = {
-          x: tile.dataset.x,
-          y: tile.dataset.y
+          x: parseInt(tile.dataset.x),
+          y: parseInt(tile.dataset.y)
         };
 
         listener.eventStack.push({
           state: "click",
-          render: false,
+          render: true,
+          useTurn: false,
           coordinate: coordinate
         });
       }

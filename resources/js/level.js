@@ -15,6 +15,19 @@
       return this;
     };
 
+    Level.getEntitiesAt = function(coordinate) {
+      var ret = [];
+
+      for (var i = 0; i < this.entityPool.length; i++) {
+        var entity = this.entityPool[i];
+        if (entity.x === coordinate.x && entity.y === coordinate.y) {
+          ret.push(entity);
+        }
+      }
+
+      return ret;
+    };
+
     Level.addEntity = function() {
       var args = arguments;
       if (args[0] instanceof Array) {
