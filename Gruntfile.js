@@ -11,30 +11,29 @@ module.exports = function(grunt) {
     "resources/js/datastructures/matrix.js",
     "resources/js/datastructures/graph.js",
     "resources/js/algorithms.js",
-    "resources/js/maps/mapmodes.js",
-    "resources/js/maps/map.js",
-    "resources/js/maps/factory.js",
-    "resources/js/entities/entity.js",
-    "resources/js/entities/killableentity.js",
-    "resources/js/entities/movablekillableentity.js",
-    "resources/js/entities/monster.js",
-    "resources/js/entities/enemies/goblin.js",
-    "resources/js/entities/playerentity.js",
-    "resources/js/interface/information.js",
-    "resources/js/controls/listener.js",
-    "resources/js/controls/maplistener.js",
-    "resources/js/controls/controller.js",
-    "resources/js/screen.js",
-    "resources/js/level.js",
+    "resources/js/model/maps/map.js",
+    "resources/js/model/maps/factory.js",
+    "resources/js/model/entities/entity.js",
+    "resources/js/model/entities/killableentity.js",
+    "resources/js/model/entities/movablekillableentity.js",
+    "resources/js/model/entities/monster.js",
+    "resources/js/model/entities/enemies/goblin.js",
+    "resources/js/model/entities/playerentity.js",
+    "resources/js/view/information.js",
+    "resources/js/controller/listener.js",
+    "resources/js/controller/maplistener.js",
+    "resources/js/controller/controller.js",
+    "resources/js/view/screen.js",
+    "resources/js/model/level.js",
     "resources/js/main.js"
   ];
 
   var utilOutputs = {
-    "resources/js/compiled/util.min.js": utilFiles,
+    "compiled/js/util.min.js": utilFiles,
     "../marvinkassabian.github.io/vagabond/util.min.js": utilFiles
   };
   var vagabondOutputs = {
-    "resources/js/compiled/vagabond.min.js": vagabondFiles,
+    "compiled/js/vagabond.min.js": vagabondFiles,
     "../marvinkassabian.github.io/vagabond/vagabond.min.js": vagabondFiles
   };
 
