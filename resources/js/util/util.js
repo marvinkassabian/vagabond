@@ -193,10 +193,32 @@
       [0, 0]
     ];
 
+    var VALID_MOVES = [
+      [1, 1],
+      [1, -1],
+      [-1, -1],
+      [-1, 1],
+      [1, 0],
+      [0, -1],
+      [-1, 0],
+      [0, 1],
+      [0, 0]
+    ];
+
+    var distance = function(origin, destination, power) {
+      var dx = Math.pow(Math.abs(origin.x - destination.x), power);
+      var dy = Math.pow(Math.abs(origin.y - destination.y), power);
+      return Math.pow(dx + dy, 1 / power);
+    };
+
     var manhattanDistance = function(origin, destination) {
       var dx = Math.abs(origin.x - destination.x);
       var dy = Math.abs(origin.y - destination.y);
       return dx + dy;
+    };
+
+    var straightLineDistance = function(origin, destination) {
+      return distance(origin, destination, 2);
     };
 
     this.namespace = namespace;
@@ -210,7 +232,10 @@
     this.random = random;
     this.shuffle = shuffle;
     this.ADJACENT = ADJACENT;
+    this.VALID_MOVES = VALID_MOVES;
     this.manhattanDistance = manhattanDistance;
+    this.straightLineDistance = straightLineDistance;
+    this.distance = distance;
 
     return this;
   }).call(UTIL || {});

@@ -57,8 +57,8 @@
 
           vertex = this.vertexMatrix.get(i, j);
 
-          for (k = 0; k < UTIL.ADJACENT.length; k++) {
-            move = UTIL.ADJACENT[k];
+          for (k = 0; k < UTIL.VALID_MOVES.length; k++) {
+            move = UTIL.VALID_MOVES[k];
 
             if (this.vertexMatrix.isValidCoordinate(i + move[0], j + move[1])) {
               neighbor = this.vertexMatrix.get(i + move[0], j + move[1]);
@@ -79,7 +79,7 @@
 
     Graph.getEdgeValue = function(x, y) {
       // return (x.weight + y.weight) / 2;
-      return Math.max(x.weight, y.weight);
+      return Math.max(x.weight, y.weight) * UTIL.distance({x: x.x, y: x.y}, {x: y.x, y: y.y}, 2);
     };
 
     Graph.getVertex = function(x, y) {

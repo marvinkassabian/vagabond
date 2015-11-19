@@ -136,7 +136,11 @@
       }
     };
 
-    var aStar = function(graph, startCoor, endCoor) {
+    var aStar = function(graph, startCoor, endCoor, heuristic) {
+      heuristic = heuristic || function(origin, destination) {
+        return 10 * UTIL.distance(origin, destination, 2);
+      };
+
       var vertex, i, neighbor;
       var dirtyVertices = [];
       var remaining = [];
@@ -177,8 +181,7 @@
 
       function cleanVertex(vertex) {
         vertex.pathWeight = Infinity;
-        // TODO: decouple heuristic
-        vertex.heuristic = 10 * UTIL.manhattanDistance(vertex, endCoor);
+        vertex.heuristic = heuristic(vertex, endCoor);
         vertex.getTotal = function() {
           return this.pathWeight + this.heuristic;
         };

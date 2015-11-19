@@ -11,6 +11,7 @@
     var Goblin = Object.create(Monster);
 
     Goblin.init = function(x, y, hp, name) {
+      this.aStarWeights = [UTIL.random(10, 1), UTIL.random(5, 1)];
       return Monster.init.call(this, x, y, "%", hp, name, "Goblin", 3);
     };
 
@@ -44,7 +45,7 @@
     };
 
     function getRandomMove() {
-      var moves = UTIL.ADJACENT;
+      var moves = UTIL.VALID_MOVES;
 
       var randomMove = moves[Math.floor(UTIL.random(moves.length))];
 
@@ -66,7 +67,9 @@
         y: this.y
       };
 
-      var nextMoves = ALGORITHMS.aStar(level.map.graph, currentPosition, playerCoor);
+      var nextMoves = ALGORITHMS.aStar(level.map.graph, currentPosition, playerCoor, function(origin, destination) {
+        return this.aStarWeights[0] * UTIL.distance(origin, destination, this.aStarWeights[1]);
+      }.bind(this));
       var nextMove = nextMoves.shift();
 
       if (this.isValidMove(nextMove.dx, nextMove.dy, level)) {
