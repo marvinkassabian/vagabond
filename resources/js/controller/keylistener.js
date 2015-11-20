@@ -3,7 +3,6 @@
 
   VAGABOND.namespace("VAGABOND.CONTROLLER");
 
-  // TODO: think of a better name
   VAGABOND.CONTROLLER = (function(module) {
 
     var VirtualKeys = UTIL.VIRTUAL_KEYS.VirtualKeys;
