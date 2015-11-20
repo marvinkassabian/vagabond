@@ -29,9 +29,17 @@ module.exports = function(grunt) {
     "resources/js/controller/maplistener.js",
     "resources/js/controller/controller.js",
     "resources/js/view/screen.js",
-    "resources/js/model/level.js",
+    "resources/js/model/level.js"
+  ];
+
+  var mainFile = [
     "resources/js/main.js"
   ];
+
+  var mainOutputs = {
+    "compiled/js/main.min.js": mainFile,
+    "../marvinkassabian.github.io/vagabond/main.min.js": mainFile
+  };
 
   var utilOutputs = {
     "compiled/js/util.min.js": utilFiles,
@@ -71,17 +79,14 @@ module.exports = function(grunt) {
       vagabond: {
         files: vagabondOutputs
       },
-      util_DEBUG: {
-        files: utilOutputs,
-        options: {
-          compress: debugOn
-        }
-      },
       vagabond_DEBUG: {
         files: vagabondOutputs,
         options: {
           compress: debugOn
         }
+      },
+      main: {
+        files: mainOutputs
       }
     }
   });
@@ -91,7 +96,7 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask("default", ["production"]);
-  grunt.registerTask("production", ["uglify:util", "uglify:vagabond"]);
-  grunt.registerTask("debug", ["uglify:util_DEBUG", "uglify:vagabond_DEBUG"]);
+  grunt.registerTask("production", ["uglify:util", "uglify:vagabond", "uglify:main"]);
+  grunt.registerTask("debug", ["uglify:util", "uglify:vagabond_DEBUG", "uglify:main"]);
 
 };
