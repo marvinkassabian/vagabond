@@ -1,9 +1,9 @@
 (function() {
   "use strict";
 
-  VAGABOND.namespace("VAGABOND.DATA_STRUCTURES.MATRIX");
+  VAGABOND.namespace("VAGABOND.DATA_STRUCTURES");
 
-  VAGABOND.DATA_STRUCTURES.MATRIX = (function(module) {
+  VAGABOND.DATA_STRUCTURES = (function(module) {
 
     var Matrix = {};
 
@@ -155,5 +155,5 @@
 
     return module;
 
-  })(VAGABOND.DATA_STRUCTURES.MATRIX);
+  })(VAGABOND.DATA_STRUCTURES);
 })();

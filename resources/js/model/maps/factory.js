@@ -3,6 +3,7 @@
 
   VAGABOND.namespace("VAGABOND.MODEL.MAPS.FACTORY");
 
+  // TODO: figure out proper conventions for factory pattern in JavaScript
   VAGABOND.MODEL.MAPS.FACTORY = (function(module) {
 
     var Map = VAGABOND.MODEL.MAPS.Map;

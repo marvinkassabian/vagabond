@@ -3,9 +3,9 @@
 
   // TODO: rename to something else, maybe
   // TODO: might move to controller folder, unsure
-  VAGABOND.namespace("VAGABOND.MODEL.LEVEL");
+  VAGABOND.namespace("VAGABOND.MODEL");
 
-  VAGABOND.MODEL.LEVEL = (function(module) {
+  VAGABOND.MODEL = (function(module) {
 
     var Level = {};
 
@@ -82,5 +82,5 @@
 
     return module;
 
-  })(VAGABOND.MODEL.LEVEL);
+  })(VAGABOND.MODEL);
 })();

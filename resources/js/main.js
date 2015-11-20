@@ -5,7 +5,7 @@
   var Goblin = VAGABOND.MODEL.ENTITIES.ENEMIES.Goblin;
   var MAP_FACTORY = VAGABOND.MODEL.MAPS.FACTORY;
   var Screen = VAGABOND.SCREEN.Screen;
-  var Level = VAGABOND.MODEL.LEVEL.Level;
+  var Level = VAGABOND.MODEL.Level;
   var KeyListener = VAGABOND.CONTROLLER.KeyListener;
   var Controller = VAGABOND.CONTROLLER.Controller;
   var Information = VAGABOND.VIEW.Information;

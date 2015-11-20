@@ -5,8 +5,8 @@
 
   VAGABOND.MODEL.MAPS = (function(module) {
 
-    var Matrix = VAGABOND.DATA_STRUCTURES.MATRIX.Matrix;
-    var Graph = VAGABOND.DATA_STRUCTURES.GRAPH.Graph;
+    var Matrix = VAGABOND.DATA_STRUCTURES.Matrix;
+    var Graph = VAGABOND.DATA_STRUCTURES.Graph;
 
     var Map = Object.create(Matrix);
 
