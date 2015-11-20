@@ -43,10 +43,57 @@
           }
         }
       }
+
     };
 
     Map.generate = function() {
 
+    };
+
+    // TODO: clean this
+    Map.getPossibleMoves = function(entity) {
+      var ret = [];
+      var added = {};
+      var movement = entity.movement;
+      var coor = {
+        x: entity.x,
+        y: entity.y
+      };
+
+      flood(movement, coor, this);
+
+      return ret;
+
+      function flood(movesLeft, coor, map) {
+        var VALID_MOVES = UTIL.VALID_MOVES;
+        var move, i, nextCoor, nextMovesLeft;
+
+        if (added[coor.x + ":" + coor.y] !== undefined ||
+            added[coor.x + ":" + coor.y] > movesLeft) {
+          return;
+        } else if (movesLeft >= 0) {
+          added[coor.x + ":" + coor.y] = movesLeft;
+          ret.push(coor);
+
+          if (movesLeft > 0) {
+            for (i = 0; i < VALID_MOVES.length; i++) {
+              move = VALID_MOVES[i];
+              nextCoor = {
+                x: coor.x + move[0],
+                y: coor.y + move[1]
+              };
+
+              if (map.isValidCoordinate(nextCoor.x, nextCoor.y)) {
+                nextMovesLeft = movesLeft - map.graph.getEdgeValue(coor, nextCoor);
+                if (map.isValidCoordinate(nextCoor.x, nextCoor.y)) {
+                  flood(nextMovesLeft, nextCoor);
+                }
+              }
+            }
+          }
+
+        }
+      }
     };
 
     module.Map = Map;

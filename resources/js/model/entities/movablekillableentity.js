@@ -13,7 +13,7 @@
     MovableKillableEntity.init = function(id, x, y, char, hp) {
       KillableEntity.init.call(this, id, x, y, char, hp);
 
-      this.movement = 6;
+      this.movement = 5;
 
       return this;
     };

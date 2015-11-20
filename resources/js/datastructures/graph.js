@@ -78,6 +78,9 @@
     };
 
     Graph.getEdgeValue = function(x, y) {
+      x = this.getVertex(x.x, x.y);
+      y = this.getVertex(y.x, y.y);
+
       // return (x.weight + y.weight) / 2;
       return Math.max(x.weight, y.weight) * UTIL.distance({x: x.x, y: x.y}, {x: y.x, y: y.y}, 2);
     };

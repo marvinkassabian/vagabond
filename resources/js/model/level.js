@@ -2,6 +2,7 @@
   "use strict";
 
   // TODO: rename to something else, maybe
+  // TODO: might move to controller folder, unsure
   VAGABOND.namespace("VAGABOND.LEVEL");
 
   VAGABOND.LEVEL = (function(module) {

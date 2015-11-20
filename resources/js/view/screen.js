@@ -52,7 +52,7 @@
     //       well, put method signature in at least for duck typing.
     Screen.toElement = function(options) {
       // TODO: change map variable to screen, do in other relevent places too.
-      var i, j, map, tileElement, value;
+      var i, j, screen, tileElement, value;
 
       options = UTIL.extend(options, {
         formatValue: function(value) {
@@ -73,21 +73,21 @@
         }
       });
 
-      map = document.createElement("div");
-      map.className = "screen";
+      screen = document.createElement("div");
+      screen.className = "screen";
 
       for (i = 0; i < this.height; i++) {
         for (j = 0; j < this.width; j++) {
           value = options.formatValue.call(this, this.get(j, i), j, i);
           tileElement = options.formatElement.call(this, value, j, i);
 
-          map.appendChild(tileElement);
+          screen.appendChild(tileElement);
         }
 
-        map.appendChild(document.createElement("br"));
+        screen.appendChild(document.createElement("br"));
       }
 
-      return map;
+      return screen;
     };
 
     // TODO: decouple from screen, and into parent object for both screen
