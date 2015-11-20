@@ -12,10 +12,12 @@
     MapListener.init = function(listener) {
 
       var tiles = document.getElementsByClassName("tile");
+      this.tileMap = {};
 
       for (var i = 0; i < tiles.length; i++) {
         var tile = tiles[i];
         tile.addEventListener("click", handleClickEvent.bind(this, tile), false);
+        this.tileMap[tile.dataset.x + ":" + tile.dataset.y] = tile;
       }
 
       function handleClickEvent(tile) {
@@ -33,6 +35,10 @@
       }
 
       return this;
+    };
+
+    MapListener.getTile = function(x, y) {
+      return this.tileMap[x + ":" + y];
     };
 
     module.MapListener = MapListener;

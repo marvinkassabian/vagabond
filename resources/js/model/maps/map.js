@@ -50,17 +50,29 @@
 
     };
 
-    // TODO: clean this
+    // TODO: clean this, it is painfully slow
+    // HACK: this code needs to get either refactored, or removed
     Map.getPossibleMoves = function(entity) {
       var ret = [];
       var added = {};
+
+      added.get = function(id) {
+        return added[id] === undefined ? -Infinity : added[id];
+      };
+
+      ret.add = function(obj, check) {
+        if (check.get(obj.x + ":" + obj.y) === -Infinity) {
+          ret.push(obj);
+        }
+      };
+
       var movement = entity.movement;
-      var coor = {
+      var coordinate = {
         x: entity.x,
         y: entity.y
       };
 
-      flood(movement, coor, this);
+      flood(movement, coordinate, this);
 
       return ret;
 
@@ -68,27 +80,22 @@
         var VALID_MOVES = UTIL.VALID_MOVES;
         var move, i, nextCoor, nextMovesLeft;
 
-        if (added[coor.x + ":" + coor.y] !== undefined ||
-            added[coor.x + ":" + coor.y] > movesLeft) {
+        if (added.get(coor.x + ":" + coor.y) > movesLeft) {
           return;
         } else if (movesLeft >= 0) {
+          ret.add(coor, added);
           added[coor.x + ":" + coor.y] = movesLeft;
-          ret.push(coor);
 
-          if (movesLeft > 0) {
-            for (i = 0; i < VALID_MOVES.length; i++) {
-              move = VALID_MOVES[i];
-              nextCoor = {
-                x: coor.x + move[0],
-                y: coor.y + move[1]
-              };
+          for (i = 0; i < VALID_MOVES.length; i++) {
+            move = VALID_MOVES[i];
+            nextCoor = {
+              x: coor.x + move[0],
+              y: coor.y + move[1]
+            };
 
-              if (map.isValidCoordinate(nextCoor.x, nextCoor.y)) {
-                nextMovesLeft = movesLeft - map.graph.getEdgeValue(coor, nextCoor);
-                if (map.isValidCoordinate(nextCoor.x, nextCoor.y)) {
-                  flood(nextMovesLeft, nextCoor);
-                }
-              }
+            if (map.isValidCoordinate(nextCoor.x, nextCoor.y)) {
+              nextMovesLeft = movesLeft - map.graph.getEdgeValue(coor, nextCoor);
+              flood(nextMovesLeft, nextCoor, map);
             }
           }
 

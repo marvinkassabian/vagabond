@@ -64,6 +64,7 @@
 
           var tileElement = document.createElement("span");
           tileElement.className = "tile tile-" + ((value === " ") ? "SPACE" : value);
+          tileElement.id = (x + offset.x) + ":" + (y + offset.y);
           tileElement.dataset.x = (x + offset.x);
           tileElement.dataset.y = (y + offset.y);
 

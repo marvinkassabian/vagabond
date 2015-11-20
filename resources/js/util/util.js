@@ -201,8 +201,7 @@
       [1, 0],
       [0, -1],
       [-1, 0],
-      [0, 1],
-      [0, 0]
+      [0, 1]
     ];
 
     var distance = function(origin, destination, power) {

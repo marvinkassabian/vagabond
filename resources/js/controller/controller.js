@@ -76,7 +76,16 @@
         if (eventBlob.render) {
           level.renderTo(screen);
           screen.renderToElement(document.body.getElementsByClassName("map")[0]);
-          Object.create(MapListener).init(this.listener);
+          var ml = Object.create(MapListener).init(this.listener);
+
+          var possibleMoves = level.map.getPossibleMoves(level.player);
+
+          for (var i = 0; i < possibleMoves.length; i++) {
+            var possibleMove = possibleMoves[i];
+            // TODO: needs to check to see if map coor is valid on the screen
+            (ml.getTile(possibleMove.x, possibleMove.y) || {}).className += " possible";
+          }
+
           info.renderToElement(document.body.getElementsByClassName("selected-info")[0]);
         }
       }

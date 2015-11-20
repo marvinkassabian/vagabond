@@ -119,3 +119,7 @@ span:hover {
 .tile-u, .tile-v {
   color: #FFFFFF;
 }
+
+.possible {
+  background: #922;
+}
