@@ -7,6 +7,7 @@
 
     var MAP_FACTORY = VAGABOND.MAPS.FACTORY;
     var MapListener = VAGABOND.CONTROLS.MapListener;
+    var eventStack = VAGABOND.CONTROLLER.EventStack.getEventStack();
 
     var Controller = {};
 
@@ -18,9 +19,9 @@
 
     // TODO: clean this up, clean all of this up
     Controller.processInput = function(screen, avatar, level, info, logger) {
-      if (this.listener.eventStack.length > 0) {
+      if (eventStack.size() > 0) {
 
-        var eventBlob = this.listener.eventStack.pop();
+        var eventBlob = eventStack.pop();
         var event = eventBlob.state;
 
         var moves = {
@@ -57,7 +58,7 @@
         if (eventBlob.render) {
           level.renderTo(screen);
           screen.renderToElement(document.body.getElementsByClassName("map")[0]);
-          var mapListener = Object.create(MapListener).init(this.listener);
+          var mapListener = Object.create(MapListener).init();
 
           colorPossibleMoveTiles(level, mapListener);
 

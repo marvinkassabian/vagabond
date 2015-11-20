@@ -8,12 +8,11 @@
 
     var VirtualKeys = UTIL.VIRTUAL_KEYS.VirtualKeys;
 
-    var Listener = {};
+    var eventStack = VAGABOND.CONTROLLER.EventStack.getEventStack();
 
-    Listener.init = function() {
-      // TODO: make event stack a seperate object to pass to listeners
-      this.eventStack = [];
+    var KeyListener = {};
 
+    KeyListener.init = function() {
       this.codes = {};
       this.codes[VirtualKeys.VK_LEFT] = "screenLeft";
       this.codes[VirtualKeys.VK_RIGHT] = "screenRight";
@@ -37,20 +36,13 @@
       return this;
     };
 
-    Listener.addToEventStack = function(eventBlob) {
-      // TODO: seperate eventStack and listener
-      if (this.eventStack.length === 0) {
-        this.eventStack.push(eventBlob);
-      }
-    };
-
-    Listener.onKey = function(e) {
+    KeyListener.onKey = function(e) {
       var state = this.codes[e.keyCode];
       if (state === undefined) {
         return;
       }
 
-      this.addToEventStack({state: state, render: true});
+      eventStack.add({state: state, render: true});
 
       if (e.preventDefault !== undefined) {
         e.preventDefault();
@@ -61,7 +53,7 @@
       }
     };
 
-    module.Listener = Listener;
+    module.KeyListener = KeyListener;
 
     return module;
 

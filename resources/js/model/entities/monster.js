@@ -6,8 +6,7 @@
   VAGABOND.ENTITIES = (function(module) {
 
     var MovableKillableEntity = VAGABOND.ENTITIES.MovableKillableEntity;
-    var Logger = VAGABOND.VIEW.Logger;
-    var logger = Logger.getLogger();
+    var logger = VAGABOND.VIEW.Logger.getLogger();
 
     var Monster = Object.create(MovableKillableEntity);
 

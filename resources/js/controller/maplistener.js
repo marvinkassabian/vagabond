@@ -8,8 +8,10 @@
 
     var MapListener = {};
 
+    var eventStack = VAGABOND.CONTROLLER.EventStack.getEventStack();
+
     // TODO: make it so that this doesn't need to get called each move
-    MapListener.init = function(listener) {
+    MapListener.init = function() {
 
       var tiles = document.getElementsByClassName("tile");
       this.tileMap = {};
@@ -26,7 +28,7 @@
           y: parseInt(tile.dataset.y)
         };
 
-        listener.addToEventStack({
+        eventStack.add({
           state: "click",
           render: true,
           useTurn: false,

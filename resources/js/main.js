@@ -6,10 +6,12 @@
   var MAP_FACTORY = VAGABOND.MAPS.FACTORY;
   var Screen = VAGABOND.SCREEN.Screen;
   var Level = VAGABOND.LEVEL.Level;
-  var Listener = VAGABOND.CONTROLS.Listener;
+  var KeyListener = VAGABOND.CONTROLS.KeyListener;
   var Controller = VAGABOND.CONTROLS.Controller;
   var Information = VAGABOND.INTERFACE.Information;
-  var Logger = VAGABOND.VIEW.Logger;
+
+  var logger = VAGABOND.VIEW.Logger.getLogger();
+  var eventStack = VAGABOND.CONTROLLER.EventStack.getEventStack();
 
   var milo = Object.create(PlayerEntity).init(4, 4, "#", 34, "Milo", "Dwarf", 15);
   var otis = Object.create(Goblin).init(5, 10, 50, "Grot");
@@ -19,15 +21,14 @@
   map.generate();
 
   var screen = Object.create(Screen).init(20, 80, 0, 0);
-  var listener = Object.create(Listener).init();
-  var controller = Object.create(Controller).init(listener);
+  var keyListener = Object.create(KeyListener).init();
+  var controller = Object.create(Controller).init(keyListener);
   var level = Object.create(Level).init(map);
   var info = Object.create(Information).init(milo);
-  var logger = Logger.getLogger();
 
   global.level = level;
 
-  listener.eventStack.unshift({state: "do nothing", render: true});
+  eventStack.add({state: "do nothing", render: true});
 
   level.addEntity(milo, otis, henry);
 

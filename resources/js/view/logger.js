@@ -33,8 +33,8 @@
       return this;
     };
 
-    Logger.log = function(string) {
-      this.logs.unshift(string);
+    Logger.log = function(log) {
+      this.logs.unshift(log);
     };
 
     Logger.toSentence = function(subject, verb, object) {
