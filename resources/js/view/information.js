@@ -5,13 +5,17 @@
 
   VAGABOND.INTERFACE = (function(module) {
 
-    var Information = {};
+    var View = VAGABOND.VIEW.View;
+
+    var Information = Object.create(View);
 
     Information.init = function(entity) {
       this.selectedEntity = entity;
 
       return this;
     };
+
+    Information.setEntity = Information.init;
 
     Information.toElement = function() {
       var info = document.createElement("div");
@@ -27,12 +31,6 @@
       }
 
       return info;
-    };
-
-    Information.renderToElement = function(element) {
-      var screenElement = this.toElement();
-
-      element.innerHTML = screenElement.innerHTML;
     };
 
     module.Information = Information;

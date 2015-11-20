@@ -9,6 +9,7 @@
   var Listener = VAGABOND.CONTROLS.Listener;
   var Controller = VAGABOND.CONTROLS.Controller;
   var Information = VAGABOND.INTERFACE.Information;
+  var Logger = VAGABOND.VIEW.Logger;
 
   var milo = Object.create(PlayerEntity).init(4, 4, "#", 34, "Milo", "Dwarf", 15);
   var otis = Object.create(Goblin).init(5, 10, 50, "Grot");
@@ -22,6 +23,7 @@
   var controller = Object.create(Controller).init(listener);
   var level = Object.create(Level).init(map);
   var info = Object.create(Information).init(milo);
+  var logger = Logger.getLogger();
 
   global.level = level;
 
@@ -47,7 +49,7 @@
 
   var func = function() {
 
-    controller.processInput(screen, milo, level, info);
+    controller.processInput(screen, milo, level, info, logger);
 
     // TODO: switch UTIL.setTimeout to window.requestAnimationFrame
     UTIL.setTimeout(func, 30);

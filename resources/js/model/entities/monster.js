@@ -6,6 +6,8 @@
   VAGABOND.ENTITIES = (function(module) {
 
     var MovableKillableEntity = VAGABOND.ENTITIES.MovableKillableEntity;
+    var Logger = VAGABOND.VIEW.Logger;
+    var logger = Logger.getLogger();
 
     var Monster = Object.create(MovableKillableEntity);
 
@@ -41,11 +43,11 @@
 
     // TODO: clean this
     Monster.attack = function(entity) {
-      VAGABOND.writeToLog(VAGABOND.toSentence(this.getFullName(), "attacked", entity.getFullName()));
+      logger.log(logger.toSentence(this.getFullName(), "attacked", entity.getFullName()));
       entity.hp = Math.max(entity.hp - this.strength, 0);
       if (entity.hp <= 0) {
         // TODO: turn into a function
-        VAGABOND.writeToLog(VAGABOND.toSentence(this.getFullName(), "killed", entity.getFullName()));
+        logger.log(logger.toSentence(this.getFullName(), "killed", entity.getFullName()));
 
         // TODO: do something more elegant
         entity.move = function() {};

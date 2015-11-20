@@ -7,9 +7,6 @@
 
     var View = {};
 
-    View.toElement = function() {
-    };
-
     View.renderToElement = function(element) {
       var viewElement = this.toElement();
 
@@ -19,5 +16,5 @@
     module.View = View;
 
     return module;
-  })(VAGABOND.INTERFACE);
+  })(VAGABOND.VIEW);
 })();

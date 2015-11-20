@@ -56,23 +56,10 @@
       var ret = [];
       var added = {};
 
-      added.get = function(id) {
-        return added[id] === undefined ? -Infinity : added[id];
-      };
-
-      ret.add = function(obj, check) {
-        if (check.get(obj.x + ":" + obj.y) === -Infinity) {
-          ret.push(obj);
-        }
-      };
-
-      var movement = entity.movement;
-      var coordinate = {
+      flood(entity.movement, {
         x: entity.x,
         y: entity.y
-      };
-
-      flood(movement, coordinate, this);
+      }, this);
 
       return ret;
 
@@ -80,10 +67,13 @@
         var VALID_MOVES = UTIL.VALID_MOVES;
         var move, i, nextCoor, nextMovesLeft;
 
-        if (added.get(coor.x + ":" + coor.y) > movesLeft) {
+        if (added[coor.x + ":" + coor.y] > movesLeft) {
           return;
         } else if (movesLeft >= 0) {
-          ret.add(coor, added);
+          if (added[coor.x + ":" + coor.y] === undefined) {
+            ret.push(coor);
+          }
+
           added[coor.x + ":" + coor.y] = movesLeft;
 
           for (i = 0; i < VALID_MOVES.length; i++) {

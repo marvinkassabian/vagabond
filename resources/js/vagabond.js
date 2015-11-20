@@ -21,24 +21,7 @@
       return o;
     };
 
-    // TODO: make a DOM editor module and move this to it, or a logger module
-    var writeToLog = function(string) {
-      var log = document.body.getElementsByClassName("logs")[0];
-      var line = document.createElement("span");
-
-      line.innerHTML = string + "<br>";
-
-      log.insertBefore(line, log.firstChild);
-    };
-
-    // TODO: put this in the logger module as well
-    var toSentence = function(subject, verb, object) {
-      return "[" + subject + "] " + verb + " [" + object + "]";
-    };
-
     this.namespace = namespace;
-    this.writeToLog = writeToLog;
-    this.toSentence = toSentence;
 
     return this;
   }).call(VAGABOND || {});

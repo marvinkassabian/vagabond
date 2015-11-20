@@ -6,6 +6,7 @@
   VAGABOND.SCREEN = (function(module) {
 
     var Matrix = VAGABOND.DATA_STRUCTURES.MATRIX.Matrix;
+    var View = VAGABOND.VIEW.View;
 
     var Screen = Object.create(Matrix);
 
@@ -47,11 +48,7 @@
       };
     };
 
-    // TODO: decouple from screen, and into parent object for both screen
-    //       and other user interface objects.
-    //       well, put method signature in at least for duck typing.
     Screen.toElement = function(options) {
-      // TODO: change map variable to screen, do in other relevent places too.
       var i, j, screen, tileElement, value;
 
       options = UTIL.extend(options, {
@@ -91,13 +88,7 @@
       return screen;
     };
 
-    // TODO: decouple from screen, and into parent object for both screen
-    //       and other interface objects.
-    Screen.renderToElement = function(element) {
-      var screenElement = this.toElement();
-
-      element.innerHTML = screenElement.innerHTML;
-    };
+    Screen.renderToElement = View.renderToElement;
 
     module.Screen = Screen;
 

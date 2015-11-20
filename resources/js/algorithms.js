@@ -138,7 +138,7 @@
 
     var aStar = function(graph, startCoor, endCoor, heuristic) {
       heuristic = heuristic || function(origin, destination) {
-        return 10 * UTIL.distance(origin, destination, 2);
+        return UTIL.manhattanDistance(origin, destination);
       };
 
       var vertex, i, neighbor;

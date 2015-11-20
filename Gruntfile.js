@@ -11,6 +11,8 @@ module.exports = function(grunt) {
     "resources/js/datastructures/matrix.js",
     "resources/js/datastructures/graph.js",
     "resources/js/algorithms.js",
+    "resources/js/view/view.js",
+    "resources/js/view/logger.js",
     "resources/js/model/maps/map.js",
     "resources/js/model/maps/factory.js",
     "resources/js/model/entities/entity.js",

@@ -42,6 +42,11 @@ body {
   background: #080808;
 }
 
+
+.possible {
+  background: #922;
+}
+
 .tile-\# {
   background: white;
   color: rgba(255,0,0,0.8);
@@ -118,8 +123,4 @@ span:hover {
 
 .tile-u, .tile-v {
   color: #FFFFFF;
-}
-
-.possible {
-  background: #922;
 }

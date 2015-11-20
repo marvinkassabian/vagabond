@@ -17,7 +17,7 @@
     };
 
     // TODO: clean this up, clean all of this up
-    Controller.processInput = function(screen, avatar, level, info) {
+    Controller.processInput = function(screen, avatar, level, info, logger) {
       if (this.listener.eventStack.length > 0) {
 
         var eventBlob = this.listener.eventStack.pop();
@@ -76,20 +76,26 @@
         if (eventBlob.render) {
           level.renderTo(screen);
           screen.renderToElement(document.body.getElementsByClassName("map")[0]);
-          var ml = Object.create(MapListener).init(this.listener);
+          var mapListener = Object.create(MapListener).init(this.listener);
 
-          var possibleMoves = level.map.getPossibleMoves(level.player);
-
-          for (var i = 0; i < possibleMoves.length; i++) {
-            var possibleMove = possibleMoves[i];
-            // TODO: needs to check to see if map coor is valid on the screen
-            (ml.getTile(possibleMove.x, possibleMove.y) || {}).className += " possible";
-          }
+          colorPossibleMoveTiles(level, mapListener);
 
           info.renderToElement(document.body.getElementsByClassName("selected-info")[0]);
+          logger.renderToElement(document.body.getElementsByClassName("logs")[0]);
         }
       }
     };
+
+    // TODO: clean this
+    function colorPossibleMoveTiles(level, mapListener) {
+      var possibleMoves = level.map.getPossibleMoves(level.player);
+
+      for (var i = 0; i < possibleMoves.length; i++) {
+        var possibleMove = possibleMoves[i];
+        // TODO: needs to check to see if map coor is valid on the screen
+        (mapListener.getTile(possibleMove.x, possibleMove.y) || {}).className += " possible";
+      }
+    }
 
     // START DEBUG CODE
 
