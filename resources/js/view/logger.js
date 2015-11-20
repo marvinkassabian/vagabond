@@ -25,9 +25,10 @@
       singleton = logger;
     };
 
-    Logger.init = function() {
+    Logger.init = function(visibleLogSize) {
       this.logs = [];
       this.offset = 0;
+      this.visibleLogSize = visibleLogSize || 10;
 
       return this;
     };
@@ -44,7 +45,7 @@
       var logs = document.createElement("div");
       logs.className = "logs";
 
-      for (var i = this.offset; i < this.logs.length; i++) {
+      for (var i = this.offset; i < Math.min(this.logs.length, this.offset + this.visibleLogSize); i++) {
         var log = this.logs[i];
         var logElement = document.createElement("span");
         logElement.innerHTML = log;

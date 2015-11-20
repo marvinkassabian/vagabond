@@ -41,29 +41,10 @@
         }
 
         if (event === "click") {
-          var clickCoordinate = {
-            x: eventBlob.coordinate.x,
-            y: eventBlob.coordinate.y
-          };
-
-          // TODO: sort entities by health
-          // TODO: eventually allow player to choose which entity to attack
-          var entity = level.getEntitiesAt(clickCoordinate).sort(function(a, b) {
-            return b.hp - a.hp;
-          })[0];
-
-          if (entity !== undefined) {
-
-            info.init(entity);
-
-            if (UTIL.manhattanDistance(avatar, entity) === 1 && entity.hp > 0) {
-              avatar.attack(entity);
-              eventBlob.useTurn = true;
-            }
-          } else {
-            info.init(avatar);
-          }
+          handleClick(level, info, avatar, eventBlob);
         }
+
+        handleLogger(logger, eventBlob);
 
         if ((move && move.useTurn) || eventBlob.useTurn) {
           level.takeTurn();
@@ -85,6 +66,41 @@
         }
       }
     };
+
+    function handleLogger(logger, eventBlob) {
+      var event = eventBlob.state;
+
+      if (event === "logDown") {
+        logger.offset = Math.min(logger.offset + 1, Math.max(logger.logs.length - 1, 0));
+      } else if (event === "logUp") {
+        logger.offset = Math.max(logger.offset - 1, 0);
+      }
+    }
+
+    function handleClick(level, info, avatar, eventBlob) {
+      var clickCoordinate = {
+        x: eventBlob.coordinate.x,
+        y: eventBlob.coordinate.y
+      };
+
+      // TODO: sort entities by health
+      // TODO: eventually allow player to choose which entity to attack
+      var entity = level.getEntitiesAt(clickCoordinate).sort(function(a, b) {
+        return b.hp - a.hp;
+      })[0];
+
+      if (entity !== undefined) {
+
+        info.init(entity);
+
+        if (UTIL.manhattanDistance(avatar, entity) === 1 && entity.hp > 0) {
+          avatar.attack(entity);
+          eventBlob.useTurn = true;
+        }
+      } else {
+        info.init(avatar);
+      }
+    }
 
     // TODO: clean this
     function colorPossibleMoveTiles(level, mapListener) {

@@ -23,6 +23,8 @@
       this.codes[VirtualKeys.VK_D] = "charRight";
       this.codes[VirtualKeys.VK_W] = "charUp";
       this.codes[VirtualKeys.VK_S] = "charDown";
+      this.codes[VirtualKeys.VK_NUMPAD8] = "logUp";
+      this.codes[VirtualKeys.VK_NUMPAD2] = "logDown";
 
       if (DEBUG) {
         this.codes[VirtualKeys.VK_SPACE] = "generate";
