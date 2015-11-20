@@ -1,10 +1,10 @@
 (function() {
   "use strict";
 
-  VAGABOND.namespace("VAGABOND.CONTROLS");
+  VAGABOND.namespace("VAGABOND.CONTROLLER");
 
   // TODO: reorganize listener hierarchy
-  VAGABOND.CONTROLS = (function(module) {
+  VAGABOND.CONTROLLER = (function(module) {
 
     var MapListener = {};
 
@@ -47,6 +47,6 @@
 
     return module;
 
-  })(VAGABOND.CONTROLS);
+  })(VAGABOND.CONTROLLER);
 
 })();

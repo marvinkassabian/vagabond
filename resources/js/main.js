@@ -1,14 +1,14 @@
 (function(global) { // jshint ignore:line
   "use strict";
 
-  var PlayerEntity = VAGABOND.ENTITIES.PlayerEntity;
-  var Goblin = VAGABOND.ENTITIES.ENEMIES.Goblin;
-  var MAP_FACTORY = VAGABOND.MAPS.FACTORY;
+  var PlayerEntity = VAGABOND.MODEL.ENTITIES.PlayerEntity;
+  var Goblin = VAGABOND.MODEL.ENTITIES.ENEMIES.Goblin;
+  var MAP_FACTORY = VAGABOND.MODEL.MAPS.FACTORY;
   var Screen = VAGABOND.SCREEN.Screen;
-  var Level = VAGABOND.LEVEL.Level;
-  var KeyListener = VAGABOND.CONTROLS.KeyListener;
-  var Controller = VAGABOND.CONTROLS.Controller;
-  var Information = VAGABOND.INTERFACE.Information;
+  var Level = VAGABOND.MODEL.LEVEL.Level;
+  var KeyListener = VAGABOND.CONTROLLER.KeyListener;
+  var Controller = VAGABOND.CONTROLLER.Controller;
+  var Information = VAGABOND.VIEW.Information;
 
   var logger = VAGABOND.VIEW.Logger.getLogger();
   var eventStack = VAGABOND.CONTROLLER.EventStack.getEventStack();

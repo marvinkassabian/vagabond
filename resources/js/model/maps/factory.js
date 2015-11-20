@@ -1,11 +1,11 @@
 (function() {
   "use strict";
 
-  VAGABOND.namespace("VAGABOND.MAPS.FACTORY");
+  VAGABOND.namespace("VAGABOND.MODEL.MAPS.FACTORY");
 
-  VAGABOND.MAPS.FACTORY = (function(module) {
+  VAGABOND.MODEL.MAPS.FACTORY = (function(module) {
 
-    var Map = VAGABOND.MAPS.Map;
+    var Map = VAGABOND.MODEL.MAPS.Map;
     var ALGORITHMS = VAGABOND.ALGORITHMS;
 
     var createHeightMap = function(size, options) {
@@ -76,5 +76,5 @@
 
     return module;
 
-  })(VAGABOND.MAPS.FACTORY);
+  })(VAGABOND.MODEL.MAPS.FACTORY);
 })();

@@ -1,12 +1,12 @@
 (function() {
   "use strict";
 
-  VAGABOND.namespace("VAGABOND.CONTROLS");
+  VAGABOND.namespace("VAGABOND.CONTROLLER");
 
-  VAGABOND.CONTROLS = (function(module) {
+  VAGABOND.CONTROLLER = (function(module) {
 
-    var MAP_FACTORY = VAGABOND.MAPS.FACTORY;
-    var MapListener = VAGABOND.CONTROLS.MapListener;
+    var MAP_FACTORY = VAGABOND.MODEL.MAPS.FACTORY;
+    var MapListener = VAGABOND.CONTROLLER.MapListener;
     var eventStack = VAGABOND.CONTROLLER.EventStack.getEventStack();
 
     var Controller = {};
@@ -139,5 +139,5 @@
 
     return module;
 
-  })(VAGABOND.CONTROLS);
+  })(VAGABOND.CONTROLLER);
 })();

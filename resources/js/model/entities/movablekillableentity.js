@@ -1,12 +1,12 @@
 (function() {
   "use strict";
 
-  VAGABOND.namespace("VAGABOND.ENTITIES");
+  VAGABOND.namespace("VAGABOND.MODEL.ENTITIES");
 
-  VAGABOND.ENTITIES = (function(module) {
+  VAGABOND.MODEL.ENTITIES = (function(module) {
 
-    var KillableEntity = VAGABOND.ENTITIES.KillableEntity;
-    var WALL_WEIGHT = VAGABOND.MAPS.FACTORY.WALL_WEIGHT;
+    var KillableEntity = VAGABOND.MODEL.ENTITIES.KillableEntity;
+    var WALL_WEIGHT = VAGABOND.MODEL.MAPS.FACTORY.WALL_WEIGHT;
 
     var MovableKillableEntity =  Object.create(KillableEntity);
 
@@ -51,5 +51,5 @@
     module.MovableKillableEntity = MovableKillableEntity;
 
     return module;
-  })(VAGABOND.ENTITIES);
+  })(VAGABOND.MODEL.ENTITIES);
 })();

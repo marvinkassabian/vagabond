@@ -1,9 +1,9 @@
 (function() {
   "use strict";
 
-  VAGABOND.namespace("VAGABOND.MAPS");
+  VAGABOND.namespace("VAGABOND.MODEL.MAPS");
 
-  VAGABOND.MAPS = (function(module) {
+  VAGABOND.MODEL.MAPS = (function(module) {
 
     var Matrix = VAGABOND.DATA_STRUCTURES.MATRIX.Matrix;
     var Graph = VAGABOND.DATA_STRUCTURES.GRAPH.Graph;
@@ -97,5 +97,5 @@
 
     return module;
 
-  })(VAGABOND.MAPS);
+  })(VAGABOND.MODEL.MAPS);
 })();

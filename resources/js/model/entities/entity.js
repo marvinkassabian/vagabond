@@ -1,9 +1,9 @@
 (function() {
   "use strict";
 
-  VAGABOND.namespace("VAGABOND.ENTITIES");
+  VAGABOND.namespace("VAGABOND.MODEL.ENTITIES");
 
-  VAGABOND.ENTITIES = (function(module) {
+  VAGABOND.MODEL.ENTITIES = (function(module) {
 
     var Entity = {};
 
@@ -61,5 +61,5 @@
 
     return module;
 
-  })(VAGABOND.ENTITIES);
+  })(VAGABOND.MODEL.ENTITIES);
 })();

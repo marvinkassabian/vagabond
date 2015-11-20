@@ -1,11 +1,11 @@
 (function() {
   "use strict";
 
-  VAGABOND.namespace("VAGABOND.ENTITIES");
+  VAGABOND.namespace("VAGABOND.MODEL.ENTITIES");
 
-  VAGABOND.ENTITIES = (function(module) {
+  VAGABOND.MODEL.ENTITIES = (function(module) {
 
-    var MovableKillableEntity = VAGABOND.ENTITIES.MovableKillableEntity;
+    var MovableKillableEntity = VAGABOND.MODEL.ENTITIES.MovableKillableEntity;
     var logger = VAGABOND.VIEW.Logger.getLogger();
 
     var Monster = Object.create(MovableKillableEntity);
@@ -64,5 +64,5 @@
     module.Monster = Monster;
 
     return module;
-  })(VAGABOND.ENTITIES);
+  })(VAGABOND.MODEL.ENTITIES);
 })();

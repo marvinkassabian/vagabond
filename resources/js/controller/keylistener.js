@@ -1,10 +1,10 @@
 (function() {
   "use strict";
 
-  VAGABOND.namespace("VAGABOND.CONTROLS");
+  VAGABOND.namespace("VAGABOND.CONTROLLER");
 
   // TODO: think of a better name
-  VAGABOND.CONTROLS = (function(module) {
+  VAGABOND.CONTROLLER = (function(module) {
 
     var VirtualKeys = UTIL.VIRTUAL_KEYS.VirtualKeys;
 
@@ -57,6 +57,6 @@
 
     return module;
 
-  })(VAGABOND.CONTROLS);
+  })(VAGABOND.CONTROLLER);
 
 })();

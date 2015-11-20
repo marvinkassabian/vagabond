@@ -1,11 +1,11 @@
 (function() {
   "use strict";
 
-  VAGABOND.namespace("VAGABOND.ENTITIES.ENEMIES");
+  VAGABOND.namespace("VAGABOND.MODEL.ENTITIES.ENEMIES");
 
-  VAGABOND.ENTITIES.ENEMIES = (function(module) {
+  VAGABOND.MODEL.ENTITIES.ENEMIES = (function(module) {
 
-    var Monster = VAGABOND.ENTITIES.Monster;
+    var Monster = VAGABOND.MODEL.ENTITIES.Monster;
     var ALGORITHMS = VAGABOND.ALGORITHMS;
 
     var Goblin = Object.create(Monster);
@@ -80,5 +80,5 @@
     module.Goblin = Goblin;
 
     return module;
-  })(VAGABOND.ENTITIES.ENEMIES);
+  })(VAGABOND.MODEL.ENTITIES.ENEMIES);
 })();

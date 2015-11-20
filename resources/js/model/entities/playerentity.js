@@ -1,16 +1,16 @@
 (function() {
   "use strict";
 
-  VAGABOND.namespace("VAGABOND.ENTITIES");
+  VAGABOND.namespace("VAGABOND.MODEL.ENTITIES");
 
-  VAGABOND.ENTITIES = (function(module) {
+  VAGABOND.MODEL.ENTITIES = (function(module) {
 
-    var Monster = VAGABOND.ENTITIES.Monster;
+    var Monster = VAGABOND.MODEL.ENTITIES.Monster;
 
     var PlayerEntity = Object.create(Monster);
 
     module.PlayerEntity = PlayerEntity;
 
     return module;
-  })(VAGABOND.ENTITIES);
+  })(VAGABOND.MODEL.ENTITIES);
 })();

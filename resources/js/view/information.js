@@ -1,9 +1,9 @@
 (function() {
   "use strict";
 
-  VAGABOND.namespace("VAGABOND.INTERFACE");
+  VAGABOND.namespace("VAGABOND.VIEW");
 
-  VAGABOND.INTERFACE = (function(module) {
+  VAGABOND.VIEW = (function(module) {
 
     var View = VAGABOND.VIEW.View;
 
@@ -36,5 +36,5 @@
     module.Information = Information;
 
     return module;
-  })(VAGABOND.INTERFACE);
+  })(VAGABOND.VIEW);
 })();
