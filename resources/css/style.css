@@ -7,7 +7,7 @@ body {
   font-family: "Consolas", monospace;
   color: green;
   background: #000;
-  font-size: 1em;
+  font-size: 0.875em;
 }
 
 .map, .info, .menu, .log {
@@ -20,6 +20,10 @@ body {
 
 .map, .menu {
   width: 49em;
+}
+
+.map {
+  cursor: none;
   /* prevents map and menu from being highlighted */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -27,10 +31,6 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-.map {
-  cursor: none;
 }
 
 .info {

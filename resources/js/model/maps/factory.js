@@ -52,7 +52,7 @@
           }
         },
         initValue: function() {
-          return Math.random() < 0.45 ? WALL_WEIGHT : 1;
+          return Math.random() < 0.4 ? WALL_WEIGHT : 1;
         }
       });
 
@@ -63,7 +63,10 @@
       //       something cleaner.
       dungeonMap.generate = function() {
         this.initGrid();
-        ALGORITHMS.cellularAutomata(this, 8);
+        ALGORITHMS.cellularAutomata(this, 3, function(maxCell, counters) {
+          return !counters[WALL_WEIGHT] ? WALL_WEIGHT : maxCell;
+        });
+        ALGORITHMS.cellularAutomata(this, 7);
       };
 
       dungeonMap.type = "dungeon";

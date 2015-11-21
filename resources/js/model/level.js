@@ -51,10 +51,7 @@
       for (i = 0; i < this.entityPool.length; i++) {
         entity = this.entityPool[i];
 
-        // TODO: move hp checking out of level and into entity objects
-        if (entity.hp > 0) {
-          entity.takeTurn(this);
-        }
+        entity.takeTurn(this);
       }
 
     };
