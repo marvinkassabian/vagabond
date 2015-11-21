@@ -8,7 +8,7 @@
 
     var MapListener = {};
 
-    var eventStack = VAGABOND.CONTROLLER.EventStack.getEventStack();
+    var eventStack = VAGABOND.CONTROLLER.EVENT_STACK.getEventStack();
 
     // TODO: make it so that this doesn't need to get called each move
     MapListener.init = function() {

@@ -7,7 +7,7 @@
 
     var VirtualKeys = UTIL.VIRTUAL_KEYS.VirtualKeys;
 
-    var eventStack = VAGABOND.CONTROLLER.EventStack.getEventStack();
+    var eventStack = VAGABOND.CONTROLLER.EVENT_STACK.getEventStack();
 
     var KeyListener = {};
 
@@ -23,7 +23,7 @@
       this.codes[VirtualKeys.VK_S] = "charDown";
       this.codes[VirtualKeys.VK_NUMPAD8] = "logUp";
       this.codes[VirtualKeys.VK_NUMPAD2] = "logDown";
-      this.codes[VirtualKeys.VK_BACK_SPACE] = "endTurn";
+      this.codes[VirtualKeys.VK_F] = "endTurn";
 
       if (DEBUG) {
         this.codes[VirtualKeys.VK_SPACE] = "generate";

@@ -7,7 +7,7 @@
 
     var MAP_FACTORY = VAGABOND.MODEL.MAPS.FACTORY;
     var MapListener = VAGABOND.CONTROLLER.MapListener;
-    var eventStack = VAGABOND.CONTROLLER.EventStack.getEventStack();
+    var eventStack = VAGABOND.CONTROLLER.EVENT_STACK.getEventStack();
 
     var Controller = {};
 

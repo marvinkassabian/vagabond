@@ -1,15 +1,16 @@
 (function() {
   "use strict";
 
-  VAGABOND.namespace("VAGABOND.CONTROLLER");
+  VAGABOND.namespace("VAGABOND.CONTROLLER.EVENT_STACK");
 
-  VAGABOND.CONTROLLER = (function(module) {
-
-    var singleton;
+  VAGABOND.CONTROLLER.EVENT_STACK = (function(module) {
 
     var EventStack = {};
 
-    EventStack.getEventStack = function() {
+    var singleton;
+
+    // TODO: decide if this should be a module method, not EventStack
+    module.getEventStack = function() {
       if (singleton === undefined) {
         singleton = Object.create(EventStack).init();
       }
@@ -34,7 +35,7 @@
     };
 
     EventStack.pop = function() {
-      return this.eventStack.pop();
+      return this.eventStack.pop() || {state: "empty", render: false};
     };
 
     EventStack.size = function() {
@@ -45,6 +46,6 @@
 
     return module;
 
-  })(VAGABOND.CONTROLLER);
+  })(VAGABOND.CONTROLLER.EVENT_STACK);
 
 })();
