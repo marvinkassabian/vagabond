@@ -13,7 +13,7 @@
   var logger = VAGABOND.VIEW.Logger.getLogger();
   var eventStack = VAGABOND.CONTROLLER.EVENT_STACK.getEventStack();
 
-  var milo = Object.create(PlayerEntity).init(4, 4, "#", 34, "Milo", "Dwarf", 15);
+  var milo = Object.create(PlayerEntity).init(10, 10, "#", 34, "Milo", "Dwarf", 15);
   var otis = Object.create(Goblin).init(5, 10, 50, "Grot");
   var henry = Object.create(Goblin).init(8, 15, 60, "Snik");
 
