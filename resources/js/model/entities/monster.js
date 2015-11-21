@@ -41,23 +41,12 @@
     };
 
     // TODO: clean this
-    Monster.attack = function(entity) {
-      logger.log(logger.toSentence(this.getFullName(), "attacked", entity.getFullName()));
-      entity.hp = Math.max(entity.hp - this.strength, 0);
-      if (entity.hp <= 0) {
-        // TODO: turn into a function
-        logger.log(logger.toSentence(this.getFullName(), "killed", entity.getFullName()));
-
-        // TODO: do something more elegant
-        entity.move = function() {};
-
-        // TODO: do something more elegant
-        entity.attack = function() {};
-
-        // TODO: do something more elegant
-        entity.takeTurn = function() {};
-
-        entity.char = "X";
+    Monster.attack = function(killableEntity) {
+      logger.log(logger.toSentence(this.getFullName(), "attacked", killableEntity.getFullName()));
+      killableEntity.hp = Math.max(killableEntity.hp - this.strength, 0);
+      if (killableEntity.isDead()) {
+        logger.log(logger.toSentence(this.getFullName(), "killed", killableEntity.getFullName()));
+        killableEntity.die();
       }
     };
 

@@ -19,6 +19,10 @@
     Goblin.takeTurn = function(level) {
       Monster.takeTurn.call(this);
 
+      if (this.isDead()) {
+        return;
+      }
+
       var playerCoor = {
         x: level.player.x,
         y: level.player.y

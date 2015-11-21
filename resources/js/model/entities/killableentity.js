@@ -19,13 +19,12 @@
       return this;
     };
 
-    // TODO: clean this
-    KillableEntity.takeTurn = function() {
-      if (this.hp <= 0) {
-        // TODO: turn into a function
-        this.char = "X";
-        this.move = function() {};
-      }
+    KillableEntity.die = function() {
+      this.char = "X";
+    };
+
+    KillableEntity.isDead = function() {
+      return this.hp <= 0;
     };
 
     module.KillableEntity = KillableEntity;
