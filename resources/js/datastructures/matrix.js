@@ -115,7 +115,9 @@
       return (x >= 0) &&
           (x < this.width) &&
           (y >= 0) &&
-          (y < this.height);
+          (y < this.height) &&
+          (x % 1 === 0) &&
+          (y % 1 === 0);
     };
 
     Matrix.clone = function() {

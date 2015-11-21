@@ -123,10 +123,12 @@
       } else if (event === "initMap") {
         map.initGrid();
       } else if (event === "switchMapType") {
+        var nextDimension = Math.max(map.width, map.height);
+
         if (map.type === "height") {
-          level.map = MAP_FACTORY.createDungeonMap(level.map.width, level.map.height);
+          level.map = MAP_FACTORY.createDungeonMap(nextDimension, nextDimension);
         } else {
-          level.map = MAP_FACTORY.createHeightMap(level.map.width);
+          level.map = MAP_FACTORY.createHeightMap(nextDimension);
         }
 
         level.map.initGrid();

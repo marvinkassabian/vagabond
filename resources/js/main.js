@@ -17,7 +17,7 @@
   var otis = Object.create(Goblin).init(5, 10, 50, "Grot");
   var henry = Object.create(Goblin).init(8, 15, 60, "Snik");
 
-  var map = MAP_FACTORY.createDungeonMap(129, 129);
+  var map = MAP_FACTORY.createDungeonMap(40, 90);
   map.generate();
 
   var screen = Object.create(Screen).init(20, 80, 0, 0);

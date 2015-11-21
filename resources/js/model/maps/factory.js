@@ -39,20 +39,21 @@
     // it's (2 ^ 16) - 1
     // i.e. random large value
     var WALL_WEIGHT = 32767;
+    var FLOOR_WEIGHT = 1;
 
     var createDungeonMap = function(height, width, options) {
       options = UTIL.extend(options, {
         formatValue: function(value) {
           if (value === WALL_WEIGHT) {
             return "O";
-          } else if (value === 1) {
+          } else if (value === FLOOR_WEIGHT) {
             return ".";
           } else {
             return " ";
           }
         },
         initValue: function() {
-          return Math.random() < 0.4 ? WALL_WEIGHT : 1;
+          return Math.random() < 0.4 ? WALL_WEIGHT : FLOOR_WEIGHT;
         }
       });
 
@@ -64,8 +65,32 @@
       dungeonMap.generate = function() {
         this.initGrid();
         ALGORITHMS.cellularAutomata(this, 3, function(maxCell, counters) {
-          return !counters[WALL_WEIGHT] ? WALL_WEIGHT : maxCell;
+          return counters[WALL_WEIGHT] === undefined ? WALL_WEIGHT : maxCell;
         });
+
+        for (var i = 0; i < this.width; i++) {
+          for (var j = 0; j < this.height; j++) {
+
+            // west and east exit
+            if ((i >= 0 && i < 4) || (i >= this.width - 4 && i < this.width)) {
+              if (j >= this.height / 2 - 4 && j <= this.height / 2 + 4) {
+                this.set(i, j, FLOOR_WEIGHT);
+              } else {
+                this.set(i, j, WALL_WEIGHT);
+              }
+            }
+
+            // north and south exit
+            if ((j >= 0 && j < 4) || (j >= this.height - 4 && j < this.height)) {
+              if (i >= this.width / 2 - 4 && i <= this.width / 2 + 4) {
+                this.set(i, j, FLOOR_WEIGHT);
+              } else {
+                this.set(i, j, WALL_WEIGHT);
+              }
+            }
+          }
+        }
+
         ALGORITHMS.cellularAutomata(this, 7);
       };
 
