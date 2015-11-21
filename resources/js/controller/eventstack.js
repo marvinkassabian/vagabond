@@ -5,22 +5,10 @@
 
   VAGABOND.CONTROLLER.EVENT_STACK = (function(module) {
 
-    var EventStack = {};
-
+    // TODO: test this rather throughly, or look up online to see the safety of this
     var singleton;
 
-    // TODO: decide if this should be a module method, not EventStack
-    module.getEventStack = function() {
-      if (singleton === undefined) {
-        singleton = Object.create(EventStack).init();
-      }
-
-      return singleton;
-    };
-
-    EventStack.setEventStack = function(eventStack) {
-      singleton = eventStack;
-    };
+    var EventStack = {};
 
     EventStack.init = function() {
       this.eventStack = [];
@@ -35,11 +23,23 @@
     };
 
     EventStack.pop = function() {
-      return this.eventStack.pop() || {state: "empty", render: false};
+      return this.eventStack.pop() || {state: "nothing", render: false};
     };
 
     EventStack.size = function() {
       return this.eventStack.length;
+    };
+
+    module.getEventStack = function() {
+      if (singleton === undefined) {
+        singleton = Object.create(EventStack).init();
+      }
+
+      return singleton;
+    };
+
+    module.setEventStack = function(eventStack) {
+      singleton = eventStack;
     };
 
     module.EventStack = EventStack;

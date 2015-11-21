@@ -18,7 +18,7 @@
     };
 
     // TODO: clean this up, clean all of this up
-    Controller.processInput = function(screen, avatar, level, info, logger) {
+    Controller.processInput = function(screen, avatar, level, info, logs) {
       if (eventStack.size() > 0) {
 
         var eventBlob = eventStack.pop();
@@ -45,15 +45,13 @@
           handleClick(level, info, avatar, eventBlob);
         }
 
-        handleLogger(logger, eventBlob);
+        handleLogs(logs, eventBlob);
 
         if ((move && move.useTurn) || eventBlob.useTurn) {
           level.takeTurn();
         }
 
-        if (DEBUG) {
-          debugMapTesting(event, level);
-        }
+        handleMap(event, level);
 
         if (eventBlob.render) {
           level.renderTo(screen);
@@ -63,18 +61,18 @@
           colorPossibleMoveTiles(level, mapListener);
 
           info.renderToElement(document.body.getElementsByClassName("selected-info")[0]);
-          logger.renderToElement(document.body.getElementsByClassName("logs")[0]);
+          logs.renderToElement(document.body.getElementsByClassName("logs")[0]);
         }
       }
     };
 
-    function handleLogger(logger, eventBlob) {
+    function handleLogs(logs, eventBlob) {
       var event = eventBlob.state;
 
       if (event === "logDown") {
-        logger.offset = Math.min(logger.offset + 1, Math.max(logger.logs.length - 1, 0));
+        logs.offset = Math.min(logs.offset + 1, Math.max(logs.length - 1, 0));
       } else if (event === "logUp") {
-        logger.offset = Math.max(logger.offset - 1, 0);
+        logs.offset = Math.max(logs.offset - 1, 0);
       }
     }
 
@@ -114,9 +112,7 @@
       }
     }
 
-    // START DEBUG CODE
-
-    function debugMapTesting(event, level) {
+    function handleMap(event, level) {
       var map = level.map;
       if (event === "generate") {
         map.generate();
@@ -134,8 +130,6 @@
         level.map.initGrid();
       }
     }
-
-    // END DEBUG CODE
 
     module.Controller = Controller;
 

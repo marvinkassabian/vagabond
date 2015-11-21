@@ -4,6 +4,7 @@ module.exports = function(grunt) {
 
   var utilFiles = [
     "resources/js/util/util.js",
+    "resources/js/util/logger.js",
     "resources/js/util/virtualkeys.js",
   ];
   var vagabondFiles = [
@@ -11,7 +12,7 @@ module.exports = function(grunt) {
     "resources/js/datastructures/matrix.js",
     "resources/js/datastructures/graph.js",
     "resources/js/view/view.js",
-    "resources/js/view/logger.js",
+    "resources/js/view/logs.js",
     "resources/js/view/information.js",
     "resources/js/view/screen.js",
     "resources/js/algorithms/astar.js",

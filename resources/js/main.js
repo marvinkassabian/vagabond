@@ -9,31 +9,37 @@
   var KeyListener = VAGABOND.CONTROLLER.KeyListener;
   var Controller = VAGABOND.CONTROLLER.Controller;
   var Information = VAGABOND.VIEW.Information;
+  var Logs = VAGABOND.VIEW.Logs;
 
-  var logger = VAGABOND.VIEW.Logger.getLogger();
+  var logger = UTIL.LOGGER.getLogger();
   var eventStack = VAGABOND.CONTROLLER.EVENT_STACK.getEventStack();
 
+  // models
   var milo = Object.create(PlayerEntity).init(10, 10, "#", 34, "Milo", "Dwarf", 15);
   var otis = Object.create(Goblin).init(5, 10, 50, "Grot");
   var henry = Object.create(Goblin).init(8, 15, 60, "Snik");
 
   var map = MAP_FACTORY.createDungeonMap(40, 90);
-  map.generate();
 
-  var screen = Object.create(Screen).init(20, 80, 0, 0);
+  var level = Object.create(Level).init(map);
+
+  // controllers
   var keyListener = Object.create(KeyListener).init();
   var controller = Object.create(Controller).init(keyListener);
-  var level = Object.create(Level).init(map);
+
+  // views
+  var screen = Object.create(Screen).init(20, 80, 0, 0);
   var info = Object.create(Information).init(milo);
+  var logs = Object.create(Logs).init(logger, 10);
 
   global.level = level;
 
-  eventStack.add({state: "do nothing", render: true});
+  eventStack.add({state: "generate", render: true});
 
   level.addEntity(milo, otis, henry);
 
   var i;
-  for (i = 0; i < 10; i++) {
+  for (i = 0; i < 0; i++) {
     var gobbo = Object.create(Goblin).init(
         Math.floor(Math.random() * map.width),
         Math.floor(Math.random() * map.height),
@@ -50,7 +56,7 @@
 
   var func = function() {
 
-    controller.processInput(screen, milo, level, info, logger);
+    controller.processInput(screen, milo, level, info, logs);
 
     // TODO: switch UTIL.setTimeout to window.requestAnimationFrame
     UTIL.setTimeout(func, 30);
