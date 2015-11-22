@@ -77,12 +77,18 @@
       return x.neighbors.indexOf(y) !== -1;
     };
 
-    Graph.getEdgeValue = function(x, y) {
-      x = this.getVertex(x.x, x.y);
-      y = this.getVertex(y.x, y.y);
+    var WALL_WEIGHT = 32767;
 
-      // return (x.weight + y.weight) / 2;
-      return Math.max(x.weight, y.weight) * UTIL.distance({x: x.x, y: x.y}, {x: y.x, y: y.y}, 2);
+    Graph.getEdgeValue = function(start, end) {
+      start = this.getVertex(start.x, start.y);
+      end = this.getVertex(end.x, end.y);
+
+      // HACK: just so that if spawned in wall, can walk out of it
+      if (start.weight === WALL_WEIGHT) {
+        return end.weight / Math.min(start.weight, end.weight) * UTIL.distance(start, end, 2);
+      } else {
+        return Math.max(start.weight, end.weight) * UTIL.distance(start, end, 2);
+      }
     };
 
     Graph.getVertex = function(x, y) {

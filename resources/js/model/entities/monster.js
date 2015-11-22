@@ -42,10 +42,10 @@
 
     // TODO: clean this
     Monster.attack = function(killableEntity) {
-      logger.log(logger.toSentence(this.getFullName(), "attacked", killableEntity.getFullName()));
+      logger.log(logger.toSentenceElement(this, "attacked", killableEntity));
       killableEntity.hp = Math.max(killableEntity.hp - this.strength, 0);
       if (killableEntity.isDead()) {
-        logger.log(logger.toSentence(this.getFullName(), "killed", killableEntity.getFullName()));
+        logger.log(logger.toSentenceElement(this, "killed", killableEntity));
         killableEntity.die();
       }
     };

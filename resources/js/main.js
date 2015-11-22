@@ -30,7 +30,7 @@
   // views
   var screen = Object.create(Screen).init(20, 80, 0, 0);
   var info = Object.create(Information).init(milo);
-  var logs = Object.create(Logs).init(logger, 10);
+  var logs = Object.create(Logs).init(logger, 13);
 
   global.level = level;
 

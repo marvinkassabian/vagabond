@@ -8,6 +8,18 @@
     // TODO: test this rather throughly, or look up online to see the safety of this
     var singleton;
 
+    var getLogger = function() {
+      if (singleton === undefined) {
+        singleton = Object.create(Logger).init();
+      }
+
+      return singleton;
+    };
+
+    var setLogger = function(eventStack) {
+      singleton = eventStack;
+    };
+
     var Logger = {};
 
     Logger.init = function() {
@@ -20,23 +32,36 @@
       this.logs.unshift(log);
     };
 
+    Logger.getSize = function() {
+      return this.logs.length;
+    };
+
     // TODO: figure out where this function should go
-    Logger.toSentence = function(subject, verb, object) {
-      return "[" + subject + "] " + verb + " [" + object + "]";
+    Logger.toSentenceElement = function(subject, verb, object) {
+
+      var subjectElement = document.createElement("span");
+      subjectElement.innerHTML = "[" + subject.getFullName() + "]";
+      subjectElement.dataset.id = subject.id;
+      subjectElement.classList.add("clickable", "log");
+
+      var verbNode = document.createTextNode(" " + verb + " ");
+
+      var objectElement = document.createElement("span");
+      objectElement.innerHTML = "[" + object.getFullName() + "]";
+      objectElement.dataset.id = object.id;
+      objectElement.classList.add("clickable", "log");
+
+      var sentenceElement = document.createElement("span");
+
+      sentenceElement.appendChild(subjectElement);
+      sentenceElement.appendChild(verbNode);
+      sentenceElement.appendChild(objectElement);
+
+      return sentenceElement;
     };
 
-    module.getLogger = function() {
-      if (singleton === undefined) {
-        singleton = Object.create(Logger).init();
-      }
-
-      return singleton;
-    };
-
-    module.setLogger = function(eventStack) {
-      singleton = eventStack;
-    };
-
+    module.getLogger = getLogger;
+    module.setLogger = setLogger;
     module.Logger = Logger;
 
     return module;

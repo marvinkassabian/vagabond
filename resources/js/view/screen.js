@@ -60,7 +60,7 @@
           var offset = this.getOrigin();
 
           var tileElement = document.createElement("span");
-          tileElement.className = "tile tile-" + ((value === " ") ? "SPACE" : value);
+          tileElement.classList.add("tile", "tile-" + ((value === " ") ? "SPACE" : value), "clickable");
           tileElement.id = (x + offset.x) + ":" + (y + offset.y);
           tileElement.dataset.x = (x + offset.x);
           tileElement.dataset.y = (y + offset.y);

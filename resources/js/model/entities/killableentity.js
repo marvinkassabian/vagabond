@@ -21,6 +21,7 @@
 
     KillableEntity.die = function() {
       this.char = "X";
+      this.z = -1;
     };
 
     KillableEntity.isDead = function() {

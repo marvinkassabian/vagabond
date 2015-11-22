@@ -17,6 +17,10 @@
       return this;
     };
 
+    Logs.getSize = function() {
+      return this.logger.getSize();
+    };
+
     Logs.toElement = function() {
       var logs = document.createElement("div");
       logs.className = "logs";
@@ -24,7 +28,7 @@
       for (var i = this.offset; i < Math.min(this.logger.logs.length, this.offset + this.visibleLogSize); i++) {
         var log = this.logger.logs[i];
         var logElement = document.createElement("span");
-        logElement.innerHTML = log;
+        logElement.innerHTML = log.innerHTML;
         logs.appendChild(logElement);
         logs.appendChild(document.createElement("br"));
       }

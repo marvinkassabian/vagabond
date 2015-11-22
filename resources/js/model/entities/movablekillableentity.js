@@ -6,7 +6,7 @@
   VAGABOND.MODEL.ENTITIES = (function(module) {
 
     var KillableEntity = VAGABOND.MODEL.ENTITIES.KillableEntity;
-    var WALL_WEIGHT = VAGABOND.MODEL.MAPS.FACTORY.WALL_WEIGHT;
+    // var WALL_WEIGHT = VAGABOND.MODEL.MAPS.FACTORY.WALL_WEIGHT;
 
     var MovableKillableEntity =  Object.create(KillableEntity);
 
@@ -45,7 +45,11 @@
       }
 
       // TODO: decouple the WALL_WEIGHT
-      return map.isValidCoordinate(newX, newY) && map.get(newX, newY) !== WALL_WEIGHT && !isOccupied;
+      // return map.isValidCoordinate(newX, newY) && map.get(newX, newY) !== WALL_WEIGHT && !isOccupied;
+      return map.isValidCoordinate(newX, newY) && map.graph.getEdgeValue(this, {
+        x: newX,
+        y: newY
+      }) < this.movement && !isOccupied;
     };
 
     module.MovableKillableEntity = MovableKillableEntity;

@@ -11,6 +11,7 @@
       this.id = id;
       this.x = x;
       this.y = y;
+      this.z = 0;
       this.char = char;
 
       // TODO: redo entity 'class' structure

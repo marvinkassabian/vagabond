@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     "resources/js/model/level.js",
     "resources/js/controller/eventstack.js",
     "resources/js/controller/keylistener.js",
-    "resources/js/controller/maplistener.js",
+    "resources/js/controller/clicklistener.js",
     "resources/js/controller/controller.js",
   ];
 

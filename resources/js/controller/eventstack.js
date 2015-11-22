@@ -8,6 +8,18 @@
     // TODO: test this rather throughly, or look up online to see the safety of this
     var singleton;
 
+    var getEventStack = function() {
+      if (singleton === undefined) {
+        singleton = Object.create(EventStack).init();
+      }
+
+      return singleton;
+    };
+
+    var setEventStack = function(eventStack) {
+      singleton = eventStack;
+    };
+
     var EventStack = {};
 
     EventStack.init = function() {
@@ -26,22 +38,12 @@
       return this.eventStack.pop() || {state: "nothing", render: false};
     };
 
-    EventStack.size = function() {
+    EventStack.getSize = function() {
       return this.eventStack.length;
     };
 
-    module.getEventStack = function() {
-      if (singleton === undefined) {
-        singleton = Object.create(EventStack).init();
-      }
-
-      return singleton;
-    };
-
-    module.setEventStack = function(eventStack) {
-      singleton = eventStack;
-    };
-
+    module.getEventStack = getEventStack;
+    module.setEventStack = setEventStack;
     module.EventStack = EventStack;
 
     return module;

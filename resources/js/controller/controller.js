@@ -6,7 +6,7 @@
   VAGABOND.CONTROLLER = (function(module) {
 
     var MAP_FACTORY = VAGABOND.MODEL.MAPS.FACTORY;
-    var MapListener = VAGABOND.CONTROLLER.MapListener;
+    var ClickListener = VAGABOND.CONTROLLER.ClickListener;
     var eventStack = VAGABOND.CONTROLLER.EVENT_STACK.getEventStack();
 
     var Controller = {};
@@ -19,7 +19,7 @@
 
     // TODO: clean this up, clean all of this up
     Controller.processInput = function(screen, avatar, level, info, logs) {
-      if (eventStack.size() > 0) {
+      if (eventStack.getSize() > 0) {
 
         var eventBlob = eventStack.pop();
         var event = eventBlob.state;
@@ -41,9 +41,7 @@
           move.entity.move(move.dx, move.dy);
         }
 
-        if (event === "click") {
-          handleClick(level, info, avatar, eventBlob);
-        }
+        handleClick(level, info, avatar, eventBlob);
 
         handleLogs(logs, eventBlob);
 
@@ -55,13 +53,13 @@
 
         if (eventBlob.render) {
           level.renderTo(screen);
-          screen.renderToElement(document.body.getElementsByClassName("map")[0]);
-          var mapListener = Object.create(MapListener).init();
-
-          colorPossibleMoveTiles(level, mapListener);
-
+          screen.renderToElement(document.body.getElementsByClassName("screen")[0]);
           info.renderToElement(document.body.getElementsByClassName("selected-info")[0]);
           logs.renderToElement(document.body.getElementsByClassName("logs")[0]);
+
+          var clickListener = Object.create(ClickListener).init();
+
+          colorPossibleMoveTiles(level, clickListener);
         }
       }
     };
@@ -70,45 +68,57 @@
       var event = eventBlob.state;
 
       if (event === "logDown") {
-        logs.offset = Math.min(logs.offset + 1, Math.max(logs.length - 1, 0));
+        logs.offset = Math.min(logs.offset + 1, Math.max(logs.getSize() - 1, 0));
       } else if (event === "logUp") {
         logs.offset = Math.max(logs.offset - 1, 0);
       }
     }
 
     function handleClick(level, info, avatar, eventBlob) {
-      var clickCoordinate = {
-        x: eventBlob.coordinate.x,
-        y: eventBlob.coordinate.y
-      };
 
-      // TODO: sort entities by health
-      // TODO: eventually allow player to choose which entity to attack
-      var entity = level.getEntitiesAt(clickCoordinate).sort(function(a, b) {
-        return b.hp - a.hp;
-      })[0];
+      var entity;
 
-      if (entity !== undefined) {
+      if (eventBlob.state === "clickTile") {
+        var clickCoordinate = {
+          x: eventBlob.data.coordinate.x,
+          y: eventBlob.data.coordinate.y
+        };
+
+        // TODO: sort entities by health
+        // TODO: eventually allow player to choose which entity to attack
+        entity = level.getEntitiesAt(clickCoordinate).sort(function(a, b) {
+          return b.hp - a.hp;
+        })[0];
+
+        if (entity !== undefined) {
+
+          info.init(entity);
+
+          if (UTIL.manhattanDistance(avatar, entity) === 1 && entity.hp > 0) {
+            avatar.attack(entity);
+            eventBlob.useTurn = true;
+          }
+        } else {
+          info.init(avatar);
+        }
+      } else if (eventBlob.state === "clickLog") {
+        entity = level.entityMap[eventBlob.data.id];
 
         info.init(entity);
-
-        if (UTIL.manhattanDistance(avatar, entity) === 1 && entity.hp > 0) {
-          avatar.attack(entity);
-          eventBlob.useTurn = true;
-        }
-      } else {
-        info.init(avatar);
       }
     }
 
-    // TODO: clean this
-    function colorPossibleMoveTiles(level, mapListener) {
+    // TODO: clean this / move to screen
+    function colorPossibleMoveTiles(level, clickListener) {
       var possibleMoves = level.map.getPossibleMoves(level.player);
 
       for (var i = 0; i < possibleMoves.length; i++) {
         var possibleMove = possibleMoves[i];
-        // TODO: needs to check to see if map coor is valid on the screen
-        (mapListener.getTile(possibleMove.x, possibleMove.y) || {}).className += " possible";
+        var tile = clickListener.getTile(possibleMove.x, possibleMove.y);
+
+        if (tile) {
+          tile.classList.add("possible");
+        }
       }
     }
 
