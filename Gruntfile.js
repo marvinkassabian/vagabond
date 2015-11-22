@@ -31,6 +31,7 @@ module.exports = function(grunt) {
     "resources/js/controller/keylistener.js",
     "resources/js/controller/clicklistener.js",
     "resources/js/controller/controller.js",
+    "resources/js/controller/gameloop.js",
   ];
 
   var mainFile = [

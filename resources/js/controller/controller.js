@@ -19,6 +19,7 @@
 
     // TODO: clean this up, clean all of this up
     Controller.processInput = function(screen, avatar, level, info, logs) {
+
       if (eventStack.getSize() > 0) {
 
         var eventBlob = eventStack.getEvent();

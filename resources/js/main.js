@@ -8,6 +8,7 @@
   var Level = VAGABOND.MODEL.Level;
   var KeyListener = VAGABOND.CONTROLLER.KeyListener;
   var Controller = VAGABOND.CONTROLLER.Controller;
+  var GameLoop = VAGABOND.CONTROLLER.GameLoop;
   var Information = VAGABOND.VIEW.Information;
   var Logs = VAGABOND.VIEW.Logs;
 
@@ -63,5 +64,8 @@
   };
 
   func();
+
+  // var gameLoop = Object.create(GameLoop).init(1 / 40);
+  // gameLoop.start(controller.processInput.bind(controller, screen, milo, level, info, logs));
 
 })(this);
