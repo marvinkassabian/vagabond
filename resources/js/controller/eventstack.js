@@ -20,6 +20,7 @@
       singleton = eventStack;
     };
 
+    // TODO: figure out how to block events while page is rendering
     var EventStack = {};
 
     EventStack.init = function() {
