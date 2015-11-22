@@ -46,7 +46,7 @@
         }
       }
 
-      return toMoveArray(graph.getVertex(endCoor.x, endCoor.y));
+      return toMoveArray(graph.getVertex(endCoor));
 
       function cleanVertex(vertex) {
         vertex.pathWeight = Infinity;

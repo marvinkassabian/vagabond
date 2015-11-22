@@ -34,7 +34,7 @@
 
   global.level = level;
 
-  eventStack.add({state: "generate", render: true});
+  eventStack.addEvent({state: "generate", render: true});
 
   level.addEntity(milo, otis, henry);
 

@@ -42,7 +42,7 @@
         return;
       }
 
-      eventStack.add({state: state, render: true});
+      eventStack.addEvent({state: state, render: true});
 
       if (e.preventDefault !== undefined) {
         e.preventDefault();

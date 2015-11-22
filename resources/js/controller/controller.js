@@ -21,7 +21,7 @@
     Controller.processInput = function(screen, avatar, level, info, logs) {
       if (eventStack.getSize() > 0) {
 
-        var eventBlob = eventStack.pop();
+        var eventBlob = eventStack.getEvent();
         var event = eventBlob.state;
 
         var moves = {

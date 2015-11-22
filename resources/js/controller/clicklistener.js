@@ -33,7 +33,7 @@
       function handleClickEvent(log) {
         var id = log.dataset.id;
 
-        eventStack.add({
+        eventStack.addEvent({
           state: "clickLog",
           render: true,
           useTurn: false,
@@ -59,7 +59,7 @@
           y: parseInt(tile.dataset.y)
         };
 
-        eventStack.add({
+        eventStack.addEvent({
           state: "clickTile",
           render: true,
           useTurn: false,

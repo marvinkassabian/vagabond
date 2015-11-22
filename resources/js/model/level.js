@@ -48,7 +48,7 @@
       Array.prototype.push.apply(this.entityPool, args);
     };
 
-    // TODO: clean this
+    // TODO: refactor to allow multiple player controlled entities
     Level.setPlayer = function(entity) {
       this.player = entity;
     };

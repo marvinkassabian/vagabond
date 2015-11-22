@@ -23,8 +23,6 @@
 
     var Graph = {};
 
-    // TODO: all for different init functions
-    //      i.e. number of vertices, or a matrix (end use for map creation)
     Graph.init = function(weightMatrix) {
       this.height = weightMatrix.height;
       this.width = weightMatrix.width;
@@ -72,31 +70,30 @@
       return this;
     };
 
-    // TODO: redo all the function signatures
-    Graph.adjacent = function(x, y) {
-      return x.neighbors.indexOf(y) !== -1;
+    Graph.adjacent = function(origin, destination) {
+      return origin.neighbors.indexOf(destination) !== -1;
     };
 
     var WALL_WEIGHT = 32767;
 
-    Graph.getEdgeValue = function(start, end) {
-      start = this.getVertex(start.x, start.y);
-      end = this.getVertex(end.x, end.y);
+    Graph.getEdgeValue = function(origin, destination) {
+      origin = this.getVertex(origin);
+      destination = this.getVertex(destination);
 
       // HACK: just so that if spawned in wall, can walk out of it
-      if (start.weight === WALL_WEIGHT) {
-        return end.weight / Math.min(start.weight, end.weight) * UTIL.distance(start, end, 2);
+      if (origin.weight === WALL_WEIGHT) {
+        return destination.weight / Math.min(origin.weight, destination.weight) * UTIL.distance(origin, destination, 2);
       } else {
-        return Math.max(start.weight, end.weight) * UTIL.distance(start, end, 2);
+        return Math.max(origin.weight, destination.weight) * UTIL.distance(origin, destination, 2);
       }
     };
 
-    Graph.getVertex = function(x, y) {
-      return this.vertexMatrix.get(x, y);
+    Graph.getVertex = function(coordinate) {
+      return this.vertexMatrix.get(coordinate.x, coordinate.y);
     };
 
-    Graph.setVertex = function(x, y, vertex) {
-      return this.vertexMatrix.set(x, y, vertex);
+    Graph.setVertex = function(coordinate, vertex) {
+      return this.vertexMatrix.set(coordinate.x, coordinate.y, vertex);
     };
 
     module.Graph = Graph;

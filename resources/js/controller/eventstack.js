@@ -28,14 +28,22 @@
       return this;
     };
 
-    EventStack.add = function(eventBlob) {
+    EventStack.addEvent = function(eventBlob) {
       if (this.eventStack.length === 0) {
         this.eventStack.push(eventBlob);
       }
     };
 
-    EventStack.pop = function() {
-      return this.eventStack.pop() || {state: "nothing", render: false};
+    EventStack.addEventSequence = function(eventBlobs) {
+      if (this.eventStack.length === 0) {
+        for (var i = 0; i < eventBlobs.length; i++) {
+          this.eventStack.push(eventBlobs[i]);
+        }
+      }
+    };
+
+    EventStack.getEvent = function() {
+      return this.eventStack.shift() || {state: "nothing", render: false};
     };
 
     EventStack.getSize = function() {
