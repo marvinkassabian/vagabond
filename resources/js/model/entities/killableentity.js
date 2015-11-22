@@ -19,6 +19,15 @@
       return this;
     };
 
+    KillableEntity.getInformation = function() {
+      var info = Entity.getInformation.call(this);
+
+      info.hp = this.hp;
+      info.totalHp = this.totalHp;
+
+      return info;
+    };
+
     KillableEntity.die = function() {
       this.char = "X";
       this.z = -1;

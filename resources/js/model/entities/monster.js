@@ -25,19 +25,15 @@
       return this.name + ", the " + this.type;
     };
 
-    // TODO: move this method to entity and 'inherit' down
     Monster.getInformation = function() {
-      return {
-        x: this.x,
-        y: this.y,
-        char: this.char,
-        hp: this.hp,
-        totalHp: this.totalHp,
-        name: this.name,
-        type: this.type,
-        fullName: this.getFullName(),
-        strength: this.strength
-      };
+      var info = MovableKillableEntity.getInformation.call(this);
+
+      info.name = this.name;
+      info.type = this.type;
+      info.fullName = this.getFullName();
+      info.strength = this.strength;
+
+      return info;
     };
 
     // TODO: clean this

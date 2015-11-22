@@ -32,7 +32,7 @@
       return {
         x: this.x,
         y: this.y,
-        id: this.id
+        char: this.char,
       };
     };
 
