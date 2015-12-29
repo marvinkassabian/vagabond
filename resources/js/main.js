@@ -8,7 +8,7 @@
   var Level = VAGABOND.MODEL.Level;
   var KeyListener = VAGABOND.CONTROLLER.KeyListener;
   var Controller = VAGABOND.CONTROLLER.Controller;
-  var GameLoop = VAGABOND.CONTROLLER.GameLoop;
+  // var GameLoop = VAGABOND.CONTROLLER.GameLoop;
   var Information = VAGABOND.VIEW.Information;
   var Logs = VAGABOND.VIEW.Logs;
 
@@ -20,7 +20,7 @@
   var otis = Object.create(Goblin).init(5, 10, 50, "Grot");
   var henry = Object.create(Goblin).init(8, 15, 60, "Snik");
 
-  var map = MAP_FACTORY.createDungeonMap(40, 90);
+  var map = MAP_FACTORY.createDungeonMap(40, 129);
 
   var level = Object.create(Level).init(map);
 
