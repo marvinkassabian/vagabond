@@ -1,70 +1,61 @@
-(function() {
-  "use strict";
+"use strict";
 
-  UTIL.namespace("UTIL.LOGGER");
+var Logger = {};
 
-  UTIL.LOGGER = (function(module) {
+Logger.init = function() {
+  this.logs = [];
 
-    // TODO: test this rather throughly, or look up online to see the safety of this
-    var singleton;
+  return this;
+};
 
-    var getLogger = function() {
-      if (singleton === undefined) {
-        singleton = Object.create(Logger).init();
-      }
+Logger.log = function(log) {
+  this.logs.unshift(log);
+};
 
-      return singleton;
-    };
+Logger.getSize = function() {
+  return this.logs.length;
+};
 
-    var setLogger = function(eventStack) {
-      singleton = eventStack;
-    };
+// TODO: figure out where this function should go
+Logger.toSentenceElement = function(subject, verb, object) {
 
-    var Logger = {};
+  var subjectElement = document.createElement("span");
+  subjectElement.innerHTML = "[" + subject.getFullName() + "]";
+  subjectElement.dataset.id = subject.id;
+  subjectElement.classList.add("clickable", "log");
 
-    Logger.init = function() {
-      this.logs = [];
+  var verbNode = document.createTextNode(" " + verb + " ");
 
-      return this;
-    };
+  var objectElement = document.createElement("span");
+  objectElement.innerHTML = "[" + object.getFullName() + "]";
+  objectElement.dataset.id = object.id;
+  objectElement.classList.add("clickable", "log");
 
-    Logger.log = function(log) {
-      this.logs.unshift(log);
-    };
+  var sentenceElement = document.createElement("span");
 
-    Logger.getSize = function() {
-      return this.logs.length;
-    };
+  sentenceElement.appendChild(subjectElement);
+  sentenceElement.appendChild(verbNode);
+  sentenceElement.appendChild(objectElement);
 
-    // TODO: figure out where this function should go
-    Logger.toSentenceElement = function(subject, verb, object) {
+  return sentenceElement;
+};
 
-      var subjectElement = document.createElement("span");
-      subjectElement.innerHTML = "[" + subject.getFullName() + "]";
-      subjectElement.dataset.id = subject.id;
-      subjectElement.classList.add("clickable", "log");
+module.exports = Object.create(Logger).init();
 
-      var verbNode = document.createTextNode(" " + verb + " ");
-
-      var objectElement = document.createElement("span");
-      objectElement.innerHTML = "[" + object.getFullName() + "]";
-      objectElement.dataset.id = object.id;
-      objectElement.classList.add("clickable", "log");
-
-      var sentenceElement = document.createElement("span");
-
-      sentenceElement.appendChild(subjectElement);
-      sentenceElement.appendChild(verbNode);
-      sentenceElement.appendChild(objectElement);
-
-      return sentenceElement;
-    };
-
-    module.getLogger = getLogger;
-    module.setLogger = setLogger;
-    module.Logger = Logger;
-
-    return module;
-
-  })(UTIL.LOGGER);
-})();
+// // TODO: test this rather throughly, or look up online to see the safety of this
+// var singleton;
+//
+// var getLogger = function() {
+//   if (singleton === undefined) {
+//     singleton = Object.create(Logger).init();
+//   }
+//
+//   return singleton;
+// };
+//
+// var setLogger = function(eventStack) {
+//   singleton = eventStack;
+// };
+//
+// exports.getLogger = getLogger;
+// exports.setLogger = setLogger;

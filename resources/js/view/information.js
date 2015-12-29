@@ -1,40 +1,31 @@
-(function() {
-  "use strict";
+"use strict";
 
-  VAGABOND.namespace("VAGABOND.VIEW");
+var View = VAGABOND.VIEW.View;
 
-  VAGABOND.VIEW = (function(module) {
+var Information = Object.create(View);
 
-    var View = VAGABOND.VIEW.View;
+Information.init = function(entity) {
+  this.selectedEntity = entity;
 
-    var Information = Object.create(View);
+  return this;
+};
 
-    Information.init = function(entity) {
-      this.selectedEntity = entity;
+Information.setEntity = Information.init;
 
-      return this;
-    };
+Information.toElement = function() {
+  var info = document.createElement("div");
+  info.className = "selected-info";
 
-    Information.setEntity = Information.init;
+  var entityInfo = this.selectedEntity.getInformation();
 
-    Information.toElement = function() {
-      var info = document.createElement("div");
-      info.className = "selected-info";
+  for (var traitKey in entityInfo) {
+    var traitElement = document.createElement("span");
+    traitElement.innerHTML = traitKey + ": " + entityInfo[traitKey];
+    info.appendChild(traitElement);
+    info.appendChild(document.createElement("br"));
+  }
 
-      var entityInfo = this.selectedEntity.getInformation();
+  return info;
+};
 
-      for (var traitKey in entityInfo) {
-        var traitElement = document.createElement("span");
-        traitElement.innerHTML = traitKey + ": " + entityInfo[traitKey];
-        info.appendChild(traitElement);
-        info.appendChild(document.createElement("br"));
-      }
-
-      return info;
-    };
-
-    module.Information = Information;
-
-    return module;
-  })(VAGABOND.VIEW);
-})();
+module.exports = View;

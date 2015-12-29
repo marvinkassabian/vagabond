@@ -1,20 +1,11 @@
-(function() {
-  "use strict";
+"use strict";
 
-  VAGABOND.namespace("VAGABOND.VIEW");
+var View = {};
 
-  VAGABOND.VIEW = (function(module) {
+View.renderToElement = function(element) {
+  var viewElement = this.toElement();
 
-    var View = {};
+  element.innerHTML = viewElement.innerHTML;
+};
 
-    View.renderToElement = function(element) {
-      var viewElement = this.toElement();
-
-      element.innerHTML = viewElement.innerHTML;
-    };
-
-    module.View = View;
-
-    return module;
-  })(VAGABOND.VIEW);
-})();
+module.exports = View;

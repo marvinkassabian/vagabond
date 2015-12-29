@@ -1,43 +1,34 @@
-(function() {
-  "use strict";
+"use strict";
 
-  VAGABOND.namespace("VAGABOND.VIEW");
+var View = require("./view");
 
-  VAGABOND.VIEW = (function(module) {
+var Logs = Object.create(View);
 
-    var View = VAGABOND.VIEW.View;
+Logs.init = function(logger, visibleLogSize) {
+  this.logger = logger;
+  this.offset = 0;
+  this.visibleLogSize = visibleLogSize || 10;
 
-    var Logs = Object.create(View);
+  return this;
+};
 
-    Logs.init = function(logger, visibleLogSize) {
-      this.logger = logger;
-      this.offset = 0;
-      this.visibleLogSize = visibleLogSize || 10;
+Logs.getSize = function() {
+  return this.logger.getSize();
+};
 
-      return this;
-    };
+Logs.toElement = function() {
+  var logs = document.createElement("div");
+  logs.className = "logs";
 
-    Logs.getSize = function() {
-      return this.logger.getSize();
-    };
+  for (var i = this.offset; i < Math.min(this.logger.logs.length, this.offset + this.visibleLogSize); i++) {
+    var log = this.logger.logs[i];
+    var logElement = document.createElement("span");
+    logElement.innerHTML = log.innerHTML;
+    logs.appendChild(logElement);
+    logs.appendChild(document.createElement("br"));
+  }
 
-    Logs.toElement = function() {
-      var logs = document.createElement("div");
-      logs.className = "logs";
+  return logs;
+};
 
-      for (var i = this.offset; i < Math.min(this.logger.logs.length, this.offset + this.visibleLogSize); i++) {
-        var log = this.logger.logs[i];
-        var logElement = document.createElement("span");
-        logElement.innerHTML = log.innerHTML;
-        logs.appendChild(logElement);
-        logs.appendChild(document.createElement("br"));
-      }
-
-      return logs;
-    };
-
-    module.Logs = Logs;
-
-    return module;
-  })(VAGABOND.VIEW);
-})();
+module.exports = Logs;
