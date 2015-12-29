@@ -1,81 +1,71 @@
-(function() {
-  "use strict";
+"use strict";
 
-  VAGABOND.namespace("VAGABOND.ALGORITHMS");
+var aStar = function(graph, startCoor, endCoor, heuristic) {
+  heuristic = heuristic || function(origin, destination) {
+    return UTIL.manhattanDistance(origin, destination);
+  };
 
-  VAGABOND.ALGORITHMS = (function(module) {
+  var vertex, i, neighbor;
+  var dirtyVertices = [];
+  var remaining = [];
+  var found = false;
 
-    var aStar = function(graph, startCoor, endCoor, heuristic) {
-      heuristic = heuristic || function(origin, destination) {
-        return UTIL.manhattanDistance(origin, destination);
-      };
+  for (var vertexID in graph.vertices) {
+    vertex = cleanVertex(graph.vertices[vertexID]);
+    if (vertex.x === startCoor.x && vertex.y === startCoor.y) {
+      vertex.pathWeight = 0;
+    }
 
-      var vertex, i, neighbor;
-      var dirtyVertices = [];
-      var remaining = [];
-      var found = false;
+    remaining.push(vertex);
+  }
 
-      for (var vertexID in graph.vertices) {
-        vertex = cleanVertex(graph.vertices[vertexID]);
-        if (vertex.x === startCoor.x && vertex.y === startCoor.y) {
-          vertex.pathWeight = 0;
-        }
+  while (!found && remaining.length !== 0) {
+    remaining.sort(function(a, b) {
+      return (a.getTotal() - b.getTotal()) * -1;
+    });
 
-        remaining.push(vertex);
-      }
+    vertex = remaining.pop();
+    dirtyVertices.push(vertex);
 
-      while (!found && remaining.length !== 0) {
-        remaining.sort(function(a, b) {
-          return (a.getTotal() - b.getTotal()) * -1;
-        });
-
-        vertex = remaining.pop();
-        dirtyVertices.push(vertex);
-
-        for (i = 0; i < vertex.neighbors.length; i++) {
-          neighbor = vertex.neighbors[i];
-          if (dirtyVertices.indexOf(neighbor) === -1) {
-            neighbor.pathWeight = vertex.pathWeight + graph.getEdgeValue(vertex, neighbor);
-            neighbor.previousVertex = vertex;
-            dirtyVertices.push(neighbor);
-            remaining.push(neighbor);
-            if (neighbor.x === endCoor.x && neighbor.y === endCoor.y) {
-              found = true;
-            }
-          }
+    for (i = 0; i < vertex.neighbors.length; i++) {
+      neighbor = vertex.neighbors[i];
+      if (dirtyVertices.indexOf(neighbor) === -1) {
+        neighbor.pathWeight = vertex.pathWeight + graph.getEdgeValue(vertex, neighbor);
+        neighbor.previousVertex = vertex;
+        dirtyVertices.push(neighbor);
+        remaining.push(neighbor);
+        if (neighbor.x === endCoor.x && neighbor.y === endCoor.y) {
+          found = true;
         }
       }
+    }
+  }
 
-      return toMoveArray(graph.getVertex(endCoor));
+  return toMoveArray(graph.getVertex(endCoor));
 
-      function cleanVertex(vertex) {
-        vertex.pathWeight = Infinity;
-        vertex.heuristic = heuristic(vertex, endCoor);
-        vertex.getTotal = function() {
-          return this.pathWeight + this.heuristic;
-        };
-
-        vertex.previousVertex = undefined;
-
-        return vertex;
-      }
-
-      function toMoveArray(vertex) {
-        var ret = [];
-
-        while (vertex.previousVertex !== undefined) {
-          var previous = vertex.previousVertex;
-          ret.unshift({dx: vertex.x - previous.x, dy: vertex.y - previous.y});
-          vertex = previous;
-        }
-
-        return ret;
-      }
+  function cleanVertex(vertex) {
+    vertex.pathWeight = Infinity;
+    vertex.heuristic = heuristic(vertex, endCoor);
+    vertex.getTotal = function() {
+      return this.pathWeight + this.heuristic;
     };
 
-    module.aStar = aStar;
+    vertex.previousVertex = undefined;
 
-    return module;
+    return vertex;
+  }
 
-  })(VAGABOND.ALGORITHMS);
-})();
+  function toMoveArray(vertex) {
+    var ret = [];
+
+    while (vertex.previousVertex !== undefined) {
+      var previous = vertex.previousVertex;
+      ret.unshift({dx: vertex.x - previous.x, dy: vertex.y - previous.y});
+      vertex = previous;
+    }
+
+    return ret;
+  }
+};
+
+module.exports = aStar;

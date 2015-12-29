@@ -1,56 +1,46 @@
-(function() {
-  "use strict";
+"use strict";
 
-  VAGABOND.namespace("VAGABOND.ALGORITHMS");
+var cellularAutomata = function(matrix, rep, nextGenCellReturnFunc) {
 
-  VAGABOND.ALGORITHMS = (function(module) {
+  nextGenCellReturnFunc = nextGenCellReturnFunc || function(maxCell) {
+    return maxCell;
+  };
 
-    var cellularAutomata = function(matrix, rep, nextGenCellReturnFunc) {
+  for (var i = 0; i < rep; i++) {
+    normalize();
+  }
 
-      nextGenCellReturnFunc = nextGenCellReturnFunc || function(maxCell) {
-        return maxCell;
-      };
+  function normalize() {
 
-      for (var i = 0; i < rep; i++) {
-        normalize();
-      }
+    var pastMatrix = matrix.clone();
+    var getNextCell = getNextGenCell.bind(null, pastMatrix);
 
-      function normalize() {
+    matrix.initGrid(getNextCell);
 
-        var pastMatrix = matrix.clone();
-        var getNextCell = getNextGenCell.bind(null, pastMatrix);
+    function getNextGenCell(matrix, x, y) {
 
-        matrix.initGrid(getNextCell);
+      var maxCell;
+      var max = -Infinity;
+      var counters = {};
 
-        function getNextGenCell(matrix, x, y) {
+      for (var i = 0; i < UTIL.ADJACENT.length; i++) {
+        var move = UTIL.ADJACENT[i];
+        var newX = x + move[0];
+        var newY = y + move[1];
 
-          var maxCell;
-          var max = -Infinity;
-          var counters = {};
-
-          for (var i = 0; i < UTIL.ADJACENT.length; i++) {
-            var move = UTIL.ADJACENT[i];
-            var newX = x + move[0];
-            var newY = y + move[1];
-
-            if (matrix.isValidCoordinate(newX, newY)) {
-              var cell = Math.floor(matrix.get(newX, newY));
-              counters[cell] = counters[cell] ? counters[cell] + 1 : 1;
-              if (max < counters[cell]) {
-                max = counters[cell];
-                maxCell = cell;
-              }
-            }
+        if (matrix.isValidCoordinate(newX, newY)) {
+          var cell = Math.floor(matrix.get(newX, newY));
+          counters[cell] = counters[cell] ? counters[cell] + 1 : 1;
+          if (max < counters[cell]) {
+            max = counters[cell];
+            maxCell = cell;
           }
-
-          return nextGenCellReturnFunc(maxCell, counters);
         }
       }
-    };
 
-    module.cellularAutomata = cellularAutomata;
+      return nextGenCellReturnFunc(maxCell, counters);
+    }
+  }
+};
 
-    return module;
-
-  })(VAGABOND.ALGORITHMS);
-})();
+module.exports = cellularAutomata;
