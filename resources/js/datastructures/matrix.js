@@ -51,7 +51,7 @@
       //  ...   ...   ...         ...         ...
       // {0,h} {1,h} {2,h}  ...  {i,h}  ...  {w,h}
       for (i = 0; i < this.width; i++) {
-        this.grid[i] = [];
+        this.grid[i] = this.grid[i] || [];
 
         for (j = 0; j < this.height; j++) {
           this.set(i, j, initValueFunc(i, j, this.height, this.width));

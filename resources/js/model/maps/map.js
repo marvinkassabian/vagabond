@@ -56,10 +56,7 @@
       var ret = [];
       var added = {};
 
-      flood(entity.movement, {
-        x: entity.x,
-        y: entity.y
-      }, this);
+      flood(entity.movement, entity, this);
 
       return ret;
 
@@ -67,9 +64,9 @@
         var VALID_MOVES = UTIL.VALID_MOVES;
         var move, i, nextCoor, nextMovesLeft;
 
-        if (added[coor.x + ":" + coor.y] > movesLeft) {
+        if (added[coor.x + ":" + coor.y] >= movesLeft) {
           return;
-        } else if (movesLeft >= 0) {
+        } else if (movesLeft > 0) {
           if (added[coor.x + ":" + coor.y] === undefined) {
             ret.push(coor);
           }

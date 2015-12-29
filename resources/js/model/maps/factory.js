@@ -16,7 +16,7 @@
           return Math.floor(UTIL.clamp(value, 0, 31)).toString(32);
         },
         initValue: function() {
-          return UTIL.random(6, 26);
+          return UTIL.random(1, 7);
         }
       });
 
@@ -27,7 +27,10 @@
       //       something cleaner.
       heightMap.generate = function() {
         this.initGrid();
-        ALGORITHMS.diamondSquare(this, 30);
+        ALGORITHMS.diamondSquare(this, 60);
+        this.initGrid((function(x, y) {
+          return Math.max(Math.floor(this.get(x, y)), 1);
+        }).bind(this));
       };
 
       heightMap.type = "height";
