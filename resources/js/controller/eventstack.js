@@ -1,62 +1,33 @@
-(function() {
-  "use strict";
+"use strict";
 
-  VAGABOND.namespace("VAGABOND.CONTROLLER.EVENT_STACK");
+var EventStack = {};
 
-  VAGABOND.CONTROLLER.EVENT_STACK = (function(module) {
+EventStack.init = function() {
+  this.eventStack = [];
 
-    // TODO: test this rather throughly, or look up online to see the safety of this
-    var singleton;
+  return this;
+};
 
-    var getEventStack = function() {
-      if (singleton === undefined) {
-        singleton = Object.create(EventStack).init();
-      }
+EventStack.addEvent = function(eventBlob) {
+  if (this.eventStack.length === 0) {
+    this.eventStack.push(eventBlob);
+  }
+};
 
-      return singleton;
-    };
+EventStack.addEventSequence = function(eventBlobs) {
+  if (this.eventStack.length === 0) {
+    for (var i = 0; i < eventBlobs.length; i++) {
+      this.eventStack.push(eventBlobs[i]);
+    }
+  }
+};
 
-    var setEventStack = function(eventStack) {
-      singleton = eventStack;
-    };
+EventStack.getEvent = function() {
+  return this.eventStack.shift() || {state: "nothing", render: false};
+};
 
-    // TODO: figure out how to block events while page is rendering
-    var EventStack = {};
+EventStack.getSize = function() {
+  return this.eventStack.length;
+};
 
-    EventStack.init = function() {
-      this.eventStack = [];
-
-      return this;
-    };
-
-    EventStack.addEvent = function(eventBlob) {
-      if (this.eventStack.length === 0) {
-        this.eventStack.push(eventBlob);
-      }
-    };
-
-    EventStack.addEventSequence = function(eventBlobs) {
-      if (this.eventStack.length === 0) {
-        for (var i = 0; i < eventBlobs.length; i++) {
-          this.eventStack.push(eventBlobs[i]);
-        }
-      }
-    };
-
-    EventStack.getEvent = function() {
-      return this.eventStack.shift() || {state: "nothing", render: false};
-    };
-
-    EventStack.getSize = function() {
-      return this.eventStack.length;
-    };
-
-    module.getEventStack = getEventStack;
-    module.setEventStack = setEventStack;
-    module.EventStack = EventStack;
-
-    return module;
-
-  })(VAGABOND.CONTROLLER.EVENT_STACK);
-
-})();
+module.exports = Object.create(EventStack).init();

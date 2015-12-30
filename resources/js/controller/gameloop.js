@@ -1,41 +1,30 @@
-(function() {
-  "use strict";
+"use strict";
 
-  VAGABOND.namespace("VAGABOND.CONTROLLER");
+var MILLISECONDS_PER_SECOND = 1000;
 
-  VAGABOND.CONTROLLER = (function(module) {
+var GameLoop = {};
 
-    var MILLISECONDS_PER_SECOND = 1000;
+GameLoop.init = function(timeStep) {
 
-    var GameLoop = {};
+  this.timeStep = timeStep || 1 / 30;
 
-    GameLoop.init = function(timeStep) {
+  this.frameCallback = this.frame.bind(this);
 
-      this.timeStep = timeStep || 1 / 30;
+  this.processCallback = function() {};
 
-      this.frameCallback = this.frame.bind(this);
+  return this;
+};
 
-      this.processCallback = function() {};
+GameLoop.start = function(processCallback) {
+  this.processCallback = processCallback;
+  this.frameCallback();
+};
 
-      return this;
-    };
+GameLoop.frame = function() {
 
-    GameLoop.start = function(processCallback) {
-      this.processCallback = processCallback;
-      this.frameCallback();
-    };
+  this.processCallback();
 
-    GameLoop.frame = function() {
+  UTIL.setTimeout(this.frameCallback, this.timeStep * MILLISECONDS_PER_SECOND);
+};
 
-      this.processCallback();
-
-      UTIL.setTimeout(this.frameCallback, this.timeStep * MILLISECONDS_PER_SECOND);
-    };
-
-    module.GameLoop = GameLoop;
-
-    return module;
-
-  })(VAGABOND.CONTROLLER);
-
-})();
+module.exports = GameLoop;
