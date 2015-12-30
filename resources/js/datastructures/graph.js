@@ -1,100 +1,89 @@
-(function() {
-  "use strict";
+"use strict";
 
-  VAGABOND.namespace("VAGABOND.DATA_STRUCTURES");
+var Matrix = require("./matrix");
 
-  VAGABOND.DATA_STRUCTURES = (function(module) {
+var Vertex = {};
 
-    var Matrix = VAGABOND.DATA_STRUCTURES.Matrix;
+Vertex.init = function(id, x, y, weight) {
+  this.id = id;
+  this.x = x;
+  this.y = y;
+  this.weight = weight;
+  this.neighbors = [];
+  // TODO: use this at some point
+  this.entities = [];
 
-    var Vertex = {};
+  return this;
+};
 
-    Vertex.init = function(id, x, y, weight) {
-      this.id = id;
-      this.x = x;
-      this.y = y;
-      this.weight = weight;
-      this.neighbors = [];
-      // TODO: use this at some point
-      this.entities = [];
+var Graph = {};
 
-      return this;
-    };
+Graph.init = function(weightMatrix) {
+  this.height = weightMatrix.height;
+  this.width = weightMatrix.width;
 
-    var Graph = {};
+  this.vertexMatrix = Object.create(Matrix).init(this.height, this.width);
+  this.vertexMatrix.initGrid();
+  this.vertices = [];
+  this.vertexCount = 0;
 
-    Graph.init = function(weightMatrix) {
-      this.height = weightMatrix.height;
-      this.width = weightMatrix.width;
+  var i, j, weight, vertex, id;
 
-      this.vertexMatrix = Object.create(Matrix).init(this.height, this.width);
-      this.vertexMatrix.initGrid();
-      this.vertices = [];
-      this.vertexCount = 0;
+  for (i = 0; i < this.width; i++) {
+    for (j = 0; j < this.height; j++) {
 
-      var i, j, weight, vertex, id;
+      weight = weightMatrix.get(i, j);
+      id = this.vertexCount;
+      vertex = Object.create(Vertex).init(id, i, j, weight);
 
-      for (i = 0; i < this.width; i++) {
-        for (j = 0; j < this.height; j++) {
+      this.vertexMatrix.set(i, j, vertex);
+      this.vertices[id] = vertex;
+      this.vertexCount++;
 
-          weight = weightMatrix.get(i, j);
-          id = this.vertexCount;
-          vertex = Object.create(Vertex).init(id, i, j, weight);
+    }
+  }
 
-          this.vertexMatrix.set(i, j, vertex);
-          this.vertices[id] = vertex;
-          this.vertexCount++;
+  var k, move, neighbor;
 
+  for (i = 0; i < this.width; i++) {
+    for (j = 0; j < this.height; j++) {
+
+      vertex = this.vertexMatrix.get(i, j);
+
+      for (k = 0; k < UTIL.VALID_MOVES.length; k++) {
+        move = UTIL.VALID_MOVES[k];
+
+        if (this.vertexMatrix.isValidCoordinate(i + move[0], j + move[1])) {
+          neighbor = this.vertexMatrix.get(i + move[0], j + move[1]);
+          vertex.neighbors.push(neighbor);
         }
       }
 
-      var k, move, neighbor;
+    }
+  }
 
-      for (i = 0; i < this.width; i++) {
-        for (j = 0; j < this.height; j++) {
+  return this;
+};
 
-          vertex = this.vertexMatrix.get(i, j);
+Graph.adjacent = function(origin, destination) {
+  return origin.neighbors.indexOf(destination) !== -1;
+};
 
-          for (k = 0; k < UTIL.VALID_MOVES.length; k++) {
-            move = UTIL.VALID_MOVES[k];
+Graph.getEdgeValue = function(origin, destination) {
+  origin = this.getVertex(origin);
+  destination = this.getVertex(destination);
 
-            if (this.vertexMatrix.isValidCoordinate(i + move[0], j + move[1])) {
-              neighbor = this.vertexMatrix.get(i + move[0], j + move[1]);
-              vertex.neighbors.push(neighbor);
-            }
-          }
+  // HACK: just so that if spawned in wall, can walk out of it
+  return destination.weight / Math.min(origin.weight, destination.weight) * UTIL.distance(origin, destination, 2);
+  // return Math.max(origin.weight, destination.weight) * UTIL.distance(origin, destination, 2);
+};
 
-        }
-      }
+Graph.getVertex = function(coordinate) {
+  return this.vertexMatrix.get(coordinate.x, coordinate.y);
+};
 
-      return this;
-    };
+Graph.setVertex = function(coordinate, vertex) {
+  return this.vertexMatrix.set(coordinate.x, coordinate.y, vertex);
+};
 
-    Graph.adjacent = function(origin, destination) {
-      return origin.neighbors.indexOf(destination) !== -1;
-    };
-
-    Graph.getEdgeValue = function(origin, destination) {
-      origin = this.getVertex(origin);
-      destination = this.getVertex(destination);
-
-      // HACK: just so that if spawned in wall, can walk out of it
-      return destination.weight / Math.min(origin.weight, destination.weight) * UTIL.distance(origin, destination, 2);
-      // return Math.max(origin.weight, destination.weight) * UTIL.distance(origin, destination, 2);
-    };
-
-    Graph.getVertex = function(coordinate) {
-      return this.vertexMatrix.get(coordinate.x, coordinate.y);
-    };
-
-    Graph.setVertex = function(coordinate, vertex) {
-      return this.vertexMatrix.set(coordinate.x, coordinate.y, vertex);
-    };
-
-    module.Graph = Graph;
-    module.Vertex = Vertex;
-
-    return module;
-
-  })(VAGABOND.DATA_STRUCTURES);
-})();
+module.exports = Graph;
