@@ -2,7 +2,7 @@
 
 var PlayerEntity = require("./model/entities/playerentity");
 var Goblin = require("./model/entities/enemies/goblin");
-var MAP_FACTORY = require(".model/maps/factory");
+var MAP_FACTORY = require("./model/maps/factory");
 var Screen = require("./view/screen");
 var Level = require("./model/screen");
 var KeyListener = require("./controller/keylistener");

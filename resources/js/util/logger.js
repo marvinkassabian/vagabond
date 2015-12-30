@@ -41,21 +41,3 @@ Logger.toSentenceElement = function(subject, verb, object) {
 };
 
 module.exports = Object.create(Logger).init();
-
-// // TODO: test this rather throughly, or look up online to see the safety of this
-// var singleton;
-//
-// var getLogger = function() {
-//   if (singleton === undefined) {
-//     singleton = Object.create(Logger).init();
-//   }
-//
-//   return singleton;
-// };
-//
-// var setLogger = function(eventStack) {
-//   singleton = eventStack;
-// };
-//
-// exports.getLogger = getLogger;
-// exports.setLogger = setLogger;
