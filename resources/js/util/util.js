@@ -29,30 +29,6 @@ var wrap = function(value, min, max) {
   return ((((value - min) % range) + range) % range) + min;
 };
 
-var zeroPad = function(num, size) {
-  var number;
-  var zeros;
-  var zeroString;
-
-  if (isNaN(num)) {
-    number = num.toString();
-    while (number.length < size) {
-      number = "0" + number;
-    }
-
-    return number;
-  } else {
-    number = Math.abs(num);
-    zeros = Math.max(0, size - Math.floor(number).toString().length);
-    zeroString = Math.pow(10, zeros).toString().substr(1);
-    if (num < 0) {
-      zeroString[0] = "-";
-    }
-
-    return zeroString + number;
-  }
-};
-
 var random = function(upper, lower) {
   var temp;
 
@@ -114,6 +90,7 @@ var VALID_MOVES = [
   [0, 1]
 ];
 
+// TODO: replace the following 3 methods with require("distance-calc")
 var distance = function(origin, destination, power) {
   var dx = Math.pow(Math.abs(origin.x - destination.x), power);
   var dy = Math.pow(Math.abs(origin.y - destination.y), power);
@@ -132,7 +109,6 @@ var straightLineDistance = function(origin, destination) {
 
 exports.clamp = clamp;
 exports.wrap = wrap;
-exports.zeroPad = zeroPad;
 exports.random = random;
 exports.shuffle = shuffle;
 exports.ADJACENT = ADJACENT;
