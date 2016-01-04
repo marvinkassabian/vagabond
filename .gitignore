@@ -1,5 +1,6 @@
 .jscsrc
 .jshintrc
 node_modules/
+compiled/
 *.min.js
 *.map

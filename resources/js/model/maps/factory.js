@@ -2,6 +2,7 @@
 
 // TODO: figure out proper conventions for factory pattern in JavaScript
 
+var UTIL = require("../../util/util");
 var Map = require("./map");
 var cellularAutomata = require("../../algorithms/cellularautomata");
 var diamondSquare = require("../../algorithms/diamondsquare");

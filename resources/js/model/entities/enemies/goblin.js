@@ -1,5 +1,6 @@
 "use strict";
 
+var UTIL = require("../../../util/util");
 var Monster = require("../monster");
 var aStar = require("../../../algorithms/astar");
 

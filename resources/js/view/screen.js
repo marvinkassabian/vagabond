@@ -1,6 +1,7 @@
 "use strict";
 
 // TODO: change name from screen to something else
+var UTIL = require("../util/util");
 var Matrix = require("../datastructures/matrix");
 var View = require("./view");
 

@@ -1,5 +1,6 @@
 "use strict";
 
+var UTIL = require("../util/util");
 var MAP_FACTORY = require("../model/maps/factory");
 var ClickListener = require("./clicklistener");
 var eventStack = require("./eventstack");

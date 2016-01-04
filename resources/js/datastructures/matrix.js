@@ -1,5 +1,7 @@
 "use strict";
 
+var UTIL = require("../util/util");
+
 var Matrix = {};
 
 Matrix.init = function(h, w, defaults) {

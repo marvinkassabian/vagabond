@@ -1,7 +1,6 @@
 "use strict";
 
 var VirtualKeys = require("../util/virtualkeys");
-
 var eventStack = require("./eventstack");
 
 var KeyListener = {};
@@ -20,6 +19,7 @@ KeyListener.init = function() {
   this.codes[VirtualKeys.VK_NUMPAD2] = "logDown";
   this.codes[VirtualKeys.VK_F] = "endTurn";
 
+  var DEBUG = true;
   if (DEBUG) {
     this.codes[VirtualKeys.VK_SPACE] = "generate";
     this.codes[VirtualKeys.VK_RETURN] = "initMap";

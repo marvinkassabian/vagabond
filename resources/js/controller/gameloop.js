@@ -1,5 +1,6 @@
 "use strict";
 
+var UTIL = require("../util/util");
 var MILLISECONDS_PER_SECOND = 1000;
 
 var GameLoop = {};

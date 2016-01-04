@@ -1,5 +1,6 @@
 "use strict";
 
+var UTIL = require("../../util/util");
 var MovableKillableEntity = require("./movablekillableentity");
 var logger = require("../../util/logger");
 

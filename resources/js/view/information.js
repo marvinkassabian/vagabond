@@ -28,4 +28,4 @@ Information.toElement = function() {
   return info;
 };
 
-module.exports = View;
+module.exports = Information;

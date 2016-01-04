@@ -1,5 +1,7 @@
 "use strict";
 
+var UTIL = require("../util/util");
+
 var aStar = function(graph, startCoor, endCoor, heuristic) {
   heuristic = heuristic || function(origin, destination) {
     return UTIL.manhattanDistance(origin, destination);
