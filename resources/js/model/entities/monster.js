@@ -1,53 +1,44 @@
-(function() {
-  "use strict";
+"use strict";
 
-  VAGABOND.namespace("VAGABOND.MODEL.ENTITIES");
+var MovableKillableEntity = require("./movablekillableentity");
+var logger = require("../../util/logger");
 
-  VAGABOND.MODEL.ENTITIES = (function(module) {
+var Monster = Object.create(MovableKillableEntity);
 
-    var MovableKillableEntity = VAGABOND.MODEL.ENTITIES.MovableKillableEntity;
-    var logger = UTIL.LOGGER.getLogger();
+Monster.init = function(x, y, char, hp, name, type, strength) {
+  MovableKillableEntity.init.call(this, UTIL.generateUUID(), x, y, char, hp);
 
-    var Monster = Object.create(MovableKillableEntity);
+  this.name = name;
+  this.type = type;
+  this.strength = strength;
 
-    Monster.init = function(x, y, char, hp, name, type, strength) {
-      MovableKillableEntity.init.call(this, UTIL.generateUUID(), x, y, char, hp);
+  return this;
+};
 
-      this.name = name;
-      this.type = type;
-      this.strength = strength;
+// TODO: move to a 'NamedEntity' object
+Monster.getFullName = function() {
+  return this.name + ", the " + this.type;
+};
 
-      return this;
-    };
+Monster.getInformation = function() {
+  var info = MovableKillableEntity.getInformation.call(this);
 
-    // TODO: move to a 'NamedEntity' object
-    Monster.getFullName = function() {
-      return this.name + ", the " + this.type;
-    };
+  info.name = this.name;
+  info.type = this.type;
+  info.fullName = this.getFullName();
+  info.strength = this.strength;
 
-    Monster.getInformation = function() {
-      var info = MovableKillableEntity.getInformation.call(this);
+  return info;
+};
 
-      info.name = this.name;
-      info.type = this.type;
-      info.fullName = this.getFullName();
-      info.strength = this.strength;
+// TODO: clean this
+Monster.attack = function(killableEntity) {
+  logger.log(logger.toSentenceElement(this, "attacked", killableEntity));
+  killableEntity.hp = Math.max(killableEntity.hp - this.strength, 0);
+  if (killableEntity.isDead()) {
+    logger.log(logger.toSentenceElement(this, "killed", killableEntity));
+    killableEntity.die();
+  }
+};
 
-      return info;
-    };
-
-    // TODO: clean this
-    Monster.attack = function(killableEntity) {
-      logger.log(logger.toSentenceElement(this, "attacked", killableEntity));
-      killableEntity.hp = Math.max(killableEntity.hp - this.strength, 0);
-      if (killableEntity.isDead()) {
-        logger.log(logger.toSentenceElement(this, "killed", killableEntity));
-        killableEntity.die();
-      }
-    };
-
-    module.Monster = Monster;
-
-    return module;
-  })(VAGABOND.MODEL.ENTITIES);
-})();
+module.exports = Monster;

@@ -1,89 +1,80 @@
-(function() {
-  "use strict";
+"use strict";
 
-  // TODO: rename to something else, maybe
-  // TODO: might move to controller folder, unsure
-  VAGABOND.namespace("VAGABOND.MODEL");
+// TODO: rename to something else, maybe
+// TODO: might move to controller folder, unsure
 
-  VAGABOND.MODEL = (function(module) {
+var Level = {};
 
-    var Level = {};
+Level.init = function(map) {
+  // TODO: figure out a way to save space by not storing both
+  // TODO: probably will need to make a population object
+  // TODO: look into iterators in JavaScript
+  this.entityPool = [];
+  this.entityMap = {};
 
-    Level.init = function(map) {
-      // TODO: figure out a way to save space by not storing both
-      // TODO: probably will need to make a population object
-      // TODO: look into iterators in JavaScript
-      this.entityPool = [];
-      this.entityMap = {};
+  this.map = map;
 
-      this.map = map;
+  return this;
+};
 
-      return this;
-    };
+Level.getEntitiesAt = function(coordinate) {
+  var ret = [];
 
-    Level.getEntitiesAt = function(coordinate) {
-      var ret = [];
+  for (var i = 0; i < this.entityPool.length; i++) {
+    var entity = this.entityPool[i];
+    if (entity.x === coordinate.x && entity.y === coordinate.y) {
+      ret.push(entity);
+    }
+  }
 
-      for (var i = 0; i < this.entityPool.length; i++) {
-        var entity = this.entityPool[i];
-        if (entity.x === coordinate.x && entity.y === coordinate.y) {
-          ret.push(entity);
-        }
-      }
+  return ret;
+};
 
-      return ret;
-    };
+Level.addEntity = function() {
+  var args = arguments;
+  if (args[0] instanceof Array) {
+    args = args[0];
+  }
 
-    Level.addEntity = function() {
-      var args = arguments;
-      if (args[0] instanceof Array) {
-        args = args[0];
-      }
+  for (var i = 0; i < args.length; i++) {
+    var entity = args[i];
+    this.entityMap[entity.id] = entity;
+  }
 
-      for (var i = 0; i < args.length; i++) {
-        var entity = args[i];
-        this.entityMap[entity.id] = entity;
-      }
+  Array.prototype.push.apply(this.entityPool, args);
+};
 
-      Array.prototype.push.apply(this.entityPool, args);
-    };
+// TODO: refactor to allow multiple player controlled entities
+Level.setPlayer = function(entity) {
+  this.player = entity;
+};
 
-    // TODO: refactor to allow multiple player controlled entities
-    Level.setPlayer = function(entity) {
-      this.player = entity;
-    };
+Level.takeTurn = function() {
+  var i;
+  var entity;
 
-    Level.takeTurn = function() {
-      var i;
-      var entity;
+  for (i = 0; i < this.entityPool.length; i++) {
+    entity = this.entityPool[i];
 
-      for (i = 0; i < this.entityPool.length; i++) {
-        entity = this.entityPool[i];
+    entity.takeTurn(this);
+  }
 
-        entity.takeTurn(this);
-      }
+};
 
-    };
+Level.renderTo = function(screen) {
+  var i;
 
-    Level.renderTo = function(screen) {
-      var i;
+  screen.clear();
 
-      screen.clear();
+  this.map.renderTo(screen);
 
-      this.map.renderTo(screen);
+  var sortedEntities = this.entityPool.sort(function(a, b) {
+    return a.z - b.z;
+  });
 
-      var sortedEntities = this.entityPool.sort(function(a, b) {
-        return a.z - b.z;
-      });
+  for (i = 0; i < sortedEntities.length; i++) {
+    sortedEntities[i].renderTo(screen);
+  }
+};
 
-      for (i = 0; i < sortedEntities.length; i++) {
-        sortedEntities[i].renderTo(screen);
-      }
-    };
-
-    module.Level = Level;
-
-    return module;
-
-  })(VAGABOND.MODEL);
-})();
+module.exports = Level;

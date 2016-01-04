@@ -67,36 +67,6 @@ var wrap = function(value, min, max) {
 
   return ((((value - min) % range) + range) % range) + min;
 };
-//
-// // src: developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout
-// var setTimeout = function(vCallback, nDelay /*, argumentToPass1, argumentToPass2, etc. */) {
-//   var aArgs = Array.prototype.slice.call(arguments, 2);
-//
-//   if (!(vCallback instanceof Function)) {
-//     throw "EvilError: implicit \"eval\" is evil";
-//   }
-//
-//   var boundCallback = vCallback.bind(this);
-//
-//   return window.setTimeout(function() {
-//     boundCallback(aArgs);
-//   }, nDelay);
-// };
-//
-// // src: developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout
-// var setInterval = function(vCallback, nDelay /*, argumentToPass1, argumentToPass2, etc. */) {
-//   var aArgs = Array.prototype.slice.call(arguments, 2);
-//
-//   if (!(vCallback instanceof Function)) {
-//     throw "EvilError: implicit \"eval\" is evil";
-//   }
-//
-//   var boundCallback = vCallback.bind(this);
-//
-//   return window.setInterval(function() {
-//     boundCallback(aArgs);
-//   }, nDelay);
-// };
 
 var zeroPad = function(num, size) {
   var number;

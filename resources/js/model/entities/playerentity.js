@@ -1,26 +1,17 @@
-(function() {
-  "use strict";
+"use strict";
 
-  VAGABOND.namespace("VAGABOND.MODEL.ENTITIES");
+var Monster = require("./monster");
 
-  VAGABOND.MODEL.ENTITIES = (function(module) {
+var PlayerEntity = Object.create(Monster);
 
-    var Monster = VAGABOND.MODEL.ENTITIES.Monster;
+PlayerEntity.die = function() {
+  Monster.die.call(this);
 
-    var PlayerEntity = Object.create(Monster);
+  this.move = function() {};
 
-    PlayerEntity.die = function() {
-      Monster.die.call(this);
+  this.attack = function() {};
 
-      this.move = function() {};
+  this.takeTurn = function() {};
+};
 
-      this.attack = function() {};
-
-      this.takeTurn = function() {};
-    };
-
-    module.PlayerEntity = PlayerEntity;
-
-    return module;
-  })(VAGABOND.MODEL.ENTITIES);
-})();
+module.exports = PlayerEntity;

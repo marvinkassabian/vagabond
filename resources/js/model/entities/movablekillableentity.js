@@ -1,56 +1,47 @@
-(function() {
-  "use strict";
+"use strict";
 
-  VAGABOND.namespace("VAGABOND.MODEL.ENTITIES");
+var KillableEntity = require("./killableentity");
 
-  VAGABOND.MODEL.ENTITIES = (function(module) {
+var MovableKillableEntity =  Object.create(KillableEntity);
 
-    var KillableEntity = VAGABOND.MODEL.ENTITIES.KillableEntity;
+MovableKillableEntity.init = function(id, x, y, char, hp) {
+  KillableEntity.init.call(this, id, x, y, char, hp);
 
-    var MovableKillableEntity =  Object.create(KillableEntity);
+  this.movement = 16;
 
-    MovableKillableEntity.init = function(id, x, y, char, hp) {
-      KillableEntity.init.call(this, id, x, y, char, hp);
+  return this;
+};
 
-      this.movement = 16;
+MovableKillableEntity.move = function(dx, dy) {
+  this.x += dx;
+  this.y += dy;
 
-      return this;
-    };
+  // HACK: just so that the player can in theory kill everything
+  // TODO: remove after healing is implemented
+  this.hp = Math.min(this.hp + 1, this.totalHp);
+};
 
-    MovableKillableEntity.move = function(dx, dy) {
-      this.x += dx;
-      this.y += dy;
+MovableKillableEntity.isValidMove = function(dx, dy, level) {
+  var map = level.map;
+  var newX = this.x + dx;
+  var newY = this.y + dy;
 
-      // HACK: just so that the player can in theory kill everything
-      // TODO: remove after healing is implemented
-      this.hp = Math.min(this.hp + 1, this.totalHp);
-    };
+  // TODO: clean this
+  var isOccupied = false;
+  var i;
+  for (i = 0; i < level.entityPool.length; i++) {
+    var entity = level.entityPool[i];
+    // TODO: do something more elegant about allowing entities to walk
+    //       over dead bodies.
+    if (entity.x === newX && entity.y === newY && entity.hp > 0) {
+      isOccupied = true;
+    }
+  }
 
-    MovableKillableEntity.isValidMove = function(dx, dy, level) {
-      var map = level.map;
-      var newX = this.x + dx;
-      var newY = this.y + dy;
+  return map.isValidCoordinate(newX, newY) && map.graph.getEdgeValue(this, {
+    x: newX,
+    y: newY
+  }) < this.movement && !isOccupied;
+};
 
-      // TODO: clean this
-      var isOccupied = false;
-      var i;
-      for (i = 0; i < level.entityPool.length; i++) {
-        var entity = level.entityPool[i];
-        // TODO: do something more elegant about allowing entities to walk
-        //       over dead bodies.
-        if (entity.x === newX && entity.y === newY && entity.hp > 0) {
-          isOccupied = true;
-        }
-      }
-
-      return map.isValidCoordinate(newX, newY) && map.graph.getEdgeValue(this, {
-        x: newX,
-        y: newY
-      }) < this.movement && !isOccupied;
-    };
-
-    module.MovableKillableEntity = MovableKillableEntity;
-
-    return module;
-  })(VAGABOND.MODEL.ENTITIES);
-})();
+module.exports = MovableKillableEntity;
