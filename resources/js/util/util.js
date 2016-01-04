@@ -130,7 +130,6 @@ var straightLineDistance = function(origin, destination) {
   return distance(origin, destination, 2);
 };
 
-exports.extend = extend;
 exports.clamp = clamp;
 exports.wrap = wrap;
 exports.zeroPad = zeroPad;
