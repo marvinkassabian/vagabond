@@ -1,6 +1,6 @@
 "use strict";
 
-var View = VAGABOND.VIEW.View;
+var View = require("./view");
 
 var Information = Object.create(View);
 
