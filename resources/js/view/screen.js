@@ -1,7 +1,7 @@
 "use strict";
 
 // TODO: change name from screen to something else
-var UTIL = require("../util/util");
+var merge = require("lodash.merge");
 var Matrix = require("../datastructures/matrix");
 var View = require("./view");
 
@@ -48,7 +48,7 @@ Screen.getOrigin = function() {
 Screen.toElement = function(options) {
   var i, j, screen, tileElement, value;
 
-  options = UTIL.extend(options, {
+  options = merge({}, {
     formatValue: function(value) {
       return value;
     },
@@ -66,7 +66,7 @@ Screen.toElement = function(options) {
 
       return tileElement;
     }
-  });
+  }, options);
 
   screen = document.createElement("div");
   screen.className = "screen";

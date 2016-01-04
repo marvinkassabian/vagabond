@@ -3,20 +3,21 @@
 // TODO: figure out proper conventions for factory pattern in JavaScript
 
 var UTIL = require("../../util/util");
+var merge = require("lodash.merge");
 var Map = require("./map");
 var cellularAutomata = require("../../algorithms/cellularautomata");
 var diamondSquare = require("../../algorithms/diamondsquare");
 
 var createHeightMap = function(size, options) {
 
-  options = UTIL.extend(options, {
+  options = merge({}, {
     formatValue: function(value) {
       return Math.floor(UTIL.clamp(value, 0, 31)).toString(32);
     },
     initValue: function() {
       return UTIL.random(1, 7);
     }
-  });
+  }, options);
 
   var heightMap = Object.create(Map).init(size, size, options);
 
@@ -43,7 +44,7 @@ var WALL_WEIGHT = 32767;
 var FLOOR_WEIGHT = 1;
 
 var createDungeonMap = function(height, width, options) {
-  options = UTIL.extend(options, {
+  options = merge({}, {
     formatValue: function(value) {
       if (value === WALL_WEIGHT) {
         return "O";
@@ -56,7 +57,7 @@ var createDungeonMap = function(height, width, options) {
     initValue: function() {
       return Math.random() < 0.4 ? WALL_WEIGHT : FLOOR_WEIGHT;
     }
-  });
+  }, options);
 
   var dungeonMap = Object.create(Map).init(height, width, options);
 

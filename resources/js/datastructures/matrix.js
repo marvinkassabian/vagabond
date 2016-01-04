@@ -1,6 +1,7 @@
 "use strict";
 
 var UTIL = require("../util/util");
+var merge = require("lodash.merge");
 
 var Matrix = {};
 
@@ -15,7 +16,7 @@ Matrix.init = function(h, w, defaults) {
 };
 
 Matrix.setDefaults = function(defaults) {
-  this.defaults = UTIL.extend(defaults, {
+  this.defaults = merge({}, {
     initValue: function() {
       return 0;
     },
@@ -30,7 +31,7 @@ Matrix.setDefaults = function(defaults) {
       SEPERATOR: ", ",
       CLOSE: "]\n"
     }
-  });
+  }, defaults);
 };
 
 Matrix.initGrid = function(initValueFunc) {
@@ -130,11 +131,11 @@ Matrix.toString = function(options) {
   var i, j, comma;
   var ret = "";
 
-  options = UTIL.extend(options, {
+  options = merge({}, {
     formatValue: this.defaults.formatValue,
     formatReturn: this.defaults.formatReturn,
     formatting: this.defaults.formatting
-  });
+  }, options);
 
   for (i = 0; i < this.width; i++) {
     ret += options.formatting.OPEN;

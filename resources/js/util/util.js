@@ -1,29 +1,5 @@
 "use strict";
 
-// src: raganwald.com/2014/04/10/mixins-forwarding-delegation.html
-var extend = function() {
-  var consumer = arguments[0];
-  var providers = Array.prototype.slice.call(arguments, 1);
-  var key;
-  var i;
-  var provider;
-
-  if (consumer === undefined) {
-    consumer = {};
-  }
-
-  for (i = 0; i < providers.length; ++i) {
-    provider = providers[i];
-    for (key in provider) {
-      if (!consumer.hasOwnProperty(key)) {
-        consumer[key] = provider[key];
-      }
-    }
-  }
-
-  return consumer;
-};
-
 // clamps the value in the range of [min, max]
 var clamp = function(value, min, max) {
   var temp;
