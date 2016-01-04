@@ -1,13 +1,13 @@
 "use strict";
 
-var UTIL = require("../../util/util");
+var uuid = require("uuid");
 var MovableKillableEntity = require("./movablekillableentity");
 var logger = require("../../util/logger");
 
 var Monster = Object.create(MovableKillableEntity);
 
 Monster.init = function(x, y, char, hp, name, type, strength) {
-  MovableKillableEntity.init.call(this, UTIL.generateUUID(), x, y, char, hp);
+  MovableKillableEntity.init.call(this, uuid.v4(), x, y, char, hp);
 
   this.name = name;
   this.type = type;

@@ -1,20 +1,5 @@
 "use strict";
 
-// src: stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
-// RFC4122 version 4 compliant
-var generateUUID = function() {
-  var d = Date.now();
-  var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx";
-
-  uuid = uuid.replace(/[xy]/g, function(c) {
-    var r = (d + Math.random() * 16) % 16 | 0;
-    d = Math.floor(d / 16);
-    return (c === "x" ? r : (r & 0x3 | 0x8)).toString(16);
-  });
-
-  return uuid;
-};
-
 // src: raganwald.com/2014/04/10/mixins-forwarding-delegation.html
 var extend = function() {
   var consumer = arguments[0];
@@ -169,7 +154,6 @@ var straightLineDistance = function(origin, destination) {
   return distance(origin, destination, 2);
 };
 
-exports.generateUUID = generateUUID;
 exports.extend = extend;
 exports.clamp = clamp;
 exports.wrap = wrap;
