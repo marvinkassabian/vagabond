@@ -1,6 +1,7 @@
 "use strict";
 
 var UTIL = require("../util/util");
+var d = require("distance-calc");
 var Matrix = require("./matrix");
 
 var Vertex = {};
@@ -75,8 +76,8 @@ Graph.getEdgeValue = function(origin, destination) {
   destination = this.getVertex(destination);
 
   // HACK: just so that if spawned in wall, can walk out of it
-  return destination.weight / Math.min(origin.weight, destination.weight) * UTIL.distance(origin, destination, 2);
-  // return Math.max(origin.weight, destination.weight) * UTIL.distance(origin, destination, 2);
+  return destination.weight / Math.min(origin.weight, destination.weight) * d.norm([origin.x, origin.y], [destination.x, destination.y], 1);
+  // return Math.max(origin.weight, destination.weight) * d.norm([origin.x, origin.y], [destination.x, destination.y], 1);
 };
 
 Graph.getVertex = function(coordinate) {

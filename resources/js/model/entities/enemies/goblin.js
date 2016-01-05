@@ -1,6 +1,7 @@
 "use strict";
 
 var UTIL = require("../../../util/util");
+var d = require("distance-calc");
 var Monster = require("../monster");
 var aStar = require("../../../algorithms/astar");
 
@@ -29,7 +30,7 @@ Goblin.takeTurn = function(level) {
     y: this.y
   };
 
-  var distance = UTIL.manhattanDistance(currentPosition, playerCoor);
+  var distance = d.norm([currentPosition.x, currentPosition.y], [playerCoor.x, playerCoor.y], 1);
 
   if (distance === 1 && level.player.hp > 0) {
     this.attack(level.player, level);
@@ -68,7 +69,7 @@ Goblin.takeNextMove = function(level) {
   };
 
   var nextMoves = aStar(level.map.graph, currentPosition, playerCoor, function(origin, destination) {
-    return this.aStarWeights[0] * UTIL.distance(origin, destination, this.aStarWeights[1]);
+    return this.aStarWeights[0] * d.norm([origin.x, origin.y], [destination.x, destination.y], this.aStarWeights[1]);
   }.bind(this));
   var nextMove = nextMoves.shift();
 
