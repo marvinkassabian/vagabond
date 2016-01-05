@@ -114,29 +114,9 @@ var VALID_MOVES = [
   [0, 1]
 ];
 
-var distance = function(origin, destination, power) {
-  var dx = Math.pow(Math.abs(origin.x - destination.x), power);
-  var dy = Math.pow(Math.abs(origin.y - destination.y), power);
-  return Math.pow(dx + dy, 1 / power);
-};
-
-var manhattanDistance = function(origin, destination) {
-  var dx = Math.abs(origin.x - destination.x);
-  var dy = Math.abs(origin.y - destination.y);
-  return dx + dy;
-};
-
-var straightLineDistance = function(origin, destination) {
-  return distance(origin, destination, 2);
-};
-
 exports.clamp = clamp;
 exports.wrap = wrap;
-exports.zeroPad = zeroPad;
 exports.random = random;
 exports.shuffle = shuffle;
 exports.ADJACENT = ADJACENT;
 exports.VALID_MOVES = VALID_MOVES;
-exports.manhattanDistance = manhattanDistance;
-exports.straightLineDistance = straightLineDistance;
-exports.distance = distance;
