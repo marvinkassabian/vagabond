@@ -1,5 +1,16 @@
 "use strict";
 
+var VALID_MOVES = [
+  // [1, 1],
+  // [1, -1],
+  // [-1, -1],
+  // [-1, 1],
+  [1, 0],
+  [0, -1],
+  [-1, 0],
+  [0, 1]
+];
+
 var random = require("random-js")();
 var d = require("distance-calc");
 var Monster = require("../monster");
@@ -46,9 +57,7 @@ Goblin.takeTurn = function(level) {
 };
 
 function getRandomMove() {
-  var moves = UTIL.VALID_MOVES;
-
-  var randomMove = moves[random.integer(0, moves.length)];
+  var randomMove = VALID_MOVES[random.integer(0, moves.length - 1)];
 
   return {
     dx: randomMove[0],
