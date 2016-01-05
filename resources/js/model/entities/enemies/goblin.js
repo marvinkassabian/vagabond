@@ -1,6 +1,6 @@
 "use strict";
 
-var UTIL = require("../../../util/util");
+var random = require("random-js")();
 var d = require("distance-calc");
 var Monster = require("../monster");
 var aStar = require("../../../algorithms/astar");
@@ -8,7 +8,7 @@ var aStar = require("../../../algorithms/astar");
 var Goblin = Object.create(Monster);
 
 Goblin.init = function(x, y, hp, name) {
-  this.aStarWeights = [UTIL.random(10, 1), UTIL.random(5, 1)];
+  this.aStarWeights = [random.real(10, 1), random.real(5, 1)];
   return Monster.init.call(this, x, y, "%", hp, name, "Goblin", 3);
 };
 
@@ -48,7 +48,7 @@ Goblin.takeTurn = function(level) {
 function getRandomMove() {
   var moves = UTIL.VALID_MOVES;
 
-  var randomMove = moves[Math.floor(UTIL.random(moves.length))];
+  var randomMove = moves[random.integer(0, moves.length)];
 
   return {
     dx: randomMove[0],

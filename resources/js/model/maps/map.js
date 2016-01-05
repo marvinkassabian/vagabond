@@ -1,6 +1,5 @@
 "use strict";
 
-var UTIL = require("../../util/util");
 var Matrix = require("../../datastructures/matrix");
 var Graph = require("../../datastructures/graph");
 

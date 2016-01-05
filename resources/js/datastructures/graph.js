@@ -1,6 +1,6 @@
 "use strict";
 
-var UTIL = require("../util/util");
+
 var d = require("distance-calc");
 var Matrix = require("./matrix");
 

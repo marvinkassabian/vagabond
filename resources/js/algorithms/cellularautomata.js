@@ -1,7 +1,5 @@
 "use strict";
 
-var UTIL = require("../util/util");
-
 var cellularAutomata = function(matrix, rep, nextGenCellReturnFunc) {
 
   nextGenCellReturnFunc = nextGenCellReturnFunc || function(maxCell) {

@@ -1,6 +1,7 @@
 "use strict";
 
-var UTIL = require("../util/util");
+var clamp = require("clamp");
+var wrap = require("number-wrap");
 var merge = require("lodash.merge");
 
 var Matrix = {};
@@ -97,15 +98,15 @@ Matrix.clampedSet = function(x, y, value) {
 
 Matrix.clampCoor = function(x, y) {
   return {
-    x: UTIL.clamp(x, 0, this.width - 1),
-    y: UTIL.clamp(y, 0, this.height - 1)
+    x: clamp(x, 0, this.width - 1),
+    y: clamp(y, 0, this.height - 1)
   };
 };
 
 Matrix.wrapCoor = function(x, y) {
   return {
-    x: UTIL.wrap(x, 0, this.width),
-    y: UTIL.wrap(y, 0, this.height)
+    x: wrap(x, 0, this.width),
+    y: wrap(y, 0, this.height)
   };
 };
 

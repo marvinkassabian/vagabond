@@ -7,7 +7,6 @@ var Screen = require("./view/screen");
 var Level = require("./model/level");
 var KeyListener = require("./controller/keylistener");
 var Controller = require("./controller/controller");
-// var GameLoop = require("./controller/gameloop");
 var Information = require("./view/information");
 var Logs = require("./view/logs");
 
