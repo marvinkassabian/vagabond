@@ -2,8 +2,9 @@
 
 // TODO: figure out proper conventions for factory pattern in JavaScript
 
-var UTIL = require("../../util/util");
 var merge = require("lodash.merge");
+var clamp = require("clamp");
+var random = require("random-js")();
 var Map = require("./map");
 var cellularAutomata = require("../../algorithms/cellularautomata");
 var diamondSquare = require("../../algorithms/diamondsquare");
@@ -12,10 +13,10 @@ var createHeightMap = function(size, options) {
 
   options = merge({}, {
     formatValue: function(value) {
-      return Math.floor(UTIL.clamp(value, 0, 31)).toString(32);
+      return Math.floor(clamp(value, 0, 31)).toString(32);
     },
     initValue: function() {
-      return UTIL.random(1, 7);
+      return random.real(1, 7);
     }
   }, options);
 

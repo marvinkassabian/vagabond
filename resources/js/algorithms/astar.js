@@ -1,10 +1,10 @@
 "use strict";
 
-var UTIL = require("../util/util");
+var d = require("distance-calc");
 
 var aStar = function(graph, startCoor, endCoor, heuristic) {
   heuristic = heuristic || function(origin, destination) {
-    return UTIL.manhattanDistance(origin, destination);
+    return d.norm([origin.x, origin.y], [destination.x, destination.y], 2);
   };
 
   var vertex, i, neighbor;

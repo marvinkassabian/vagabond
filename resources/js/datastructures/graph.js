@@ -1,6 +1,17 @@
 "use strict";
 
-var UTIL = require("../util/util");
+var VALID_MOVES = [
+  // [1, 1],
+  // [1, -1],
+  // [-1, -1],
+  // [-1, 1],
+  [1, 0],
+  [0, -1],
+  [-1, 0],
+  [0, 1]
+];
+
+var d = require("distance-calc");
 var Matrix = require("./matrix");
 
 var Vertex = {};
@@ -51,8 +62,8 @@ Graph.init = function(weightMatrix) {
 
       vertex = this.vertexMatrix.get(i, j);
 
-      for (k = 0; k < UTIL.VALID_MOVES.length; k++) {
-        move = UTIL.VALID_MOVES[k];
+      for (k = 0; k < VALID_MOVES.length; k++) {
+        move = VALID_MOVES[k];
 
         if (this.vertexMatrix.isValidCoordinate(i + move[0], j + move[1])) {
           neighbor = this.vertexMatrix.get(i + move[0], j + move[1]);
@@ -75,8 +86,8 @@ Graph.getEdgeValue = function(origin, destination) {
   destination = this.getVertex(destination);
 
   // HACK: just so that if spawned in wall, can walk out of it
-  return destination.weight / Math.min(origin.weight, destination.weight) * UTIL.distance(origin, destination, 2);
-  // return Math.max(origin.weight, destination.weight) * UTIL.distance(origin, destination, 2);
+  return destination.weight / Math.min(origin.weight, destination.weight) * d.norm([origin.x, origin.y], [destination.x, destination.y], 1);
+  // return Math.max(origin.weight, destination.weight) * d.norm([origin.x, origin.y], [destination.x, destination.y], 1);
 };
 
 Graph.getVertex = function(coordinate) {

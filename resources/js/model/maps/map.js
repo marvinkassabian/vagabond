@@ -1,6 +1,16 @@
 "use strict";
 
-var UTIL = require("../../util/util");
+var VALID_MOVES = [
+  // [1, 1],
+  // [1, -1],
+  // [-1, -1],
+  // [-1, 1],
+  [1, 0],
+  [0, -1],
+  [-1, 0],
+  [0, 1]
+];
+
 var Matrix = require("../../datastructures/matrix");
 var Graph = require("../../datastructures/graph");
 
@@ -57,7 +67,6 @@ Map.getPossibleMoves = function(entity) {
   return ret;
 
   function flood(movesLeft, coor, map) {
-    var VALID_MOVES = UTIL.VALID_MOVES;
     var move, i, nextCoor, nextMovesLeft;
 
     if (added[coor.x + ":" + coor.y] >= movesLeft) {

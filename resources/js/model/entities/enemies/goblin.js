@@ -1,13 +1,25 @@
 "use strict";
 
-var UTIL = require("../../../util/util");
+var VALID_MOVES = [
+  // [1, 1],
+  // [1, -1],
+  // [-1, -1],
+  // [-1, 1],
+  [1, 0],
+  [0, -1],
+  [-1, 0],
+  [0, 1]
+];
+
+var random = require("random-js")();
+var d = require("distance-calc");
 var Monster = require("../monster");
 var aStar = require("../../../algorithms/astar");
 
 var Goblin = Object.create(Monster);
 
 Goblin.init = function(x, y, hp, name) {
-  this.aStarWeights = [UTIL.random(10, 1), UTIL.random(5, 1)];
+  this.aStarWeights = [random.real(10, 1), random.real(5, 1)];
   return Monster.init.call(this, x, y, "%", hp, name, "Goblin", 3);
 };
 
@@ -29,7 +41,7 @@ Goblin.takeTurn = function(level) {
     y: this.y
   };
 
-  var distance = UTIL.manhattanDistance(currentPosition, playerCoor);
+  var distance = d.norm([currentPosition.x, currentPosition.y], [playerCoor.x, playerCoor.y], 1);
 
   if (distance === 1 && level.player.hp > 0) {
     this.attack(level.player, level);
@@ -45,9 +57,7 @@ Goblin.takeTurn = function(level) {
 };
 
 function getRandomMove() {
-  var moves = UTIL.VALID_MOVES;
-
-  var randomMove = moves[Math.floor(UTIL.random(moves.length))];
+  var randomMove = VALID_MOVES[random.integer(0, moves.length - 1)];
 
   return {
     dx: randomMove[0],
@@ -68,7 +78,7 @@ Goblin.takeNextMove = function(level) {
   };
 
   var nextMoves = aStar(level.map.graph, currentPosition, playerCoor, function(origin, destination) {
-    return this.aStarWeights[0] * UTIL.distance(origin, destination, this.aStarWeights[1]);
+    return this.aStarWeights[0] * d.norm([origin.x, origin.y], [destination.x, destination.y], this.aStarWeights[1]);
   }.bind(this));
   var nextMove = nextMoves.shift();
 

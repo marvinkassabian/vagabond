@@ -1,6 +1,7 @@
 "use strict";
 
-var UTIL = require("../util/util");
+
+var d = require("distance-calc");
 var MAP_FACTORY = require("../model/maps/factory");
 var ClickListener = require("./clicklistener");
 var eventStack = require("./eventstack");
@@ -91,7 +92,7 @@ function handleClick(level, info, avatar, eventBlob) {
 
       info.init(entity);
 
-      if (UTIL.manhattanDistance(avatar, entity) === 1 && entity.hp > 0) {
+      if (d.norm([avatar.x, avatar.y], [entity.x, entity.y], 1) === 1 && entity.hp > 0) {
         avatar.attack(entity);
         eventBlob.useTurn = true;
       }

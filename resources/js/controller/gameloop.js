@@ -1,6 +1,5 @@
 "use strict";
 
-var UTIL = require("../util/util");
 var MILLISECONDS_PER_SECOND = 1000;
 
 var GameLoop = {};
@@ -8,6 +7,7 @@ var GameLoop = {};
 GameLoop.init = function(timeStep) {
 
   this.timeStep = timeStep || 1 / 30;
+  this.lastTime = 0;
 
   this.frameCallback = this.frame.bind(this);
 
@@ -21,11 +21,20 @@ GameLoop.start = function(processCallback) {
   this.frameCallback();
 };
 
-GameLoop.frame = function() {
+GameLoop.frame = function(time) {
 
   this.processCallback();
 
-  UTIL.setTimeout(this.frameCallback, this.timeStep * MILLISECONDS_PER_SECOND);
+  var seconds = (time - this.lastTime) / MILLISECONDS_PER_SECOND;
+  this.lastTime = time;
+  this.accumulator += seconds;
+
+  while (this.accumulator >= this.timestep) {
+    this.accumulator -= this.timestep;
+    this.processCallback(this.timestep);
+  }
+
+  window.requestAnimationFrame(this.frameCallback);
 };
 
 module.exports = GameLoop;

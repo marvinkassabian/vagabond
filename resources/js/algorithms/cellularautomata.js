@@ -1,6 +1,16 @@
 "use strict";
 
-var UTIL = require("../util/util");
+var ADJACENT = [
+  [1, 1],
+  [1, -1],
+  [-1, -1],
+  [-1, 1],
+  [1, 0],
+  [0, -1],
+  [-1, 0],
+  [0, 1],
+  [0, 0]
+];
 
 var cellularAutomata = function(matrix, rep, nextGenCellReturnFunc) {
 
@@ -25,8 +35,8 @@ var cellularAutomata = function(matrix, rep, nextGenCellReturnFunc) {
       var max = -Infinity;
       var counters = {};
 
-      for (var i = 0; i < UTIL.ADJACENT.length; i++) {
-        var move = UTIL.ADJACENT[i];
+      for (var i = 0; i < ADJACENT.length; i++) {
+        var move = ADJACENT[i];
         var newX = x + move[0];
         var newY = y + move[1];
 

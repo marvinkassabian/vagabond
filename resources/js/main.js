@@ -7,7 +7,7 @@ var Screen = require("./view/screen");
 var Level = require("./model/level");
 var KeyListener = require("./controller/keylistener");
 var Controller = require("./controller/controller");
-// var GameLoop = require("./controller/gameloop");
+var GameLoop = require("./controller/gameloop");
 var Information = require("./view/information");
 var Logs = require("./view/logs");
 
@@ -39,7 +39,7 @@ eventStack.addEvent({state: "generate", render: true});
 level.addEntity(milo, otis, henry);
 
 var i;
-for (i = 0; i < 0; i++) {
+for (i = 0; i < 3; i++) {
   var gobbo = Object.create(Goblin).init(
       Math.floor(Math.random() * map.width),
       Math.floor(Math.random() * map.height),
@@ -54,15 +54,5 @@ for (i = 0; i < 0; i++) {
 
 level.setPlayer(milo);
 
-var func = function() {
-
-  controller.processInput(myScreen, milo, level, info, logs);
-
-  // TODO: switch setTimeout to window.requestAnimationFrame
-  setTimeout(func, 30);
-};
-
-func();
-
-// var gameLoop = Object.create(GameLoop).init(1 / 40);
-// gameLoop.start(controller.processInput.bind(controller, myScreen, milo, level, info, logs));
+var gameLoop = Object.create(GameLoop).init(1 / 40);
+gameLoop.start(controller.processInput.bind(controller, myScreen, milo, level, info, logs));

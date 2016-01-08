@@ -3,8 +3,11 @@
   "version": "0.0.1",
   "devDependencies": {},
   "dependencies": {
+    "clamp": "^1.0.1",
     "distance-calc": "^0.2.0",
     "lodash.merge": "^3.3.2",
+    "number-wrap": "^1.0.0",
+    "random-js": "^1.0.8",
     "uuid": "^2.0.1"
   }
 }
