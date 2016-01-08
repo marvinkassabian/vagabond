@@ -57,7 +57,7 @@ Goblin.takeTurn = function(level) {
 };
 
 function getRandomMove() {
-  var randomMove = VALID_MOVES[random.integer(0, moves.length - 1)];
+  var randomMove = VALID_MOVES[random.integer(0, VALID_MOVES.length - 1)];
 
   return {
     dx: randomMove[0],
