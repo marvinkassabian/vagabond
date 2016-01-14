@@ -1,6 +1,6 @@
 {
   "name": "vagabond",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "devDependencies": {},
   "dependencies": {
     "clamp": "^1.0.1",
