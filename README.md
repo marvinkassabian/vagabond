@@ -2,6 +2,10 @@ VAGABOND
 ========
 The start of a [Roguelike](https://en.wikipedia.org/wiki/Roguelike) game, created in JavaScript, CSS, and HTML.
 
+Install
+=======
+Run `npm install` from the terminal in the main `vagabond` folder.
+
 DEMO
 ====
 You can play the current build **[HERE](http://marvinkassabian.github.io/vagabond/game.html)**.
