@@ -12,7 +12,7 @@ You can play the current build **[HERE](http://marvinkassabian.github.io/vagabon
 
 Premise
 -------
-Started off with a simple program to become familar with [Kyle Simpson's OOLO pattern](https://davidwalsh.name/javascript-objects-deconstruction).
+Started off with a simple program to become familar with [Kyle Simpson's OLOO pattern](https://davidwalsh.name/javascript-objects-deconstruction).
 
 Used the [diamond-square algorithm](https://en.wikipedia.org/wiki/Diamond-square_algorithm) to create organic height maps for eventual overworld generation.
 
