@@ -1,0 +1,8 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "strict": 0,
+    "quotes": [2, "double"],
+    "no-use-before-define": [2, "nofunc"]
+  }
+}

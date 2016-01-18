@@ -9,5 +9,9 @@
     "number-wrap": "^1.0.0",
     "random-js": "^1.0.8",
     "uuid": "^2.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "eslint-config-airbnb": "^3.0.0"
   }
 }
