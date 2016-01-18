@@ -1,36 +1,38 @@
 "use strict";
 
-var d = require("distance-calc");
+const d = require("distance-calc");
 
-var aStar = function(graph, startCoor, endCoor, heuristic) {
-  heuristic = heuristic || function(origin, destination) {
+const aStar = function aStar(graph, startCoor, endCoor, givenHeuristic) {
+  const heuristic = givenHeuristic || ((origin, destination) => {
     return d.norm([origin.x, origin.y], [destination.x, destination.y], 2);
-  };
+  });
 
-  var vertex, i, neighbor;
-  var dirtyVertices = [];
-  var remaining = [];
-  var found = false;
+  const dirtyVertices = [];
+  const remaining = [];
 
-  for (var vertexID in graph.vertices) {
-    vertex = cleanVertex(graph.vertices[vertexID]);
-    if (vertex.x === startCoor.x && vertex.y === startCoor.y) {
-      vertex.pathWeight = 0;
+  for (const vertexID in graph.vertices) {
+    if (graph.vertices.hasOwnProperty(vertexID)) {
+      const vertex = cleanVertex(graph.vertices[vertexID]);
+      if (vertex.x === startCoor.x && vertex.y === startCoor.y) {
+        vertex.pathWeight = 0;
+      }
+
+      remaining.push(vertex);
     }
-
-    remaining.push(vertex);
   }
 
+  let found = false;
+
   while (!found && remaining.length !== 0) {
-    remaining.sort(function(a, b) {
+    remaining.sort((a, b) => {
       return (a.getTotal() - b.getTotal()) * -1;
     });
 
-    vertex = remaining.pop();
+    const vertex = remaining.pop();
     dirtyVertices.push(vertex);
 
-    for (i = 0; i < vertex.neighbors.length; i++) {
-      neighbor = vertex.neighbors[i];
+    for (let i = 0; i < vertex.neighbors.length; i++) {
+      const neighbor = vertex.neighbors[i];
       if (dirtyVertices.indexOf(neighbor) === -1) {
         neighbor.pathWeight = vertex.pathWeight + graph.getEdgeValue(vertex, neighbor);
         neighbor.previousVertex = vertex;
@@ -46,24 +48,26 @@ var aStar = function(graph, startCoor, endCoor, heuristic) {
   return toMoveArray(graph.getVertex(endCoor));
 
   function cleanVertex(vertex) {
-    vertex.pathWeight = Infinity;
-    vertex.heuristic = heuristic(vertex, endCoor);
-    vertex.getTotal = function() {
+    const cleanedVertex = vertex;
+    cleanedVertex.pathWeight = Infinity;
+    cleanedVertex.heuristic = heuristic(cleanedVertex, endCoor);
+    cleanedVertex.getTotal = function getTotal() {
       return this.pathWeight + this.heuristic;
     };
 
-    vertex.previousVertex = undefined;
+    cleanedVertex.previousVertex = undefined;
 
-    return vertex;
+    return cleanedVertex;
   }
 
   function toMoveArray(vertex) {
-    var ret = [];
+    const ret = [];
+    let current = vertex;
 
-    while (vertex.previousVertex !== undefined) {
-      var previous = vertex.previousVertex;
-      ret.unshift({dx: vertex.x - previous.x, dy: vertex.y - previous.y});
-      vertex = previous;
+    while (current.previousVertex !== undefined) {
+      const previous = current.previousVertex;
+      ret.unshift({ dx: current.x - previous.x, dy: current.y - previous.y });
+      current = previous;
     }
 
     return ret;
